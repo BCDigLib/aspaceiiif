@@ -1,0 +1,24 @@
+=== 1.8.11.0 (2012-11-9)
+* Update to Jackson 1.8.11
+
+=== 1.8.8.0 (2012-1-29)
+* Update to Jackson 1.8.8
+
+=== 1.8.6.0 (2012-1-15)
+* Update to Jackson 1.8.6
+* Update to tarpit ~> 2.0 (build)
+
+=== 1.8.5.0 (2011-8-29)
+* Update to Jackson 1.8.5
+
+=== 1.8.4.0 (2011-7-31)
+* Update to Jackson 1.8.4
+
+=== 1.8.2.0 (2011-6-26)
+* Update to Jackson 1.8.2
+
+=== 1.8.1.0 (2011-5-19)
+* Update to Jackson 1.8.1
+
+=== 1.8.0.0 (2011-5-15)
+* Initial release based on Jackson 1.8.0

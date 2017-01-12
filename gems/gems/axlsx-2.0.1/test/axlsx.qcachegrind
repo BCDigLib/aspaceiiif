@@ -1,0 +1,2226 @@
+events: process_time
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Float#==
+0 638
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=570 113
+113 297
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+fn=Axlsx::Col#width=
+106 1240
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=570 113
+113 1560
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Fixnum#>
+0 17
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Float#*
+0 288
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Float#+
+0 343
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Fixnum#*
+0 284
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#count
+0 903
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=<Class::Axlsx::Worksheet>#thin_chars
+11 623
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Float#to_f
+0 326
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Fixnum#/
+0 367
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#font_size
+334 2181
+cfl=/Users/randym/dev/randym/axlsx/test/(eval)
+cfn=Axlsx::SimpleTypedList#[]
+calls=1140 335
+335 2494
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#start_with?
+0 387
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#is_formula?
+306 1656
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=600 307
+307 355
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#to_s
+calls=600 307
+307 326
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#start_with?
+calls=600 307
+307 387
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#autowidth
+313 5534
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#is_formula?
+calls=600 314
+314 2724
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=570 314
+314 1055
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#font_size
+calls=570 316
+316 4675
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#/
+calls=570 316
+316 367
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Float#to_f
+calls=570 316
+316 326
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#to_s
+calls=570 317
+317 321
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=<Class::Axlsx::Worksheet>#thin_chars
+calls=570 317
+317 623
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#count
+calls=570 317
+317 903
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#*
+calls=570 317
+317 284
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Float#+
+calls=570 317
+317 343
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Float#*
+calls=570 317
+317 288
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+fn=Axlsx::Col#update_width
+124 3676
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=600 125
+125 359
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#autowidth
+calls=600 128
+128 17443
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#>
+calls=19 129
+129 17
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+cfn=Axlsx::Col#width=
+calls=600 129
+129 2800
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+fn=Axlsx::Workbook#use_autowidth
+227 630
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Array#[]=
+0 18
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+fn=Axlsx::SimpleTypedList#protected?
+144 37
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=20 145
+145 12
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+fn=Axlsx::SimpleTypedList#[]=
+123 96
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=20 124
+124 192
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#protected?
+calls=20 125
+125 49
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#[]=
+calls=20 126
+126 18
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+fn=Axlsx::Col#initialize
+18 104
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=40 20
+20 713
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=20 23
+23 48
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Array#[]
+0 1002
+
+fl=/Users/randym/dev/randym/axlsx/test/(eval)
+fn=Axlsx::SimpleTypedList#[]
+2 2811
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#[]
+calls=600 3
+3 358
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#[]
+calls=1140 3
+3 644
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cols.rb
+fn=Axlsx::Cols#initialize
+7 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 8
+8 1
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=1 9
+9 11
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#column_info
+148 713
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=1 149
+149 22
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#find_or_create_column_info
+743 1475
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#column_info
+calls=600 744
+744 735
+cfl=/Users/randym/dev/randym/axlsx/test/(eval)
+cfn=Axlsx::SimpleTypedList#[]
+calls=600 744
+744 1319
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=20 744
+744 905
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#[]=
+calls=20 744
+744 355
+
+fl=/Users/randym/dev/randym/axlsx/test/(eval)
+fn=Axlsx::SimpleTypedList#each_with_index
+2 54
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Enumerable#each_with_index
+calls=30 3
+3 31824
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#update_column_info
+735 66
+cfl=/Users/randym/dev/randym/axlsx/test/(eval)
+cfn=Axlsx::SimpleTypedList#each_with_index
+calls=30 736
+736 31878
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Array#last
+0 41
+
+fl=/Users/randym/dev/randym/axlsx/test/(eval)
+fn=Axlsx::SimpleTypedList#last
+2 107
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#last
+calls=60 3
+3 41
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#gsub
+0 3419
+
+fl=/opt/boxen/rbenv/versions/2.0.0-p0/lib/ruby/2.0.0/cgi/util.rb
+fn=<Class::CGI>#escapeHTML
+35 987
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#gsub
+calls=600 36
+36 3419
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx.rb
+fn=<Module::Axlsx>#trust_input
+134 717
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#nil?
+0 351
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#cast_value
+390 6865
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#nil?
+calls=600 391
+391 351
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=4200 404
+404 2156
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx.rb
+cfn=<Module::Axlsx>#trust_input
+calls=600 411
+411 717
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#to_s
+calls=600 411
+411 332
+cfl=/opt/boxen/rbenv/versions/2.0.0-p0/lib/ruby/2.0.0/cgi/util.rb
+cfn=<Class::CGI>#escapeHTML
+calls=600 411
+411 4406
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#to_s
+0 2033
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#cell_type_from_value
+365 6070
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2400 370
+370 1369
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#to_s
+calls=1800 379
+379 1054
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+fn=Axlsx::Workbook#styles
+159 1257
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=600 160
+160 365
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#row=
+355 717
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+fn=Axlsx::Cell#initialize
+33 4878
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#row=
+calls=600 34
+34 717
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+cfn=Axlsx::Workbook#styles
+calls=600 38
+38 1622
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#<<
+calls=600 39
+39 7012
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=600 40
+40 1269
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#cell_type_from_value
+calls=600 42
+42 8493
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#cast_value
+calls=600 43
+43 14827
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Enumerable#each_with_index
+0 86
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=30 151
+151 47114
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=30 3
+3 31777
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Hash#delete
+0 1182
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+fn=Axlsx::Row#array_to_cells
+147 155
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=30 149
+149 275
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#delete
+calls=90 150
+150 52
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Enumerable#each_with_index
+calls=30 151
+151 47153
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#rows
+113 39
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=1 114
+114 9
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+fn=Axlsx::Row#worksheet=
+136 67
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=30 136
+136 292
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+fn=Axlsx::Row#initialize
+30 213
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+cfn=Axlsx::Row#worksheet=
+calls=30 32
+32 359
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=30 33
+33 259
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#rows
+calls=30 34
+34 48
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#<<
+calls=30 34
+34 373
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+cfn=Axlsx::Row#array_to_cells
+calls=30 36
+36 47635
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#add_row
+410 197
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=30 411
+411 48943
+cfl=/Users/randym/dev/randym/axlsx/test/(eval)
+cfn=Axlsx::SimpleTypedList#last
+calls=60 414
+414 148
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#delete
+calls=30 412
+412 15
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#update_column_info
+calls=30 412
+412 31944
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=30 413
+413 19
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Integer#times
+0 43
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#add_row
+calls=30 15
+15 81266
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#initialize_page_options
+35 3
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#workbook=
+733 2
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 733
+733 13
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+fn=Axlsx::Worksheet#initialize
+24 12
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#workbook=
+calls=1 25
+25 15
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#initialize_page_options
+calls=1 28
+28 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=1 29
+29 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#<<
+calls=1 30
+30 17
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+fn=Axlsx::Workbook#add_worksheet
+254 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=1 255
+255 53
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=1 256
+256 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Integer#times
+calls=1 14
+14 81309
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+fn=Axlsx::Workbook#date1904=
+212 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_boolean
+calls=1 212
+212 45
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=NilClass#nil?
+0 3
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/table_styles.rb
+fn=Axlsx::TableStyles#initialize
+12 5
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=1 15
+15 9
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Module::Axlsx>#validate_boolean
+109 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 110
+110 2
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 110
+110 16
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 110
+110 1
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 110
+110 42
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#applyNumberFormat=
+118 5
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_boolean
+calls=1 118
+118 28
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#xfId=
+112 6
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=3 112
+112 50
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+fn=Axlsx::CellStyle#xfId=
+53 6
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=1 53
+53 23
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+fn=Axlsx::CellStyle#builtinId=
+55 5
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=1 55
+55 36
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+fn=Axlsx::CellStyle#name=
+51 8
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_string
+calls=1 51
+51 21
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+fn=Axlsx::CellStyle#initialize
+18 7
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=1 19
+19 156
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#fillId=
+108 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=4 108
+108 69
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#fontId=
+106 13
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=4 106
+106 62
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#numFmtId=
+103 10
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=4 103
+103 69
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#borderId=
+110 7
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=4 110
+110 70
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+fn=Axlsx::Xf#initialize
+26 11
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=4 27
+27 607
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+fn=Axlsx::BorderPr#color=
+57 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 57
+57 40
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+fn=Axlsx::BorderPr#style=
+59 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::RestrictionValidator>#validate
+calls=4 59
+59 16
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+fn=Axlsx::BorderPr#name=
+55 11
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::RestrictionValidator>#validate
+calls=4 55
+55 27
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+fn=Axlsx::BorderPr#initialize
+47 9
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=4 48
+48 231
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Regexp#match
+0 36
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#match
+0 10
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Regexp#match
+calls=4 57
+57 36
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#rjust
+0 4
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#upcase!
+0 7
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/color.rb
+fn=Axlsx::Color#rgb=
+52 26
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_string
+calls=4 53
+53 46
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#upcase!
+calls=4 54
+54 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#rjust
+calls=4 56
+56 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#match
+calls=4 57
+57 46
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/color.rb
+fn=Axlsx::Color#initialize
+13 9
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=4 15
+15 184
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border.rb
+fn=Axlsx::Border#initialize
+22 10
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=2 23
+23 17
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=2 24
+24 4
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/fill.rb
+fn=Axlsx::Fill#fill_type=
+31 9
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=2 31
+31 18
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/fill.rb
+fn=Axlsx::Fill#initialize
+17 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/fill.rb
+cfn=Axlsx::Fill#fill_type=
+calls=2 18
+18 27
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Array#include?
+0 25
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=17 12
+12 15
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=14 12
+12 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=4 12
+12 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=1 110
+110 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=2 110
+110 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=2 110
+110 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=2 110
+110 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=1 110
+110 1
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Class::Axlsx::RestrictionValidator>#validate
+11 28
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#include?
+calls=2 12
+12 19
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#include?
+calls=4 12
+12 17
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#include?
+calls=4 12
+12 6
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Module::Axlsx>#validate_pattern_type
+158 6
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::RestrictionValidator>#validate
+calls=2 159
+159 27
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/pattern_fill.rb
+fn=Axlsx::PatternFill#patternType=
+56 6
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_pattern_type
+calls=2 56
+56 33
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Symbol#==
+0 2544
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/pattern_fill.rb
+fn=Axlsx::PatternFill#initialize
+13 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=2 15
+15 68
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+fn=Axlsx::Font#family=
+115 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=1 115
+115 19
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+fn=Axlsx::Font#sz=
+135 2
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=1 135
+135 22
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+fn=Axlsx::Font#name=
+111 5
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_string
+calls=1 111
+111 14
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+fn=Axlsx::Font#initialize
+24 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=1 25
+25 104
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+fn=Axlsx::SimpleTypedList#lock
+58 20
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+fn=Axlsx::SimpleTypedList#<<
+92 1975
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=12 93
+93 117
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 93
+93 36
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 93
+93 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=30 93
+93 281
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=600 93
+93 5185
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Module::Axlsx>#validate_string
+115 22
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=2 116
+116 21
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 116
+116 12
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 116
+116 36
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 116
+116 19
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+fn=Axlsx::NumFmt#formatCode=
+67 7
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_string
+calls=2 67
+67 29
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#respond_to_missing?
+0 327
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=String#==
+0 755
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=2 11
+11 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=1 11
+11 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=4 11
+11 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=1 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=2 110
+110 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to_missing?
+calls=570 314
+314 317
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Array#each
+0 7479
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=12 62
+62 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=8 395
+395 449
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#<<
+calls=4 395
+395 51
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 62
+62 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=3 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=6 62
+62 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1 62
+62 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=30 62
+62 16
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=30 62
+62 17
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=30 62
+62 20
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1800 160
+160 1124
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=600 163
+163 39753
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#delete
+calls=1800 167
+167 1115
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=600 62
+62 356
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#find_or_create_column_info
+calls=600 737
+737 4789
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+cfn=Axlsx::Workbook#use_autowidth
+calls=600 739
+739 630
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+cfn=Axlsx::Col#update_width
+calls=600 739
+739 24295
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=40 62
+62 30
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=20 62
+62 9
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#class
+0 468
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Proc#call
+0 155
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=2 88
+88 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=1 88
+88 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=1 88
+88 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 88
+88 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 88
+88 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 88
+88 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 88
+88 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=1 88
+88 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=1 88
+88 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=3 88
+88 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#include?
+calls=1 110
+110 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#include?
+calls=1 110
+110 20
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=40 88
+88 29
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Class::Axlsx::DataTypeValidator>#validate
+54 3856
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 56
+56 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=2 57
+57 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=2 59
+59 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=2 62
+62 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=2 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=2 62
+62 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=24 56
+56 18
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=12 59
+59 10
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=12 62
+62 34
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 56
+56 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=2 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=2 62
+62 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 10
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=4 57
+57 13
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=4 57
+57 11
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 11
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=4 57
+57 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 10
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=8 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=4 57
+57 13
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=4 59
+59 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=4 62
+62 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=6 56
+56 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=3 57
+57 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=3 59
+59 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=3 62
+62 7
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=1 57
+57 21
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 56
+56 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=1 59
+59 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 62
+62 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=60 56
+56 40
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=30 59
+59 15
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=30 62
+62 78
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=60 56
+56 36
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=30 59
+59 19
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=30 62
+62 72
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=60 56
+56 39
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=30 59
+59 15
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=30 62
+62 77
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=1200 56
+56 676
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=600 59
+59 332
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=600 62
+62 1463
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=80 56
+56 51
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Proc#call
+calls=40 57
+57 129
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=40 59
+59 25
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=40 62
+62 113
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=40 56
+56 25
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#class
+calls=20 59
+59 16
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=20 62
+62 56
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#lambda
+0 87
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+fn=<Module::Axlsx>#validate_unsigned_int
+87 159
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=2 88
+88 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=2 88
+88 41
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 88
+88 1
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 88
+88 18
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 88
+88 1
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 88
+88 14
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=4 88
+88 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 88
+88 54
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=4 88
+88 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 88
+88 52
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=4 88
+88 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 88
+88 50
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=4 88
+88 5
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=4 88
+88 56
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 88
+88 2
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 88
+88 29
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=1 88
+88 2
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=1 88
+88 16
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=3 88
+88 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=3 88
+88 39
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#lambda
+calls=40 88
+88 55
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Class::Axlsx::DataTypeValidator>#validate
+calls=40 88
+88 574
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+fn=Axlsx::NumFmt#numFmtId=
+64 7
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/validators.rb
+cfn=<Module::Axlsx>#validate_unsigned_int
+calls=2 64
+64 53
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=BasicObject#==
+0 312
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Fixnum#==
+0 42
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=2 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=2 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=20 11
+11 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=2 11
+11 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#==
+calls=2 110
+110 3
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=BasicObject#!=
+0 683
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=2 11
+11 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=2 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=1 11
+11 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=2 11
+11 4
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=2 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=4 11
+11 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#==
+calls=8 11
+11 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=20 11
+11 34
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=String#==
+calls=1 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Fixnum#==
+calls=2 11
+11 6
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Float#==
+calls=570 113
+113 935
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#respond_to?
+0 112
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Symbol#to_s
+0 85
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+fn=Axlsx::NumFmt#initialize
+14 9
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=2 17
+17 156
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#is_a?
+0 4391
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+fn=Axlsx::SimpleTypedList#initialize
+11 274
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=16 16
+16 13
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=4 16
+16 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 16
+16 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=14 16
+16 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=60 16
+16 39
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 16
+16 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#is_a?
+calls=2 16
+16 2
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/styles.rb
+fn=Axlsx::Styles#load_default_styles
+375 84
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=23 416
+416 1298
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#<<
+calls=12 412
+412 155
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#lock
+calls=9 416
+416 20
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Array#each
+calls=1 394
+394 512
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/styles.rb
+fn=Axlsx::Styles#initialize
+119 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/styles.rb
+cfn=Axlsx::Styles#load_default_styles
+calls=1 120
+120 2069
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+fn=Axlsx::Workbook#initialize
+189 25
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=8 198
+198 2128
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=NilClass#nil?
+calls=1 203
+203 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+cfn=Axlsx::Workbook#date1904=
+calls=1 203
+203 49
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=1 204
+204 1
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/package.rb
+fn=Axlsx::Package#workbook
+65 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=1 66
+66 2209
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=1 67
+67 1
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Kernel#block_given?
+0 389
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Hash#each
+0 563
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=8 11
+11 8
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=4 11
+11 16
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+cfn=Axlsx::NumFmt#numFmtId=
+calls=2 11
+11 60
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+cfn=Axlsx::NumFmt#formatCode=
+calls=2 11
+11 36
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=6 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=3 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=3 11
+11 12
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+cfn=Axlsx::Font#name=
+calls=1 11
+11 19
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+cfn=Axlsx::Font#sz=
+calls=1 11
+11 24
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+cfn=Axlsx::Font#family=
+calls=1 11
+11 22
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=4 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=2 11
+11 1
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=2 11
+11 6
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/pattern_fill.rb
+cfn=Axlsx::PatternFill#patternType=
+calls=2 11
+11 39
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=8 11
+11 9
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=4 11
+11 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=4 11
+11 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/color.rb
+cfn=Axlsx::Color#rgb=
+calls=4 11
+11 129
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=24 11
+11 19
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=12 11
+11 15
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=8 11
+11 15
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+cfn=Axlsx::BorderPr#name=
+calls=4 11
+11 38
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+cfn=Axlsx::BorderPr#style=
+calls=4 11
+11 30
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+cfn=Axlsx::BorderPr#color=
+calls=4 11
+11 54
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=40 11
+11 31
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=20 11
+11 24
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=20 11
+11 58
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#borderId=
+calls=4 11
+11 77
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#numFmtId=
+calls=4 11
+11 79
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#fontId=
+calls=4 11
+11 75
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#fillId=
+calls=4 11
+11 83
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#xfId=
+calls=3 11
+11 56
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#applyNumberFormat=
+calls=1 11
+11 33
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Symbol#to_s
+calls=6 11
+11 12
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#respond_to?
+calls=3 11
+11 5
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=BasicObject#!=
+calls=3 11
+11 15
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+cfn=Axlsx::CellStyle#name=
+calls=1 11
+11 29
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+cfn=Axlsx::CellStyle#builtinId=
+calls=1 11
+11 41
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+cfn=Axlsx::CellStyle#xfId=
+calls=1 11
+11 29
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+fn=Axlsx::OptionsParser#parse_options
+9 1042
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=1 10
+10 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=1 10
+10 0
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=2 10
+10 151
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=1 10
+10 102
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=2 10
+10 61
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=2 10
+10 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=4 10
+10 174
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=4 10
+10 218
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=4 10
+10 601
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=1 10
+10 153
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=1 10
+10 2
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=600 10
+10 318
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Hash#each
+calls=20 10
+10 11
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/doc_props/app.rb
+fn=Axlsx::App#initialize
+39 4
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=1 40
+40 4
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/doc_props/core.rb
+fn=Axlsx::Core#initialize
+12 3
+
+fl=/Users/randym/dev/randym/axlsx/lib/axlsx/package.rb
+fn=Axlsx::Package#initialize
+23 11
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=2 25
+25 18
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/options_parser.rb
+cfn=Axlsx::OptionsParser#parse_options
+calls=1 28
+28 3
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Kernel#block_given?
+calls=1 29
+29 2
+
+fl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+fn=Class#new
+0 108
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/package.rb
+cfn=Axlsx::Package#initialize
+calls=1 12
+12 34
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/doc_props/core.rb
+cfn=Axlsx::Core#initialize
+calls=1 25
+25 3
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/doc_props/app.rb
+cfn=Axlsx::App#initialize
+calls=1 25
+25 8
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+cfn=Axlsx::Workbook#initialize
+calls=1 66
+66 2206
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/styles.rb
+cfn=Axlsx::Styles#initialize
+calls=1 190
+190 2072
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=7 198
+198 45
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=8 415
+415 64
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/num_fmt.rb
+cfn=Axlsx::NumFmt#initialize
+calls=2 378
+378 165
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/font.rb
+cfn=Axlsx::Font#initialize
+calls=1 383
+383 107
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/pattern_fill.rb
+cfn=Axlsx::PatternFill#initialize
+calls=2 388
+388 72
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/fill.rb
+cfn=Axlsx::Fill#initialize
+calls=2 388
+388 30
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border.rb
+cfn=Axlsx::Border#initialize
+calls=2 393
+393 31
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/xf.rb
+cfn=Axlsx::Xf#initialize
+calls=4 412
+412 618
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/cell_style.rb
+cfn=Axlsx::CellStyle#initialize
+calls=1 405
+405 163
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/table_styles.rb
+cfn=Axlsx::TableStyles#initialize
+calls=1 416
+416 14
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=2 23
+23 13
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/color.rb
+cfn=Axlsx::Color#initialize
+calls=4 395
+395 193
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/stylesheet/border_pr.rb
+cfn=Axlsx::BorderPr#initialize
+calls=4 395
+395 240
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/worksheet.rb
+cfn=Axlsx::Worksheet#initialize
+calls=1 255
+255 50
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/row.rb
+cfn=Axlsx::Row#initialize
+calls=30 411
+411 48887
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=30 33
+33 198
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/util/simple_typed_list.rb
+cfn=Axlsx::SimpleTypedList#initialize
+calls=1 114
+114 7
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cell.rb
+cfn=Axlsx::Cell#initialize
+calls=600 163
+163 38818
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/cols.rb
+cfn=Axlsx::Cols#initialize
+calls=1 149
+149 19
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/worksheet/col.rb
+cfn=Axlsx::Col#initialize
+calls=20 744
+744 865
+
+fl=/Users/randym/dev/randym/axlsx/test/profile.rb
+fn=Global#[No method]
+12 28
+cfl=/Users/randym/dev/randym/axlsx/test/ruby_runtime
+cfn=Class#new
+calls=1 12
+12 37
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/package.rb
+cfn=Axlsx::Package#workbook
+calls=1 13
+13 2218
+cfl=/Users/randym/dev/randym/axlsx/lib/axlsx/workbook/workbook.rb
+cfn=Axlsx::Workbook#add_worksheet
+calls=1 13
+13 81369
+

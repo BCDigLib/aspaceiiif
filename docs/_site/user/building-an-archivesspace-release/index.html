@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Building an ArchivesSpace Release - ArchivesSpace</title>
+    <link rel="stylesheet" href="/archivesspace/assets/stylesheets/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+    <script src="/archivesspace/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+    <script src="/archivesspace/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+    <link rel="alternate" type="application/atom+xml" href="/blog.xml">
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://archivesspace.org/" title="ArchivesSpace">ArchivesSpace</a>
+</h1>
+
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="https://archivesspace.atlassian.net/wiki/display/ADC/ArchivesSpace">Wiki</a></li>
+        <li><a href="http://docs.archivesspace.org">User Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form onsubmit='google_site_search()'>
+        <input type="text" id="google-search" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+
+      <script language="Javascript" type="text/javascript">
+          function google_site_search()
+            {
+                var query = document.getElementById("google-search").value;
+                  window.open("http://google.com/search?q=" + query
+                  + "%20site:" + "http://archivesspace.github.io/archivesspace");
+                  }
+                </script>
+    </div>
+  </div>
+  <!-- <section>
+    <h2>Newsletter</h2>
+    <div id="mc_embed_signup" style="margin-left: 1.5em; margin-top: 0.5em;">
+      <form
+         action="http://travis-ci.us7.list-manage.com/subscribe/post?u=8ce724a4c9af4dace663cd39c&amp;id=44f8dff14c"
+         method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+         target="_blank" novalidate>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required/>
+        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </form>
+    </div>
+  </section>
+  <section>
+    <h2><a href="http://travis-ci.com/?utm_source=docs.travis-ci.org&utm_medium=referral&utm_content=textlink&utm_campaign=docsite_sidebar">Travis CI for Private Repositories</a></h2>
+  </section> -->
+
+  <section>
+    <h2>Menu</h2>
+    <nav>
+      <ul>
+        <li><a href="/archivesspace/user/system-requirements/">System Requirements</a></li>
+        <li><a href="/archivesspace/user/getting-started/">Getting started</a></li>
+        <li><a href="/archivesspace/user/configuring-archivesspace/">Configuring ArchivesSpace</a></li>
+        <li><a href="/archivesspace/user/upgrading-to-a-new-release-of-archivesspace/">Upgrading ArchivesSpace</a></li>
+        <li><a href="/archivesspace/user/running-archivesspace-as-a-unix-daemon/">Running ArchivesSpace as a Unix daemon</a></li>
+        <li><a href="/archivesspace/user/running-archivesspace-as-a-windows-service/">Running ArchivesSpace as a Windows Service</a></li>
+        <li><a href="/archivesspace/user/running-archivesspace-against-mysql/">Setting up MySQL for Production</a></li>
+        <li><a href="/archivesspace/user/backup-and-recovery/">Backup and Recovery</a></li>
+        <li><a href="/archivesspace/user/re-creating-indexes/">Re-creating your indexes</a></li>
+        <li><a href="/archivesspace/user/resetting-passwords/">Resetting Passwords</a></li>
+        <li><a href="/archivesspace/user/tuning-archivesspace/">Tuning ArchivesSpace</a></li>
+        <li><a href="/archivesspace/user/configuring-ldap-authentication/">Configuring LDAP authentication</a></li>
+        <li><a href="/archivesspace/user/archivesspace-plug-ins-readme/">Plugins and Local Customizations</a></li>
+        <li><a href="/archivesspace/user/running-archivesspace-under-a-prefix/">Deploying under a URL prefix</a></li>
+        <li><a href="/archivesspace/user/running-archivesspace-with-external-solr/">Using an external Solr index</a></li>
+        <li><a href="/archivesspace/user/application-monitoring-with-new-relic/">Monitoring with New Relic</a></li>
+      </ul>
+      <h2>Developer Guides</h2>
+      <ul>
+        <li><a href="/archivesspace/user/archivesspace-architecture-overview">Architecture Overview</a></li>
+        <li><a href="/archivesspace/api">The API</a></li>
+        <li><a href="/archivesspace/user/archivesspace-build-system">Building ArchivesSpace</a></li>
+        <li><a href="/archivesspace/user/selenium-test-suite">Running Selenium Tests</a></li>
+        <li><a href="/archivesspace/doc">Ruby YARD Documentation</a></li>
+        <li><div class="status-circle status">Status:</div>
+          <a href="https://travis-ci.org/archivesspace/archivesspace">Travis CI Status</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+  <section>
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="https://twitter.com/archivesspace">Twitter</a></li>
+      <li><a href="irc://chat.freenode.net/%23archivesspace">IRC</a></li>
+      <li><a href="http://github.com/archivesspace">GitHub</a></li>
+      <li><a href="mailto:ArchivesSpaceHome@lyrasis.org">Email</a></li>
+    </ul>
+  </section>
+  <section>
+    <h2>Contributing</h2>
+    <p>This documentation site is open source.
+      The <a href="https://github.com/archivesspace/archivesspace/tree/gh-pages">README in our Git repository</a> explains how to contribute.</p>
+      <p>This documentation was based on the <a href="https://travis-ci.org">Travis CI</a> documentation. It uses <a href="https://github.com/jekyll/jekyll">Jekyll</a> and <a href="https://github.com/tripit/slate">Slate</a></p>
+  </section>
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main">
+          
+            <h1 class="title">Building an ArchivesSpace Release</h2>
+          
+          <hr />
+
+<h2 id="try-to-tie-up-any-loose-ends">Try to tie up any loose ends</h2>
+
+<p>Before doing the release, it’s a good idea to try and make sure nothing is left
+hanging. Check JIRA for any “rejected” or started-but-not-accepted tickets,
+since you don’t want to ship with code that hasn’t passed QA. </p>
+
+<p>Also, take a look at all the Gemfile.lock files ( in backend, frontend, public,
+etc ) and review the gem versions. Pay close attention to the Rails &amp; Friends
+( ActiveSupport, ActionPack, etc ), Rack, and Sinatra versions and make sure
+there have not been any security patch versions. There usually are, especially
+since Rails sends fix updates rather frequently. </p>
+
+<p>To update the gems, update the version in Gemfile, delete the Gemfile.lock, and
+run ./build/run bootstrap to download everything. Then make sure your test
+suite passes. </p>
+
+<p>Once everything passes, commit your Gemfiles and Gemfile.lock files.</p>
+
+<p>Review the various README docs and update them as necessary. In particular the 
+<code>UPGRADING.md</code> instructions should be updated to reference the current and new 
+release version numbers.</p>
+
+<h2 id="clone-the-git-repository">Clone the git repository</h2>
+
+<p>When building a release it is important to start from a clean repository. The safest
+way of ensuring this is to clone the repo:</p>
+
+<pre><code>git clone https://github.com/archivesspace/archivesspace.git
+</code></pre>
+
+<p>This assumes you will be building a release from master. To build from a tag you will
+need to additionally check out the tag, like this:</p>
+
+<pre><code>got checkout [tag-name]
+</code></pre>
+
+<h2 id="build-the-archivesspace-technical-documentation">Build the ArchivesSpace technical documentation</h2>
+
+<p>ArchivesSpace ships with the current documentation, located in “docs”
+directory. By default, this is served out at
+http://localhost:8888/archivesspace when the application is running.</p>
+
+<p>This documentation is also hosted on <a href="http://archivesspace.github.io/archivesspace/">http://archivesspace.github.io/archivesspace/</a>,
+with the last released version. This documentation consists of a <a href="http://jekyllrb.com/">Jekyll</a> site
+build on the content of various READMEs, a <a href="https://github.com/tripit/slate">Slate</a> site ( for REST API
+documentation ), and the Ruby <a href="http://yardoc.org/">YARD</a> documentation. </p>
+
+<p>Instructions to build this can be seen on <a href="https://github.com/archivesspace/archivesspace/tree/gh-pages">the ArchivesSpace gh-pages branch</a>.
+Important to note that these steps assume you’re using a standard Ruby, not
+jRuby. Note that is any additional READMEs have been added to the repository, you will
+need to add those to the <a href="https://github.com/archivesspace/archivesspace/tree/master/scripts">scripts/build_docs.rb</a>
+script that rips apart the READMEs. Links in the site’s side bar need to be
+added to <a href="https://github.com/archivesspace/archivesspace/blob/master/docs/_includes/sidebar.html">Jekyll’s
+sidebar</a>.</p>
+
+<p>Before the <code>build/run doc:build</code> step, but sure you run the <code>backend:test</code> step. This will run all your tests, including the documentation_spec.rb spec, which runs through all the endpoints, generates factory girl fixture json, and spits it into a json file ( endpoint_examples.json ).</p>
+
+<p>To build the documentation:</p>
+
+<ol>
+  <li>Check out a new branch from master:</li>
+</ol>
+
+<pre><code>  $ git checkout -b new-document
+</code></pre>
+
+<ol>
+  <li>Make sure that <a href="https://github.com/archivesspace/archivesspace/blob/master/scripts/build_docs.rb#L7-L8">script/build_docs.rb</a> and update <a href="https://github.com/archivesspace/archivesspace/blob/master/docs/_includes/sidebar.html">Jekyll’s sidebar</a>.</li>
+  <li>Rip apart the READMEs for content by running the doc:build ANT task</li>
+</ol>
+
+<pre><code>  $ build/run doc:build
+</code></pre>
+
+<ol>
+  <li>Build Slate ( using a standard Ruby )</li>
+</ol>
+
+<pre><code>  $ cd docs/slate 
+  $ gem install bundler 
+  $ bundle install --binstubs
+  $ ./bin/middleman build
+  $ ./bin/middleman server # optional if you want to have a look at the site.
+  $ rm -r ../api
+  $ mv build ../api
+</code></pre>
+
+<ol>
+  <li>Compile Jekyll</li>
+</ol>
+
+<pre><code>  $ cd docs
+  $ gem install bundler 
+  $ bundle install --binstubs
+  $ ./bin/jekyll build
+  $ ./bin/jekyll serve # optional if you want to have a look at the site. 
+</code></pre>
+
+<ol>
+  <li>Commit the docs directory to git then push it to the gh-pages branch</li>
+</ol>
+
+<pre><code>$  git subtree push --prefix docs origin gh-pages
+( or, if you get a FF error )
+$ git push origin `git subtree split --prefix docs master`:gh-pages --force
+</code></pre>
+
+<ol>
+  <li>Now merge in the docs directory back into master.</li>
+</ol>
+
+<h2 id="build-the-release">Build the release</h2>
+
+<p>Building the actual release is very simple. Back on the master branch ( with
+your docs updated ), run the following:</p>
+
+<pre><code>$ ./scripts/build_release.sh vX.X.X
+</code></pre>
+
+<p>Replace X.X.X with the version number. This will build and package a release in
+a zip file. </p>
+
+<h2 id="commit-and-tag-the-release">Commit and Tag the release</h2>
+
+<p>The release process adds the version number to
+<code>common/asconstants.rb</code>.  After you’ve run the <code>build_release.sh</code>
+script, you’ll need to commit that file then tag the release in git.</p>
+
+<pre><code>$ git add common/asconstants.rb
+$ git commit -m "Updating to vX.X.X"
+$ git tag vX.X.X
+$ git push --tags
+</code></pre>
+
+<h2 id="build-the-release-announcement">Build the release announcement</h2>
+
+<p>The release announcement needs to have all the tickets that make up the
+changelog for the replease. In the past, this list has been written into
+markdown to add in the Github release page. </p>
+
+<p>An easy way to do this is to export all the relevent tickets in JIRA ( that is,
+all tickets accepted since the last release  ). Then use the following script
+to make a markdown file:</p>
+
+<pre><code>require 'csv'
+
+def csv2md(csv_file)
+
+output = "release_#{Time.now.to_i}.md"
+file = File.open(output, "w")
+
+CSV.foreach(csv_file, :headers =&gt; true ) do |row|
+  file &lt;&lt; "* #{ row["Issue Type"].upcase } [##{ row["Key"] }] ( https://archivesspace.atlassian.net/browse/#{ row["Key"] } ): #{ row["Summary"] }\n"
+end
+
+puts "Putting file to #{output}\n" 
+
+end
+
+if __FILE__ == $0
+  csv2md(ARGV[0])
+end
+
+</code></pre>
+
+<p>Then make a release page in Github, upload the zip package and paste in the changelog text. </p>
+
+<p>:package: :shipit: &amp; :pray:  </p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer>
+  <div class="row">
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

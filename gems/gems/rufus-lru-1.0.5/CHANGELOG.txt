@@ -1,0 +1,27 @@
+
+= rufus-lru CHANGELOG.txt
+
+
+== rufus-lru - 1.0.5    released 2012/02/28
+
+- introduced Rufus::Lru::SynchronizedHash (thread-safe)
+
+
+== rufus-lru - 1.0.4    released 2012/02/28
+
+- fixed issue issue false values
+- 2012 refresh
+
+
+== rufus-lru - 1.0.3    released 2010/01/24
+
+- 2010 refresh
+
+
+== rufus-lru - 1.0.2    released 2008/01/18
+
+- todo #17103 : merge! now respecting maxsize
+
+
+== rufus-lru - 1.0.1    released 2008/01/15
+
