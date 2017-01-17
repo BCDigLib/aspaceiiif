@@ -30,20 +30,17 @@ $(function () {
 		{'enum_4':'Controlled Value 4'}
 	];
 	ACCESSION_UDFS = [
-		'boolean_1',
-		'boolean_2',
-		'boolean_3',
-		'string_1'
+		'string_1',
+		'string_2',
+		'string_3',
+		'text_1'
 	];
 
 	RESOURCE_UDFS = [
-	  'string_2',
-	  'string_3',
-		'boolean_1',
-		'boolean_2',
-		'boolean_3',
-		'text_1',
-		'text_2'
+        'string_1',
+        'string_2',
+        'string_3',
+        'text_1'
 	];
 
 
