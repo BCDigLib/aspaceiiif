@@ -1,0 +1,15 @@
+<%
+  aliases = {
+    "collection_management" => "collection_management_record"
+  }
+
+  target_object_type = aliases.has_key?(form.obj["jsonmodel_type"]) ? aliases[form.obj["jsonmodel_type"]] : form.obj["jsonmodel_type"]
+%>
+<% define_template "linked_record", jsonmodel_definition(:event) do |form| %>
+  <div class="subrecord-form-fields">
+    <% if target_object_type === "event" %>
+      <%= form.label_and_select("role", form.possible_options_for(["linked_records", "role"], true), 'required' => true) %>
+    <% end %>
+    <%= render_aspace_partial :partial => "#{target_object_type.pluralize}/record_linker", :locals => {:form => form} %>
+  </div>
+<% end %>

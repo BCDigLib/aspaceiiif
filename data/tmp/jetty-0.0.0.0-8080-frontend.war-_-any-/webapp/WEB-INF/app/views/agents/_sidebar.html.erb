@@ -1,0 +1,19 @@
+<%= render(:layout => '/shared/sidebar',
+           :locals => {
+             :record_type => 'agent',
+             :record => @agent,
+             :plusone => :submit,
+             :save_button_text => I18n.t("#{@agent.agent_type}._frontend.action.save")
+           }) do |sidebar| %>
+
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'dates_of_existence', :property => 'dates_of_existence',
+                                         :anchor => "#{@agent.agent_type}_dates_of_existence") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'agent_name', :property => 'names', :anchor => "#{@agent.agent_type}_names") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'agent_contact', :property => 'agent_contacts', :anchor => "#{@agent.agent_type}_contact_details") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'note', :property => 'notes', :anchor => "#{@agent.agent_type}_notes") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'related_agent', :property => 'related_agents', :anchor => "#{@agent.agent_type}_related_agents") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'external_document', :property => "external_documents", :anchor => "#{@agent.agent_type}_external_documents") %>
+    <%= sidebar.render_for_view_and_edit(:subrecord_type => 'rights_statement', :property => 'rights_statements', :anchor => "#{@agent.agent_type}_rights_statements") %>
+
+    <%= sidebar.render_for_view_only(:subrecord_type => 'search_embedded', :property => :none, :anchor => 'search_embedded') %>
+<% end %>

@@ -1,0 +1,1 @@
+(function(){$(document).bind("subrecordcreated.aspace",function(c,a,b){if(a==="deaccession"){$(document).triggerHandler("subrecordcreated.aspace",["date",$("#deaccession_date .subrecord-form-fields:first",b)])}})})();

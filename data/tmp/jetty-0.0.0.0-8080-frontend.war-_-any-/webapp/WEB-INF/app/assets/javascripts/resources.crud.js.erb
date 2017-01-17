@@ -1,0 +1,62 @@
+//= require tree
+//= require agents.crud
+//= require subjects.crud
+//= require dates.crud
+//= require notes.crud
+//= require instances.crud
+//= require deaccessions.crud
+//= require subrecord.crud
+//= require archival_object.crud
+//= require rights_statements.crud
+//= require form
+//= require rde
+//= require merge_dropdown
+//= require transfer_dropdown
+//= require add_event_dropdown
+//= require export_dropdown
+//= require locations.crud
+//= require collection_management_records.crud
+//= require extent_calculator
+
+$(function() {
+  $.fn.init_resource_form = function() {
+    $(this).each(function() {
+      var $this = $(this);
+
+      if ($this.hasClass("initialised")) {
+        return;
+      };
+
+      var $levelSelect = $("#resource_level_", $this);
+      var $otherLevel = $("#resource_other_level_", $this);
+
+      var handleLevelChange = function(initialising) {
+        if ($levelSelect.val() === "otherlevel") {
+          $otherLevel.removeAttr("disabled");
+          if (initialising === true) {
+            $otherLevel.closest(".form-group").show();
+          } else {
+            $otherLevel.closest(".form-group").slideDown();
+          }
+        } else {
+          $otherLevel.attr("disabled", "disabled");
+          if (initialising === true) {
+            $otherLevel.closest(".form-group").hide();
+          } else {
+            $otherLevel.closest(".form-group").slideUp();
+          }
+        }
+      };
+
+      handleLevelChange(true);
+      $levelSelect.change(handleLevelChange);
+    });
+  };
+
+  $(document).bind("loadedrecordform.aspace", function(event, $container) {
+    $("#resource_form:not(.initialised)", $container).init_resource_form();
+  });
+
+  $("#resource_form:not(.initialised)").init_resource_form();
+
+});

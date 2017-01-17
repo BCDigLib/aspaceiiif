@@ -1,0 +1,9 @@
+<%= setup_context :object => @digital_object %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render_aspace_partial :partial => "shared/tree", :locals => {:root_record => @digital_object} %>
+  </div>
+</div>
+
+<div id="object_container"></div>

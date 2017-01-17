@@ -1,0 +1,325 @@
+class DigitalObjectsController < ApplicationController
+
+  set_access_control  "view_repository" => [:index, :show, :tree],
+                      "update_digital_object_record" => [:new, :edit, :create, :update, :publish, :accept_children, :rde, :add_children],
+                      "delete_archival_record" => [:delete],
+                      "merge_archival_record" => [:merge],
+                      "suppress_archival_record" => [:suppress, :unsuppress],
+                      "transfer_archival_record" => [:transfer],
+                      "manage_repository" => [:defaults, :update_defaults]
+
+  include ExportHelper
+
+  def index
+    respond_to do |format| 
+      format.html {   
+        @search_data = Search.for_type(session[:repo_id], params[:include_components]==="true" ? ["digital_object", "digital_object_component"] : "digital_object", params_for_backend_search.merge({"facet[]" => SearchResultData.DIGITAL_OBJECT_FACETS}))
+      }
+      format.csv { 
+        search_params = params_for_backend_search.merge({"facet[]" => SearchResultData.DIGITAL_OBJECT_FACETS})
+        search_params["type[]"] = params[:include_components] === "true" ? ["digital_object", "digital_object_component"] : [ "digital_object" ] 
+        uri = "/repositories/#{session[:repo_id]}/search"
+        csv_response( uri, search_params )
+      }  
+    end 
+  end
+
+
+  def show
+    flash.keep if not flash.empty? # keep the notices so they display on the subsequent ajax call
+
+    if params[:inline]
+      # only fetch the fully resolved record when rendering the full form
+      @digital_object = JSONModel(:digital_object).find(params[:id], find_opts)
+
+      flash.now[:info] = I18n.t("digital_object._frontend.messages.suppressed_info", JSONModelI18nWrapper.new(:digital_object => @digital_object)) if @digital_object.suppressed
+
+      return render_aspace_partial :partial => "digital_objects/show_inline"
+    end
+
+    @digital_object = JSONModel(:digital_object).find(params[:id])
+  end
+
+
+  def transfer
+    begin
+      handle_transfer(JSONModel(:digital_object))
+    rescue ArchivesSpace::TransferConflictException => e
+      @transfer_errors = e.errors
+      show
+      render :action => :show
+    end
+  end
+
+
+  def new
+    @digital_object = JSONModel(:digital_object).new({:title => I18n.t("digital_object.title_default", :default => "")})._always_valid!
+
+    if user_prefs['default_values']
+      defaults = DefaultValues.get 'digital_object'
+
+      if defaults
+        @digital_object.update(defaults.values)
+        @form_title = "#{I18n.t('actions.new_prefix')} #{I18n.t('digital_object._singular')}"
+      end
+    end
+
+    return render_aspace_partial :partial => "digital_objects/new" if params[:inline]
+  end
+
+
+  def defaults
+    defaults = DefaultValues.get 'digital_object'
+
+    values = defaults ? defaults.form_values : {:title => I18n.t("digital_object.title_default", :default => "")}
+
+    @digital_object = JSONModel(:digital_object).new(values)._always_valid!
+
+    @form_title = I18n.t("default_values.form_title.digital_object")
+
+    render "defaults"
+  end
+
+
+  def update_defaults
+
+    begin
+      DefaultValues.from_hash({
+                                "record_type" => "digital_object",
+                                "lock_version" => params[:digital_object].delete('lock_version'),
+                                "defaults" => cleanup_params_for_schema(
+                                                                        params[:digital_object],
+                                                                        JSONModel(:digital_object).schema
+                                                                        )
+                              }).save
+
+      flash[:success] = "Defaults updated"
+
+      redirect_to :controller => :digital_objects, :action => :defaults
+    rescue Exception => e
+      flash[:error] = e.message
+      redirect_to :controller => :digital_objects, :action => :defaults
+    end
+
+  end
+
+
+
+  def edit
+    flash.keep if not flash.empty? # keep the notices so they display on the subsequent ajax call
+
+    if params[:inline]
+      # only fetch the fully resolved record when rendering the full form
+      @digital_object = JSONModel(:digital_object).find(params[:id], find_opts)
+
+      if @digital_object.suppressed
+        return redirect_to(:action => :show, :id => params[:id], :inline => params[:inline])
+      end
+
+      return render_aspace_partial :partial => "digital_objects/edit_inline"
+    end
+
+    @digital_object = JSONModel(:digital_object).find(params[:id])
+  end
+
+
+  def create
+    handle_crud(:instance => :digital_object,
+                :on_invalid => ->(){
+                  return render_aspace_partial :partial => "new" if inline? 
+                  render :action => "new" 
+                },
+                :on_valid => ->(id){
+                  return render :json => @digital_object.to_hash if inline?
+                  redirect_to({
+                                :controller => :digital_objects,
+                                :action => :edit,
+                                :id => id
+                              },
+                              :flash => {:success => I18n.t("digital_object._frontend.messages.created", JSONModelI18nWrapper.new(:digital_object => @digital_object))})
+                })
+  end
+
+
+  def update
+    handle_crud(:instance => :digital_object,
+                :obj => JSONModel(:digital_object).find(params[:id], find_opts),
+                :on_invalid => ->(){
+                  render_aspace_partial :partial => "edit_inline"
+                },
+                :on_valid => ->(id){
+                  @refresh_tree_node = true
+                  flash.now[:success] = I18n.t("digital_object._frontend.messages.updated", JSONModelI18nWrapper.new(:digital_object => @digital_object))
+                  render_aspace_partial :partial => "edit_inline"
+                })
+  end
+
+
+  def delete
+    digital_object = JSONModel(:digital_object).find(params[:id])
+    digital_object.delete
+
+    flash[:success] = I18n.t("digital_object._frontend.messages.deleted", JSONModelI18nWrapper.new(:digital_object => digital_object))
+    redirect_to(:controller => :digital_objects, :action => :index, :deleted_uri => digital_object.uri)
+  end
+
+
+  def publish
+    digital_object = JSONModel(:digital_object).find(params[:id])
+
+    response = JSONModel::HTTP.post_form("#{digital_object.uri}/publish")
+
+    if response.code == '200'
+      flash[:success] = I18n.t("digital_object._frontend.messages.published", JSONModelI18nWrapper.new(:digital_object => digital_object))
+    else
+      flash[:error] = ASUtils.json_parse(response.body)['error'].to_s
+    end
+
+    redirect_to request.referer
+  end
+
+
+  def accept_children
+    handle_accept_children(JSONModel(:digital_object))
+  end
+
+
+  def merge
+    handle_merge(  params[:refs] ,
+                  JSONModel(:digital_object).uri_for(params[:id]),
+                 'digital_object')
+  end
+
+
+  def tree
+    flash.keep # keep the flash... just in case this fires before the form is loaded
+
+    render :json => fetch_tree
+  end
+
+
+  def rde
+    flash.clear
+
+    @parent = JSONModel(:digital_object).find(params[:id])
+    @children = DigitalObjectChildren.new
+    @exceptions = []
+
+    render_aspace_partial :partial => "shared/rde"
+  end
+
+
+  def add_children
+    @parent = JSONModel(:digital_object).find(params[:id])
+
+    if params[:digital_record_children].blank? or params[:digital_record_children]["children"].blank?
+
+      @children = DigitalObjectChildren.new
+      flash.now[:error] = I18n.t("rde.messages.no_rows")
+
+    else
+      children_data = cleanup_params_for_schema(params[:digital_record_children], JSONModel(:digital_record_children).schema)
+
+      begin
+        @children = DigitalObjectChildren.from_hash(children_data, false)
+
+        if params["validate_only"] == "true"
+          @exceptions = @children.children.collect{|c| JSONModel(:digital_object_component).from_hash(c, false)._exceptions}
+
+          error_count = @exceptions.select{|e| !e.empty?}.length
+          if error_count > 0
+            flash.now[:error] = I18n.t("rde.messages.rows_with_errors", :count => error_count)
+          else
+            flash.now[:success] = I18n.t("rde.messages.rows_no_errors")
+          end
+
+          return render_aspace_partial :partial => "shared/rde"
+        else
+          @children.save(:digital_object_id => @parent.id)
+        end
+
+        return render :text => I18n.t("rde.messages.success")
+      rescue JSONModel::ValidationException => e
+        @exceptions = @children.children.collect{|c| JSONModel(:digital_object_component).from_hash(c, false)._exceptions}
+
+        flash.now[:error] = I18n.t("rde.messages.rows_with_errors", :count => @exceptions.select{|e| !e.empty?}.length)
+      end
+
+    end
+
+    render_aspace_partial :partial => "shared/rde"
+  end
+
+
+  def suppress
+    digital_object = JSONModel(:digital_object).find(params[:id])
+    digital_object.set_suppressed(true)
+
+    flash[:success] = I18n.t("digital_object._frontend.messages.suppressed", JSONModelI18nWrapper.new(:digital_object => digital_object))
+    redirect_to(:controller => :digital_objects, :action => :show, :id => params[:id])
+  end
+
+
+  def unsuppress
+    digital_object = JSONModel(:digital_object).find(params[:id])
+    digital_object.set_suppressed(false)
+
+    flash[:success] = I18n.t("digital_object._frontend.messages.unsuppressed", JSONModelI18nWrapper.new(:digital_object => digital_object))
+    redirect_to(:controller => :digital_objects, :action => :show, :id => params[:id])
+  end
+
+
+  private
+
+  def fetch_tree
+    tree = {}
+
+    limit_to = if  params[:node_uri] && !params[:node_uri].include?("/digital_objects/") 
+                 params[:node_uri]
+               else
+                 "root"
+               end
+
+    if !params[:hash].blank?
+      node_id = params[:hash].sub("tree::", "").sub("#", "")
+      if node_id.starts_with?("digital_object_component")
+        limit_to = JSONModel(:digital_object_component).uri_for(node_id.sub("digital_object_component_", "").to_i)
+      elsif node_id.starts_with?("digital_object")
+        limit_to = "root"
+      end
+    end
+
+    tree = JSONModel(:digital_object_tree).find(nil, :digital_object_id => params[:id], :limit_to => limit_to).to_hash(:validated)
+
+    prepare_tree_nodes(tree) do |node|
+
+      node['text'] = node['title']
+      node['level'] = I18n.t("enumerations.digital_object_level.#{node['level']}", :default => node['level']) if node['level']
+      node['digital_object_type'] = I18n.t("enumerations.digital_object_digital_object_type.#{node['digital_object_type']}", :default => node['digital_object_type']) if node['digital_object_type']
+
+      node_db_id = node['id']
+
+      node['id'] = "#{node["node_type"]}_#{node["id"]}"
+
+      if node['has_children'] && node['children'].empty?
+        node['children'] = true
+      end
+
+      node['type'] = node['node_type']
+
+      node['li_attr'] = {
+        "data-uri" => node['record_uri'],
+        "data-id" => node_db_id,
+        "rel" => node['node_type']
+      }
+      node['a_attr'] = {
+        "href" => "#tree::#{node['id']}",
+        "title" => node["title"]
+      }
+
+    end
+
+    tree
+  end
+
+end

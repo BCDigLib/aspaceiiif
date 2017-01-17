@@ -1,0 +1,124 @@
+<div class="form-messages" id="form_messages">
+<% if @exceptions %>
+   <script>
+     $(function () {
+
+       var setupErrorMessage = function(idx, elt, type) {
+         var $matched;
+
+         if ($("#" + elt).length) {
+           $matched = $("#" + elt);
+           $matched.closest(".form-group, td").addClass(type);
+           if ($("#" + elt).is("section")) {
+             $("#" + elt).addClass(type);
+           }
+         } else if ($("[data-real-id=" + elt + "]").length) {
+           $("[data-real-id=" + elt + "]").each(function() {
+             $(this).parents(".form-group:first").addClass(type);
+           });
+         } else if ($("#" + elt + "_0_").length) {
+           // I know.  Icky.
+           //
+           // Sometimes validation will report that an entire property
+           // is missing (like resource[notes][0][content]).  If that
+           // property is an array, from the form's point of view this
+           // error means that the user didn't provide the first
+           // element of the array (index 0).
+           //
+           // So, if we didn't get a match on the path specified by
+           // the error, assume it's an array and look for the path of
+           // the first element.
+           $matched = $("#" + elt + "_0_");
+           $matched.closest(".form-group, td").addClass(type);
+         }
+         if ($matched && !$("." + type + "[data-target=" + elt + "]").hasClass("linked-to-field")) {
+           $("." + type + "[data-target=" + elt + "]").addClass("linked-to-field").append("<span class='glyphicon glyphicon-chevron-down'></span>").click(function() {
+
+             var $scrollTarget = $matched;
+
+             // CodeMirror text areas are hidden so we can't scroll to
+             // them.  Scroll nearby :)
+             if (!$matched.is(":visible")) {
+               $scrollTarget = $matched.parent();
+             }
+
+             $.scrollTo($scrollTarget, 1000, {
+              onAfter: function() {
+                $matched.focus();
+              }
+             });
+           });
+         }
+       };
+
+       var _errors = <%= form.exceptions_for_js(@exceptions) %>;
+
+       var callback = function () {
+         if (_errors.errors) {
+           $(_errors.errors).each(function (idx, elt) {
+             setupErrorMessage(idx, elt, "error");
+           });
+         }
+
+         if (_errors.warnings) {
+           $(_errors.warnings).each(function (idx, elt) {
+             setupErrorMessage(idx, elt, "warning");
+           });
+         }
+
+         // unbind the event (only needs to run once)
+         $(document).unbind("loadedrecordform.aspace", callback);
+
+         // tell the world all the errors have been rendered
+         $(document).triggerHandler("formerrorready.aspace");
+       };
+
+       $(callback);
+       $(document).on("loadedrecordform.aspace", callback);
+       $(document).on("formerrorready.aspace", function() {
+        $("#archivesSpaceSidebar").on("click", "[href='#form_messages']", function(event) {
+          $("#form_messages .alert:hidden").slideDown();
+        });
+       });
+     });
+   </script>
+
+   <% if @exceptions.has_key?(:errors) %>
+      <div class="alert alert-danger">
+         <% @exceptions[:errors].each do |attr, messages| %>
+            <div class="errors-for-attribute">
+              <% messages.each do |msg| %>
+                <div class="error"
+                     data-target="<%= form.id_for_javascript(attr) %>"
+                     data-message="<%= h(msg) %>">
+                  <% unless attr === 'coded_errors' %>
+                  	<%= I18n.t(form.path_to_i18n_key(attr)) %> - 
+                  <% end %>
+                  <%= msg %>
+                </div>
+              <% end %>
+            </div>
+         <% end %>
+      </div>
+   <% end %>
+   <% if @exceptions.has_key?(:warnings) %>
+      <div class="alert alert-warning">
+         <% @exceptions[:warnings].each do |attr, messages| %>
+            <div class="warnings-for-attribute">
+              <% messages.each do |msg| %>
+                <div class="warning" data-target="<%= form.id_for_javascript(attr) %>"><%= I18n.t(form.path_to_i18n_key(attr)) %> - <%= msg %></div>
+              <% end %>
+            </div>
+         <% end %>
+         <% if not @exceptions.has_key?(:errors) %>
+            <br/>
+            <input type="hidden" name="ignorewarnings" value="true" />
+            <input type="submit" name="ignorewarnings-submit" class="btn btn-warning" value="<%= I18n.t("actions.save_anyway") %>" />
+         <% end %>
+      </div>
+   <% end %>
+<% end %>
+
+<%= render_aspace_partial :partial => "shared/flash_messages" %>
+
+</div>

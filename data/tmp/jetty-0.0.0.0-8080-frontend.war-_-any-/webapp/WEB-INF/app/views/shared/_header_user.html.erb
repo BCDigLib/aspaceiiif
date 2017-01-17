@@ -1,0 +1,95 @@
+<% if session[:user] %>
+  <% if @repositories.length > 0 %>
+    <li class="dropdown select-a-repository">
+      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><%= I18n.t("repository._frontend.action.select") %> <b class="caret"></b></a>
+      <ul class="dropdown-menu" style="padding: 15px;">
+        <li>
+          <%= form_tag({:controller => :repositories, :action => :select}) do |f| %>
+            <fieldset>
+              <%= select_tag "id", options_for_select(@repositories.map {|repo| [repo.repo_code, repo.id]}, session[:repo_id]), :class=>"form-control" %>
+            </fieldset>
+            <br />
+            <button class="btn btn-primary pull-left"><%= I18n.t("repository._frontend.action.select") %></button>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+  <li class="dropdown system-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= I18n.t("navbar.global_admin") %> <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <% if user_can?('create_repository') || user_can?('manage_users') %>
+        <% if user_can?('create_repository') %>
+          <li><%= link_to I18n.t("navbar.repositories_manage"), {:controller => :repositories, :action => :index} %></li>
+        <% end %>
+        <% if user_can?('manage_users') %>
+          <li><%= link_to I18n.t("navbar.manage_users"), :controller => :users, :action => :create %></li>
+          <li><%= link_to I18n.t("navbar.manage_enumerations"), :controller => :enumerations, :action => :index %></li>
+        <% end %>
+        <% if user_can?('administer_system') %>
+          <li><%= link_to I18n.t("navbar.system_info"), :controller => :system_info, :action => :show %></li>
+        <% end %>
+        <li><%= link_to I18n.t("navbar.manage_container_profiles"), :controller => :container_profiles, :action => :index %></li>
+        <% if user_can?('manage_location_profile_record') %>
+        <li><%= link_to I18n.t("navbar.manage_location_profiles"), :controller => :location_profiles, :action => :index %></li>
+        <% end %>
+
+        <li class="divider"></li>
+      <% end %>
+
+      <% if ArchivesSpaceHelp.enabled? %>
+        <li><%= link_to_help :label => I18n.t("help.help_center") %></li>
+      <% end %>
+    </ul>
+  </li>
+
+  <% if Plugins.system_menu_items.any? {|plugin| has_permission_for_controller?(session, plugin)} %>
+    <li class="dropdown plugin-container">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= I18n.t("navbar.plugins") %> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <% Plugins.system_menu_items.each do |plugin| %>
+          <% if has_permission_for_controller?(session, plugin) %>
+            <li><%= link_to I18n.t("plugins.#{plugin}.label"), :controller => plugin.intern, :action => :index %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+  <li class="user-container">
+    <div class="btn-group">
+      <button class="btn btn-default navbar-btn">
+        <span class="user-label has-popover" data-trigger="hover" data-placement="bottom" data-html='true' data-title='<span class="glyphicon glyphicon-user"></span> <%= CGI::escapeHTML(session[:user]) %>'>
+        <span class="glyphicon glyphicon-user"></span><%= session[:user] %>
+        </span>
+      </button>
+
+      <div class="btn-group">
+        <a class="btn btn-default navbar-btn dropdown-toggle last" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+        <ul class="dropdown-menu pull-right">
+
+          <li><%= link_to I18n.t("navbar.user_global_preferences"), :controller => :preferences, :action => :edit, :id => 0, :global => true %></li>
+          <% if session[:repo_id] %>
+            <li><%= link_to I18n.t("navbar.user_repo_preferences"), :controller => :preferences, :action => :edit, :id => 0 %></li>
+          <% end %>
+          <li class="divider"></li>
+
+          <% if user_can?('become_user') %>
+            <li><%= link_to I18n.t("navbar.become-user"), :controller => "session", :action => "select_user" %></li>
+          <% end %>
+          <li><%= link_to I18n.t("navbar.logout"), :controller => "session",:action => "logout"%></li>
+        </ul>
+      </div>
+    </div>
+  </li>
+<% else %>
+  <li class="dropdown login-dropdown <% if params[:login] %>open<% end %>">
+    <a class="session-actions dropdown-toggle" href="#" data-toggle="dropdown"><%= I18n.t("navbar.login") %></a>
+    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+       <%= render_aspace_partial :partial => "shared/login" %>
+       <% if AppConfig[:allow_user_registration] %>
+         <p><%= I18n.t "navbar.register_prefix" %> <%= link_to I18n.t("navbar.register"), {:controller => "users", :action => "new"}, :class => "boring-link" %></p>
+       <% end %>
+    </div>
+  </li>
+<% end %>

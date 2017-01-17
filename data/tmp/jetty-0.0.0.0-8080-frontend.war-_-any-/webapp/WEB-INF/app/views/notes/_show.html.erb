@@ -1,0 +1,31 @@
+<%
+   all_note_types = {}
+
+   JSONModel.enum_values(JSONModel(:note_singlepart).schema['properties']['type']['dynamic_enum']).each do |type|
+     all_note_types[type] = :note_singlepart
+   end
+
+   JSONModel.enum_values(JSONModel(:note_multipart).schema['properties']['type']['dynamic_enum']).each do |type|
+     all_note_types[type] = :note_multipart
+   end
+
+   JSONModel.enum_values(JSONModel(:note_digital_object).schema['properties']['type']['dynamic_enum']).each do |type|
+     all_note_types[type] = :note_digital_object
+   end
+
+   all_note_types["Index"] = :note_index
+   all_note_types["Bibliography"] = :note_bibliography
+
+   section_id = "notes" if section_id.blank?
+%>
+
+<%= render_aspace_partial :partial => "notes/template" %>
+
+<section id="<%= section_id %>" class="subrecord-form">
+  <h3 class="subrecord-form-heading"><%= I18n.t("note._plural") %></h3>
+  <div class="subrecord-form-container">
+    <%= context.list_for(context["notes"], "notes[]") do |note| %>
+      <% context.emit_template(note["jsonmodel_type"]) %>
+    <% end %>
+  </div>
+</section>

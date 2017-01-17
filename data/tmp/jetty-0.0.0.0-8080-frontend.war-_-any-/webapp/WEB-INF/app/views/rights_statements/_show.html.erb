@@ -1,0 +1,37 @@
+<%
+   section_id = "rights_statements" if section_id.blank?
+%>
+
+<section id="<%= section_id %>">
+  <h3><%= I18n.t("rights_statement._plural") %></h3>
+  <div class="accordion details" id="rights_statements_accordion">
+    <% rights_statements.each_with_index do | rights_statement, index | %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row collapsed accordion-toggle" data-toggle="collapse" data-parent="#rights_statements_accordion" href="#rights_statement_<%= index %>">
+            <div class="col-md-1">
+              <span class="glyphicon"></span>
+            </div>
+            <div class="col-md-3">
+              <%= I18n.t("enumerations.rights_statement_rights_type.#{rights_statement['rights_type']}", :default => rights_statement['rights_type']) %>
+            </div>
+            <div class="col-md-4">
+              <% if rights_statement['ip_status'] %>
+                <%= I18n.t("enumerations.rights_statement_ip_status.#{rights_statement['ip_status']}", :default => rights_statement['ip_status']) %>
+              <% end %>
+            </div>
+            <div class="col-md-1">
+              <%= I18n.t("rights_statement.active_#{rights_statement['active'].to_s}") %>
+            </div>
+          </div>
+        </div>
+        <div id="rights_statement_<%= index %>" class="accordion-body collapse">
+          <%= read_only_view(rights_statement) %>
+          <% if rights_statement["external_documents"].length > 0 %>
+            <%= render_aspace_partial :partial => "external_documents/show", :locals => { :external_documents => rights_statement["external_documents"], :id => "rights_statement_#{index}_external_documents" } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
