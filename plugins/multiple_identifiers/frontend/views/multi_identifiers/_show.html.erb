@@ -1,0 +1,27 @@
+<%
+   section_id = "multi_identifier" if section_id.blank?
+%>
+
+<section id="<%= section_id %>">
+  <h3><%= I18n.t("multi_identifier._plural") %></h3>
+  <div class="panel-group details" id="<%= section_id %>_accordion">
+    <% multi_identifiers.each_with_index do | identifier, index | %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_multi_identifier_<%= index %>">
+            <div class="col-md-1">
+              <span class="glyphicon"></span>
+            </div>
+            <div class="col-md-4">
+              <%= I18n.t('enumerations.identifier_type.' + identifier['identifier_type'], :default => identifier['identifier_type']) %>
+              <%= identifier['identifier_value'] %>
+            </div>
+          </div>
+        </div>
+        <div id="<%= section_id %>_multi_identifier_<%= index %>" class="panel-collapse collapse">
+          <%= read_only_view(identifier) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

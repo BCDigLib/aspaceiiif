@@ -1,0 +1,1 @@
+{"multi_identifiers" => {"type" => "array", "items" => {"type" => "JSONModel(:multi_identifier) object"}}}

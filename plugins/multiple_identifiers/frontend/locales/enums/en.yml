@@ -1,0 +1,7 @@
+en:
+    enumerations:
+        identifier_type:
+            local_call: Call Number
+            local_mss_av: AMI identifier
+            local_b: bnumber
+            local_mss_er: Electronic Record Identifier
