@@ -22,13 +22,13 @@ This instance uses the following plugins:
 
 ### Excluded Files
 
-The following files are excluded from this repo for reasons of security 
+We've excluded the following files and folders from this repo for reasons of security 
 and/or practicality:
 
 * config/config.rb (replaced with config.rb.template, which includes 
 default configuration)
-* data/frontend_cookie_secret_cookie_secret.dat
-* data/public_cookie_secret_cookie_secret.dat
+* data/
+* logs/
 * UPGRADING.md
 
 ### Credits
