@@ -2,7 +2,9 @@ BC ArchivesSpace
 --------------------
 
 This is the codebase for Boston College Library's installation of 
-[ArchivesSpace](http://archivesspace.org).
+[ArchivesSpace](http://archivesspace.org). We are in the process of 
+migrating from Archivists' Toolkit and are not yet running this 
+application in production.
  
 * Current version: v1.5.2
 * [Internal documentation](https://bcwiki.bc.edu/display/UL/ArchivesSpace)
@@ -10,11 +12,21 @@ This is the codebase for Boston College Library's installation of
 * [API](http://archivesspace.github.io/archivesspace/api)
 * [Official repo](https://github.com/archivesspace/archivesspace)
 
+### Plugins
+
+This instance uses the following plugins:
+
+* [manage_user_defined_fields (Ohio State University Libraries)](https://github.com/osulibraries/manage_user_defined_fields)
+* [timewalk (New York Public Library)](https://github.com/alexduryee/timewalk)
+* [multiple_identifiers (New York Public Library)](https://github.com/alexduryee/multiple_identifiers)
+
 ### Excluded Files
 
-The following files are excluded from this repo for reasons of security and/or practicality:
+The following files are excluded from this repo for reasons of security 
+and/or practicality:
 
-* config/config.rb (replaced with config.rb.template, which includes default configuration)
+* config/config.rb (replaced with config.rb.template, which includes 
+default configuration)
 * data/frontend_cookie_secret_cookie_secret.dat
 * data/public_cookie_secret_cookie_secret.dat
 * UPGRADING.md
