@@ -1,0 +1,35 @@
+<%= form_for @classification, :as => "classification", :url => {:action => :update, :id => @classification.id}, :html => {:class => 'form-horizontal aspace-record-form', :id => "classification_form"}.merge(update_monitor_params(@classification)) do |f| %>
+  <%= form_context :classification, @classification do |form| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= render_aspace_partial :partial => "classifications/sidebar" %>
+      </div>
+      <div class="col-md-9">
+        <%= render_aspace_partial :partial => "toolbar" %>
+        <div class="record-pane">
+           <%= render_aspace_partial :partial => "classifications/form_container", :locals => {:form => form} %>
+           <div class="form-actions">
+             <button type="submit" class="btn btn-primary"><%= I18n.t("classification._frontend.action.save") %></button>
+              <%= link_to I18n.t("actions.cancel"), :back, :class => "btn btn-cancel btn-default" %>
+           </div>
+         </div>
+      </div>
+    </div>
+
+    <% if @refresh_tree_node
+         node_data = {
+           'id' => @classification.id,
+           'uri' => @classification.uri,
+           'title' => @classification.title,
+           'identifier' => @classification.identifier,
+           'jsonmodel_type' => @classification.jsonmodel_type,
+           'node_type' => @classification.jsonmodel_type,
+           'replace_new_node' => false
+         }
+    %>
+      <script>
+        AS.refreshTreeNode(<%= node_data.to_json.html_safe %>);
+      </script>
+    <% end %>
+  <% end %>
+<% end %>

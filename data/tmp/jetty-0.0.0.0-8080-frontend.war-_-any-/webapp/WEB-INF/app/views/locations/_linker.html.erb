@@ -1,0 +1,57 @@
+<%
+  if form.obj.has_key?('_resolved')
+    selected_json =  form.obj['_resolved'].to_json
+  else
+    selected_json = "{}"
+  end
+
+  enable_space_calculator = false if enable_space_calculator.nil?
+  hide_create = false if hide_create.nil?
+%>
+<hr/>
+<div class="form-group required">
+   <label class="control-label col-sm-2"><%= I18n.t("location._singular") %></label>
+   <div class="controls col-sm-8">
+       <div class="input-group linker-wrapper">
+          <input type="text" class="linker"
+            id="<%= form.id_for("ref") %>"
+            data-label="<%= I18n.t("location._singular") %>"
+            data-label_plural="<%= I18n.t("location._plural") %>"
+            data-name="ref"
+            data-path="<%= form.path %>"
+            data-url="<%= url_for :controller => :search, :action => :do_search, :format => :json %>"
+            data-browse-url="<%= url_for :controller => :search, :action => :do_search, :format => :js, :facets => SearchResultData.LOCATION_FACETS %>"
+            data-selected="<%= selected_json %>"
+            data-multiplicity="one"
+            data-format_template="title"
+            data-types='["location"]'
+          />
+          <% if form.obj.has_key?('_resolved') %>
+          
+            <input type="text" 
+              class='prelinker' 
+              name="<%= form.path %>[_resolved]"
+              value="<%= selected_json %>" />
+              
+            <input type="text" 
+              class='prelinker' 
+              name="<%= form.path %>[ref]"
+              value="<%= form.obj["ref"] %>" />
+
+          <% end %>
+          
+          <div class="input-group-btn">
+            <a class="btn btn-default dropdown-toggle last locations" data-toggle="dropdown" href="javascript:void(0);"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if enable_space_calculator %>
+                <li><a href="javascript:void(0);" class="show-space-calculator-btn" data-calculator-url="<%= url_for :controller => :space_calculator, :action => :show, :inline => true %>" data-modal-title="<%= I18n.t("space_calculator.modal_title") %>" data-modal-content="<%= I18n.t("space_calculator.modal_loading") %>"><%= I18n.t("location._frontend.action.show_space_calculator") %></a></li>
+              <% end %>
+              <li><a href="javascript:void(0);" class="linker-browse-btn"><%= I18n.t("actions.browse") %></a></li>
+              <% if user_can?('update_location_record') && !hide_create %>
+                <li><a href="javascript:void(0);" data-target="<%= url_for :controller => :locations, :action => :new, :inline => true %>" class="linker-create-btn"><%= I18n.t("actions.create") %></a></li>
+              <% end %>
+            </ul>
+          </div>
+       </div>
+   </div>
+</div>

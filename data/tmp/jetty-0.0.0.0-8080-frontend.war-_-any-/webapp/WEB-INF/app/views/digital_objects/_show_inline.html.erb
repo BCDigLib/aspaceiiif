@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render_aspace_partial :partial => "digital_objects/sidebar" %>
+  </div>
+  <div class="col-md-9">
+    <%= render_aspace_partial :partial => "toolbar" %>
+    <div class="record-pane">
+      <% define_template "digital_object", jsonmodel_definition(:digital_object) do |readonly, digital_object| %>
+        <h2><%= digital_object.title %> <span class="label label-info"><%= I18n.t("digital_object._singular") %></span></h2>
+
+        <%= render_aspace_partial :partial => "shared/form_messages", :locals => {:form => readonly} %>
+
+        <section id="basic_information">
+          <h3><%= I18n.t("digital_object._frontend.section.basic_information") %></h3>
+  
+          <%= readonly.label_and_textarea "title" %>
+          <%= readonly.label_and_textfield "digital_object_id" %>
+          <%= readonly.label_and_boolean "publish" %>
+          <%= readonly.label_and_select "level", readonly.possible_options_for("level") %>
+          <%= readonly.label_and_select "digital_object_type", readonly.possible_options_for("digital_object_type") %>
+          <%= readonly.label_and_select "language", readonly.possible_options_for("language") %>
+          <%= readonly.label_and_boolean "restrictions" %>
+          <%= display_audit_info(digital_object) %>
+        </section>
+
+        <% if digital_object.file_versions.length > 0 %>
+          <%= render_aspace_partial :partial => "file_versions/show", :locals => { :file_versions => digital_object.file_versions, :section_id => "digital_object_file_versions_" } %>
+        <% end %>
+
+        <% if digital_object.dates.length > 0 %>
+          <%= render_aspace_partial :partial => "dates/show", :locals => { :dates => digital_object.dates, :section_id => "digital_object_dates_" } %>
+        <% end %>
+
+        <% if digital_object.extents.length > 0 %>
+          <%= render_aspace_partial :partial => "extents/show", :locals => { :extents => digital_object.extents, :section_id => "digital_object_extents_" } %>
+        <% end %>
+
+        <% if digital_object.linked_agents.length > 0 %>
+          <%= render_aspace_partial :partial => "linked_agents/show", :locals => { :linked_agents => digital_object.linked_agents, :section_id => "digital_object_linked_agents_" } %>
+        <% end %>
+
+        <% if digital_object.linked_instances.length > 0 %>
+          <section id="digital_object_linked_instances" class="subrecord-form-dummy">
+            <h3><%= I18n.t("linked_record._plural") %></h3>
+            <div class="subrecord-form-container">
+              <div class="subrecord-form-fields">
+                <div class="row label-and-value">
+                  <div class="col-md-3">
+                    <% if digital_object.linked_instances.length > 1 %>
+                      <%= I18n.t("linked_record.ref_plural") %>
+                    <% else %>
+                      <%= I18n.t("linked_record.ref") %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-9 token-list">
+                    <% digital_object.linked_instances.each do | ref | %>
+                      <%= render_token :object => ref,
+                                       :label => ref["_resolved"]["display_string"] || ref["_resolved"]["title"],
+                                       :type => ref["_resolved"]["jsonmodel_type"],
+                                       :uri => ref["ref"] %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <% end %>
+
+        <% if not digital_object.subjects.blank? %>
+          <%= render_aspace_partial :partial => "subjects/show_inline", :locals => {:subjects => digital_object.subjects, :section_id => "digital_object_subjects_"} %>
+        <% end %>
+
+        <% if digital_object.notes.length > 0 %>
+          <%= render_aspace_partial :partial => "notes/show", :locals => { :notes => digital_object.notes, :context => readonly } %>
+        <% end %>
+
+        <% if digital_object.external_documents.length > 0 %>
+          <%= render_aspace_partial :partial => "external_documents/show", :locals => { :external_documents => digital_object.external_documents, :section_id => "digital_object_external_documents_"  } %>
+        <% end %>
+
+        <% if digital_object.rights_statements.length > 0 %>
+          <%= render_aspace_partial :partial => "rights_statements/show", :locals => { :rights_statements => digital_object.rights_statements, :section_id => "digital_object_rights_statements_"  } %>
+        <% end %>
+
+        <% if digital_object.collection_management %>
+          <%= render_aspace_partial :partial => "collection_management/show", :locals => { :collection_management => digital_object.collection_management, :section_id => "digital_object_collection_management_"  } %>
+        <% end %>
+
+        <%= render_aspace_partial :partial => "linked_events/show", :locals => { :linked_events => digital_object.linked_events, :context => readonly, :section_id => "digital_object_linked_events_" } %>
+
+        <% if digital_object.user_defined %>
+          <%= render_aspace_partial :partial => "user_defined/show", :locals => { :user_defined => digital_object.user_defined, :section_id => "digital_object_user_defined_"  } %>
+        <% end %>
+
+        <% if digital_object.external_ids.length > 0 && show_external_ids? %>
+          <%= render_aspace_partial :partial => "external_ids/show", :locals => { :external_ids => digital_object.external_ids, :context => readonly, :section_id => "digital_object_external_ids_" } %>
+        <% end %>
+
+        <%= show_plugins_for(@digital_object, readonly) %>
+      <% end %>
+
+      <%= readonly_context :digital_object, @digital_object do |readonly| %>
+        <% readonly.emit_template("digital_object", @digital_object) %>
+      <% end %>
+    </div>
+  </div>
+</div>

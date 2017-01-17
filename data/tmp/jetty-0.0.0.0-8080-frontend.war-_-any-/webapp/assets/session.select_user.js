@@ -1,0 +1,1 @@
+$(function(){var a=AS.delayedTypeAhead(function(b,c){$.ajax({url:APP_PATH+"users/complete",data:{query:b},type:"GET",success:function(d){c(d)},error:function(){c([])}})});$("#select-user").typeahead({source:a.handle})});

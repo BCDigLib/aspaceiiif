@@ -1,0 +1,110 @@
+//= require form
+
+$(function() {
+  "use strict";
+
+  var usernameAlreadyAdded = function(username) {
+    var userFound = false;
+
+    $("option.group-member").each(function(idx, option) {
+      if ($(option).val().toLowerCase() === username.toLowerCase()) {
+        userFound = true;
+        return false;
+      }
+    });
+
+    return userFound;
+  };
+
+
+  var addNewMember = function(e) {
+    // Only interested in events on the input box if they've hit enter.
+    // If the typeahead is visible, then select that item rather than
+    // add what is typed.  User can 'esc' to close the typeahead, and then
+    // hit return/tab to the button to add the custom userid.
+    if ($(e.target).attr("id") == "new-member") {
+      if (((e.keyCode || e.which) != 13) || $(".typeahead.dropdown-menu:visible", ".member-toolbar").length > 0) {
+        return;
+      }
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+    var input = $("#new-member");
+    var username = input.val();
+
+    if (!username || usernameAlreadyAdded(username)) {
+      return;
+    }
+
+    var option = $("<option class=\"group-member\" />").attr("value", username).text(username);
+
+    $("#group_member_usernames_").append(option);
+    input.val('');
+  };
+
+
+  var removeSelectedMembers = function(e) {
+    e.preventDefault();
+
+    $(':selected', "#group_member_usernames_").remove();
+    $("#remove-member").attr("disabled","disabled");
+  };
+
+
+
+  $("form#new_group").submit(function (e) {
+    var form = $(e.target);
+
+    $("#hidden_member_fields", form).remove();
+
+    var fields = $('<div style="display: none" id="hidden_member_fields" />');
+
+    $("#group_member_usernames_ option").each(function(idx, option) {
+      var input = $('<input type="hidden" name="group[member_usernames][]" />');
+      input.val($(option).val());
+
+      fields.append(input);
+    });
+
+    form.append(fields);
+
+    return true;
+  });
+
+
+  $("#add-new-member").click(addNewMember);
+  $("#new-member").keydown(addNewMember);
+
+  $("#remove-member").click(removeSelectedMembers);
+
+  $("#group_member_usernames_").change(function (e) {
+    if ($(':selected', e.target).length > 0) {
+      $("#remove-member").removeAttr("disabled");
+    } else {
+      $("#remove-member").attr("disabled","disabled");
+    }
+  });
+
+
+  // Don't fire a request for *every* keystroke.  Wait until they stop
+  // typing for a moment.
+  var username_typeahead = AS.delayedTypeAhead(function (query, callback) {
+    $.ajax({
+          url: APP_PATH + "users/complete",
+          data: {query: query},
+          type: "GET",
+          success: function(usernames) {
+            callback(usernames);
+          },
+          error: function() {
+            callback([]);
+          }
+        });
+  });
+
+  $("#new-member").typeahead({
+          source: username_typeahead.handle
+        });
+
+});

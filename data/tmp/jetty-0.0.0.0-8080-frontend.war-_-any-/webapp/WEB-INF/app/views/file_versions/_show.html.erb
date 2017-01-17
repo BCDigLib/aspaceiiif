@@ -1,0 +1,33 @@
+<%
+   section_id = "file_versions" if section_id.blank?
+%>
+
+<section id="<%= section_id %>">
+  <h3><%= I18n.t("file_version._plural") %></h3>
+  <div class="accordion details" id="<%= section_id %>_accordion">
+    <% file_versions.each_with_index do | file_version, index | %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_file_version_<%= index %>">
+            <div class="col-md-1">
+              <span class="glyphicon"></span>
+            </div>
+            <div class="col-md-11">
+              <%= file_version['file_uri'] %>
+            </div>
+          </div>
+        </div>
+        <div id="<%= section_id %>_file_version_<%= index %>" class="accordion-body collapse">
+          <div class="form-horizontal">
+            <% if can_embed?(file_version) %>
+              <%= render_aspace_partial :partial => "file_versions/image", :locals => {:file => file_version} %>
+              <%= render_aspace_partial :partial => "file_versions/file_uri", :locals => {:file_uri => URI(file_version['file_uri'])} %>
+            <% end %>
+            <%= render_aspace_partial :partial => "file_versions/file_uri", :locals => {:file_uri => uri_or_string( file_version['file_uri'] ) } %>
+          </div>
+          <%= read_only_view(file_version) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

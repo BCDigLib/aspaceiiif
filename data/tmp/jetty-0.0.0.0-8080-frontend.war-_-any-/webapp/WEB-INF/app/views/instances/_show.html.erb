@@ -1,0 +1,50 @@
+<%
+   section_id = "instances" if section_id.blank?
+%>
+
+<section id="<%= section_id %>">
+  <h3>Instances</h3>
+  <div class="accordion details" id="instances_accordion">
+    <% instances.each_with_index do | instance, index | %>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row collapsed accordion-toggle" data-toggle="collapse" data-parent="#instances_accordion" href="#instance_<%= index %>">
+            <div class="col-md-1">
+              <span class="glyphicon"></span>
+            </div>
+            <div class="col-md-3">
+              <%= I18n.t("enumerations.instance_instance_type.#{instance['instance_type']}", :default => instance['instance_type']) %>
+            </div>
+            <div class="col-md-7">
+              <% if instance["instance_type"] == "digital_object" %>
+                <%= instance["digital_object"]["_resolved"]["title"] %>
+              <% elsif instance["sub_container"] and instance["sub_container"].length > 0 %>
+                <%= instance["sub_container"]["top_container"]["_resolved"]["display_string"] %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div id="instance_<%= index %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%= read_only_view(instance) %>
+            <% if instance["instance_type"] == "digital_object" %>
+              <div class="form-group">
+                <div class="control-label col-sm-2"><%= I18n.t("instance.digital_object") %></div>
+                <div class="controls token-list col-sm-8">
+                  <%= render_token :object => instance["digital_object"]["_resolved"],
+                  :label => instance["digital_object"]["_resolved"]["title"],
+                  :type => "digital_object",
+                  :uri => instance["digital_object"]["ref"],
+                  :placement => "top" %>
+                </div>
+              </div>
+            <% elsif instance["sub_container"] and instance["sub_container"].length > 0 %>
+              <%= render_aspace_partial :partial => "sub_containers/show", :locals => { :sub_container => instance["sub_container"], :id => "instance_#{index}_sub_container" } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

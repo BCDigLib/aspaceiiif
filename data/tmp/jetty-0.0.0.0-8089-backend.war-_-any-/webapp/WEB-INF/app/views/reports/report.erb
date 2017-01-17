@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <style media="screen,print">
+        /* ArchivesSpace Reporting Stylesheet */
+      <% if report.format.to_sym === :pdf %>
+        <% AppConfig[:report_pdf_font_paths].each do |font_path| %>
+          @font-face {
+            src: url('<%= font_path %>');
+            -fs-pdf-font-embed: embed;
+            -fs-pdf-font-encoding: Identity-H;
+          }
+        <% end %>
+
+        body {
+          font-family: <%= AppConfig[:report_pdf_font_family] %>;
+        }
+      <% else %>
+        body {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+      <% end %>
+
+      .header .logo {
+        float: right;
+      }
+
+      .header h1 {
+        margin-top: 1em;
+        float: left;
+        font-size: 1.8em;
+      }
+
+      .report-listing {
+        border: 1px solid #AAA;
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+        clear: both;
+      }
+
+      .report-listing th,
+      .report-listing td {
+        border: 1px solid #AAA;
+        padding: 4px;
+        vertical-align: top;
+        word-break: break-all;
+      }
+
+      .report-listing th {
+        background-color: #F1F1F1;
+      }
+
+      .report-listing tr:nth-child(2n-1) td {
+        background-color: #FaFaFa;
+      }
+
+      @page {
+        size: <%= report.layout %>;
+        -fs-flow-bottom: "footer";
+      }
+
+      thead {
+        display: table-header-group;
+      }
+      .pdf table {
+        -fs-table-paginate: paginate;
+        border-collapse: separate;
+        border-spacing: 0px;
+      }
+
+      @page {
+      @bottom-center {
+            content: element(footer);
+          }
+        }
+
+      .page-start { -fs-page-sequence: start;}
+
+      .page-number:before { content: counter(page); }
+      .page-count:before { content: counter(pages); }
+
+      .html .pdf-page-count {
+        display: none;
+      }
+
+      .html #footer {
+        text-align: center;
+        font-size:  0.9em;
+        margin-top: 20px;
+      }
+
+      .pdf {
+        font-size: 11px;
+      }
+
+      .pdf #footer .timstamp {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        font-size: 0.8em;
+      }
+
+      .pdf #footer .pdf-page-count {
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+      }
+    </style>
+  </head>
+
+  <%
+    # The HTML to PDF library doesn't currently support the "break-word" CSS
+    # property that would let us force a linebreak for long strings and URIs.
+    # Without that, we end up having our tables chopped off, which makes them
+    # not-especially-useful.
+    #
+    # Newer versions of the library might fix this issue, but it appears that the
+    # licence of the newer version is incompatible with the current ArchivesSpace
+    # licence.
+    #
+    # So, we wrap runs of characters in their own span tags to give the renderer
+    # a hint on where to place the line breaks.  Pretty terrible, but it works.
+    #
+    if report.format === 'pdf'
+      transform_text = proc {|s|
+        escaped = CGI.escapeHTML(s)
+
+        # Exciting regexp time!  We break our string into "tokens", which are either:
+        #
+        #   - A single whitespace character
+        #   - A HTML-escaped character (like '&amp;')
+        #   - A run of between 1 and 5 letters
+        #
+        # Each token is then wrapped in a span, ensuring that we don't go too
+        # long without having a spot to break a word if needed.
+        #
+        escaped.scan(/[\s]|&.*;|[^\s]{1,5}/).map {|token|
+          if token.start_with?("&") || token =~ /\A[\s]\Z/
+            # Don't mess with &amp; and friends, nor whitespace
+            token
+          else
+            "<span>#{token}</span>"
+          end
+        }.join("")
+      }
+    else
+      transform_text = proc {|s| CGI.escapeHTML(s) }
+    end
+  %>
+
+  <body class="<%= report.format %>">
+    <div class="header">
+      <img class="logo" src="<%= @base_url || '/' %>reports/static/images/archivesspace.small.png"/>
+      <h1><%= report.title %></h1>
+    </div>
+
+    <table class="report-listing">
+      <thead>
+        <tr>
+          <% report.headers.each do |heading| %>
+            <th><%= transform_text.call(heading) %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% report.each do |record| %>
+          <tr>
+            <% report.headers.each do |heading| %>
+              <td>
+                <%= transform_text.call(record[heading].to_s) %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% if report.format === 'html' or report.format === 'pdf' %>
+      <% time = DateTime.now %>
+      <div id="footer" class="footer" style="position: running(footer);">
+        <div class="timestamp">
+          <% if report.repo_id %>Scoped for Repository: <%= report.repo_id %><br/><% end %>
+          Report Generated at <%= time.strftime("%Y-%m-%d %H:%M %Z") %>
+        </div>
+
+        <div class="pdf-page-count">Page <span class="page-number"/> of <span class="page-count"/></div>
+      </div>
+    <% end %>
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<% def_msg = I18n.t("defaults.accept_default_message") %>
+<% define_template("defaults", jsonmodel_definition(:defaults)) do |form| %>
+  <div class="subrecord-form-fields">
+      <h3><%= I18n.t "defaults.general_section" %></h3>
+      <%= form.label_and_boolean "show_suppressed", {}, form.default_for("show_suppressed") %>
+      <%= form.label_and_boolean "publish", {}, form.default_for("publish") %>
+      <%= form.label_and_boolean "default_values", {}, form.default_for("default_values") %>
+
+
+      <h3><%= I18n.t "defaults.accession_browse_section" %></h3>
+      <%=
+        out = ''
+        (1..5).to_a.each do |n|
+          out += form.label_and_select("accession_browse_column_#{n}",
+                                       form.possible_options_for("accession_browse_column_#{n}", true,
+                                                                 {:i18n_prefix => "accession",
+                                                                  :empty_label => "#{def_msg} " +
+                                                                    (@inherited_defaults["accession_browse_column_#{n}"] ?
+                                                                       I18n.t("accession." +
+                                                                         @inherited_defaults["accession_browse_column_#{n}"]) :
+                                                                       I18n.t("defaults.no_value")),
+                                                                   :i18n_path_for => {'no_value' => 'defaults.no_value'}}))
+        end
+        out.html_safe
+      %>
+
+      <h3><%= I18n.t "defaults.resource_browse_section" %></h3>
+      <%=
+        out = ''
+        (1..5).to_a.each do |n|
+          out += form.label_and_select("resource_browse_column_#{n}",
+                                       form.possible_options_for("resource_browse_column_#{n}", true,
+                                                                 {:i18n_prefix => "resource",
+                                                                  :empty_label => "#{def_msg} " +
+                                                                    (@inherited_defaults["resource_browse_column_#{n}"] ?
+                                                                       I18n.t("resource." +
+                                                                         @inherited_defaults["resource_browse_column_#{n}"]) :
+                                                                       I18n.t("defaults.no_value"))}))
+        end
+        out.html_safe
+      %>
+
+      <h3><%= I18n.t "defaults.digital_object_browse_section" %></h3>
+      <%=
+        out = ''
+        (1..5).to_a.each do |n|
+          out += form.label_and_select("digital_object_browse_column_#{n}",
+                                       form.possible_options_for("digital_object_browse_column_#{n}", true,
+                                                                 {:i18n_prefix => "digital_object",
+                                                                  :empty_label => "#{def_msg} " +
+                                                                    (@inherited_defaults["digital_object_browse_column_#{n}"] ?
+                                                                       I18n.t("digital_object." +
+                                                                         @inherited_defaults["digital_object_browse_column_#{n}"]) :
+                                                                       I18n.t("defaults.no_value"))}))
+        end
+        out.html_safe
+      %>
+
+      <h3><%= I18n.t "defaults.note_order_section" %></h3>
+
+      <%=
+        out = "<ul id='note-order-preference-list' class='list-group'>"
+        order = @current_prefs['defaults']['note_order'] ||  []
+
+        order = order.empty? ? note_types_for(:resource).keys : order
+
+        order.each do |type|
+          out  += "<li data-id='#{type}' class='list-group-item'><span class='glyphicon glyphicon-menu-hamburger'></span> #{I18n.t('enumerations._note_types.'+type)}</li>"
+        end
+        out += "</ul>"
+        out.html_safe
+      %>
+
+
+      <%= form.hidden_input "junk", "bin me please" %>
+   </div>
+<% end %>
