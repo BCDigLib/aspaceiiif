@@ -1,1 +1,0 @@
-$(function(){$("form.form-report").submit(function(){$(".alert-error").remove();$(".error").removeClass("error")})});
