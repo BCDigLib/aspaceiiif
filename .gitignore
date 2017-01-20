@@ -1,11 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 
-# Exclude config.rb due to login info
-config/config.rb
-
 # Exclude log files and data folder
 logs/
+*.log
 data/
 
 # Ignore secret keys
