@@ -1,6 +1,6 @@
-# Configuration defaults are shown below
+# Configuration defaults are commented
 
-#AppConfig[:default_admin_password] = "admin"
+AppConfig[:default_admin_password] = "[REDACTED]"
 #AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")
 #AppConfig[:backup_directory] = proc { File.join(AppConfig[:data_directory], "demo_db_backups") }
 #AppConfig[:solr_index_directory] = proc { File.join(AppConfig[:data_directory], "solr_index") }
@@ -28,13 +28,11 @@
 ## cores and/or more records per thread means more memory used).
 #AppConfig[:indexer_records_per_thread] = 25
 #AppConfig[:indexer_thread_count] = 4
-#AppConfig[:indexer_solr_timeout_seconds] = 300
 #
 #AppConfig[:allow_other_unmapped] = false
 #
-#AppConfig[:db_url] = proc { AppConfig.demo_db_url }
-#AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)(&|$)/, '\1=[REDACTED]\3') }
-#AppConfig[:db_max_connections] = proc { 20 + (AppConfig[:indexer_thread_count] * 2) }
+AppConfig[:db_url] = "jdbc:mysql://localhost:3306/archivesspace?user=[REDACTED]&password=[REDACTED]&useUnicode=true&characterEncoding=UTF-8"
+#AppConfig[:db_max_connections] = 10
 #
 ## Set to true to log all SQL statements.  Note that this will have a performance
 ## impact!
@@ -55,23 +53,11 @@
 #
 #AppConfig[:backend_url] = "http://localhost:8089"
 #AppConfig[:frontend_url] = "http://localhost:8080"
-#
-## Proxy URLs
-## If you are serving user-facing applications via proxy
-## (i.e., another domain or port, or via https, or for a prefix) it is
-## recommended that you record those URLs in your configuration
-#AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }
-#AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }
-#
-## Don't override _prefix or _proxy_prefix unless you know what you're doing
 #AppConfig[:frontend_prefix] = proc { "#{URI(AppConfig[:frontend_url]).path}/".gsub(%r{/+$}, "/") }
-#AppConfig[:frontend_proxy_prefix] = proc { "#{URI(AppConfig[:frontend_proxy_url]).path}/".gsub(%r{/+$}, "/") }
 #AppConfig[:solr_url] = "http://localhost:8090"
 #AppConfig[:indexer_url] = "http://localhost:8091"
 #AppConfig[:public_url] = "http://localhost:8081"
 #AppConfig[:public_prefix] = proc { "#{URI(AppConfig[:public_url]).path}/".gsub(%r{/+$}, "/") }
-#AppConfig[:public_proxy_prefix] = proc { "#{URI(AppConfig[:public_proxy_url]).path}/".gsub(%r{/+$}, "/") }
-#AppConfig[:docs_url] = "http://localhost:8888"
 #
 ## Setting any of the four keys below to false will prevent the associated
 ## applications from starting. Temporarily disabling the frontend and public
@@ -83,14 +69,13 @@
 #AppConfig[:enable_public] = true
 #AppConfig[:enable_solr] = true
 #AppConfig[:enable_indexer] = true
-#AppConfig[:enable_docs] = true
 #
-## Some use cases want the ability to shutdown the Jetty service using Jetty's
+## Some use cases want the ability to shutdown the Jetty service using Jetty's 
 ## ShutdownHandler, which allows a POST request to a specific URI to signal
 ## server shutdown. The prefix for this URI path is set to /xkcd to reduce the
 ## possibility of a collision in the path configuration. So, full path would be
-## /xkcd/shutdown?token={randomly generated password}
-## The launcher creates a password to use this, which is stored
+## /xkcd/shutdown?token={randomly generated password} 
+## The launcher creates a password to use this, which is stored 
 ## in the data directory. This is not turned on by default.
 ##
 #AppConfig[:use_jetty_shutdown_handler] = false
@@ -118,7 +103,7 @@
 #
 #AppConfig[:staff_username] = "staff_system"
 #
-#AppConfig[:authentication_sources] = []
+AppConfig[:authentication_sources] = [REDACTED]
 #
 #AppConfig[:realtime_index_backlog_ms] = 60000
 #
@@ -139,14 +124,16 @@
 #AppConfig[:report_pdf_font_family] = "\"DejaVu Sans\", sans-serif"
 #
 ## Plug-ins to load. They will load in the order specified
-#AppConfig[:plugins] = ['local',  'lcnaf', 'aspace-public-formats']
+#AppConfig[:plugins] = ['local',  'aspace-public-formats']
+#AppConfig[:plugins] = ['lcnaf','container_management']
+AppConfig[:plugins] = ['lcnaf', 'manage_user_defined_fields', 'timewalk', 'multiple_identifiers']
 #
 ## URL to direct the feedback link
-## You can remove this from the footer by making the value blank.
+## You can remove this from the footer by making the value blank. 
 #AppConfig[:feedback_url] = "http://archivesspace.org/feedback"
 #
 #
-##
+## 
 ## The following are used by the aspace-public-formats plugin
 ## https://github.com/archivesspace/aspace-public-formats
 #AppConfig[:public_formats_resource_links] = []
@@ -163,6 +150,12 @@
 #AppConfig[:help_url] = "http://docs.archivesspace.org"
 #AppConfig[:help_topic_prefix] = "/Default_CSH.htm#"
 #
+## Proxy URLs 
+## If you are serving user-facing applications via proxy
+## (i.e., another domain or port, or via https) it is 
+## recommended that you record those URLs in your configuration
+#AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }
+#AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }
 #
 #AppConfig[:shared_storage] = proc { File.join(AppConfig[:data_directory], "shared") }
 #
@@ -180,39 +173,18 @@
 #
 #AppConfig[:max_location_range] = 1000
 #
-## Schema Info check
-## ASpace backend will not start if the db's schema_info version is not set
-## correctly for this version of ASPACE. This is to ensure that all the
-## migrations have run and completed before starting the app. You can override
-## this check here. Do so at your own peril. 
-#AppConfig[:ignore_schema_info_check] = false
 #
 ## Jasper Reports
-## (https://community.jaspersoft.com/project/jasperreports-library)
+## (https://community.jaspersoft.com/project/jasperreports-library) 
 ## require compilation. This can be done at startup. Please note, if you are
 ## using Java 8 and you want to compile at startup, keep this setting at false,
 ## but be sure to use the JDK version.
-#AppConfig[:enable_jasper] = true
-#AppConfig[:compile_jasper] = true
+#AppConfig[:enable_jasper] = true 
+#AppConfig[:compile_jasper] = false
 #
 ## There are some conditions that has caused tree nodes ( ArchivalObjects, DO
 ## Components, and ClassificationTerms) to lose their sequence pointers and
 ## position setting. This will resequence these tree nodes prior to startup.
 ## If is recogmended that this be used very infrequently and should not be set
 ## to true for all startups ( as it will take a considerable amount of time )
-#AppConfig[:resequence_on_startup] = false
-#
-## This is a URL that points to some demo data that can be used for testing,
-## teaching, etc. To use this, set an OS environment variable of ASPACE_DEMO = true
-#AppConfig[:demo_data_url] = "https://s3-us-west-2.amazonaws.com/archivesspacedemo/latest-demo-data.zip" 
-#
-## Expose external ids in the frontend
-#AppConfig[:show_external_ids] = false
-#
-##
-## This sets the allowed size of the request/response header that Jetty will accept (
-## anything bigger gets a 403 error ). Note if you want to jack this size up,
-## you will also have to configure your Nginx/Apache  as well if
-## you're using that 
-#AppConfig[:jetty_response_buffer_size_bytes] = 64 * 1024 
-#AppConfig[:jetty_request_buffer_size_bytes] = 64 * 1024 
+#AppConfig[:resequence_on_startup] = true
