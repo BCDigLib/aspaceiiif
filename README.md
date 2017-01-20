@@ -1,12 +1,10 @@
-BC ArchivesSpace
---------------------
-
 This is the codebase for Boston College Library's installation of 
 [ArchivesSpace](http://archivesspace.org). We are in the process of 
 migrating from Archivists' Toolkit and are not yet running this 
 application in production.
  
-* Current version: v1.5.2
+Current version: v1.5.2
+
 * [Internal documentation](https://bcwiki.bc.edu/display/UL/ArchivesSpace)
 * [Technical documentation](http://archivesspace.github.io/archivesspace/)
 * [API](http://archivesspace.github.io/archivesspace/api)
@@ -22,14 +20,7 @@ This instance uses the following plugins:
 
 ### Excluded Files
 
-We've excluded the following files and folders from this repo for reasons of security 
-and/or practicality:
-
-* config/config.rb (replaced with config.rb.template, which includes 
-default configuration)
-* data/
-* logs/
-* UPGRADING.md
+We've excluded data backups and log files and omitted login credentials from config.rb. See .gitignore for more info.
 
 ### Credits
 
