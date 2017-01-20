@@ -143,7 +143,7 @@ AppConfig[:plugins] = ['lcnaf', 'manage_user_defined_fields', 'timewalk', 'multi
 #
 #
 ## Allow an unauthenticated user to create an account
-#AppConfig[:allow_user_registration] = true
+AppConfig[:allow_user_registration] = false
 #
 ## Help Configuration
 #AppConfig[:help_enabled] = true
