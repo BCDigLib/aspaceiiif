@@ -1,7 +1,7 @@
-# Configuration defaults are commented
+# Default settings are commented
 
 AppConfig[:default_admin_password] = "[REDACTED]"
-#AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")
+AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")
 #AppConfig[:backup_directory] = proc { File.join(AppConfig[:data_directory], "demo_db_backups") }
 #AppConfig[:solr_index_directory] = proc { File.join(AppConfig[:data_directory], "solr_index") }
 #AppConfig[:solr_home_directory] = proc { File.join(AppConfig[:data_directory], "solr_home") }
@@ -47,9 +47,9 @@ AppConfig[:db_url] = "jdbc:mysql://localhost:3306/archivesspace?user=[REDACTED]&
 #AppConfig[:demo_db_backup_schedule] = "0 4 * * *"
 #AppConfig[:demo_db_backup_number_to_keep] = 7
 #
-#AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }
-#AppConfig[:solr_backup_schedule] = "0 * * * *"
-#AppConfig[:solr_backup_number_to_keep] = 1
+AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }
+AppConfig[:solr_backup_schedule] = "0 * * * *"
+AppConfig[:solr_backup_number_to_keep] = 24
 #
 #AppConfig[:backend_url] = "http://localhost:8089"
 #AppConfig[:frontend_url] = "http://localhost:8080"
