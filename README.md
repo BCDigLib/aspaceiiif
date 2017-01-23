@@ -18,9 +18,9 @@ This instance uses the following plugins:
 * [timewalk (New York Public Library)](https://github.com/alexduryee/timewalk)
 * [multiple_identifiers (New York Public Library)](https://github.com/alexduryee/multiple_identifiers)
 
-### Excluded Files
+### Omissions
 
-We've excluded data backups and log files and omitted login credentials from config.rb. See .gitignore for more info.
+We've excluded for this repository data backups and log files. We have also redacted login credentials from config.rb. See .gitignore for more information.
 
 ### Credits
 
