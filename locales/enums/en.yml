@@ -311,6 +311,7 @@ en:
       reels: Reels
       sheets: Sheets
       terabytes: Terabytes
+      unmeasured collection: Unmeasured Collection
       volumes: Volumes
     collection_management_processing_priority:
       none: Not specified
