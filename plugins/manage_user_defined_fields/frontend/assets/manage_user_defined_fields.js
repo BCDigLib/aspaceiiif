@@ -29,18 +29,19 @@ $(function () {
 		{'enum_3':'Controlled Value 3'},
 		{'enum_4':'Controlled Value 4'}
 	];
+
 	ACCESSION_UDFS = [
 		'string_1',
 		'string_2',
 		'string_3',
-		'text_1'
+		'text_4'
 	];
 
 	RESOURCE_UDFS = [
         'string_1',
         'string_2',
         'string_3',
-        'text_1'
+        'text_4'
 	];
 
 
