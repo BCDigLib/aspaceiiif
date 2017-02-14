@@ -1,0 +1,1 @@
+These SQL queries were used to normalize data post-migration.
