@@ -1,7 +1,7 @@
 # Default settings are commented
 
 AppConfig[:default_admin_password] = "[REDACTED]"
-AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")
+#AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")
 #AppConfig[:backup_directory] = proc { File.join(AppConfig[:data_directory], "demo_db_backups") }
 #AppConfig[:solr_index_directory] = proc { File.join(AppConfig[:data_directory], "solr_index") }
 #AppConfig[:solr_home_directory] = proc { File.join(AppConfig[:data_directory], "solr_home") }
@@ -124,9 +124,7 @@ AppConfig[:authentication_sources] = [REDACTED]
 #AppConfig[:report_pdf_font_family] = "\"DejaVu Sans\", sans-serif"
 #
 ## Plug-ins to load. They will load in the order specified
-#AppConfig[:plugins] = ['local',  'aspace-public-formats']
-#AppConfig[:plugins] = ['lcnaf','container_management']
-AppConfig[:plugins] = ['lcnaf', 'manage_user_defined_fields', 'timewalk', 'multiple_identifiers']
+AppConfig[:plugins] = ['local', 'lcnaf', 'aspace-public-formats', 'manage_user_defined_fields', 'timewalk', 'multiple_identifiers']
 #
 ## URL to direct the feedback link
 ## You can remove this from the footer by making the value blank. 
