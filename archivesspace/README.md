@@ -20,7 +20,7 @@ This instance uses the following plugins:
 
 ### Omissions
 
-We've excluded for this repository data backups and log files. We have also redacted login credentials from config.rb. See .gitignore for more information.
+We've excluded from this repository data backups, logs, and the main config file. See .gitignore for more information.
 
 ### Credits
 

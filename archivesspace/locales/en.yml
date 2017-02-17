@@ -131,6 +131,7 @@ en:
     dates: Dates
     _singular: Digital Object Component
     _plural: Digital Object Components
+    has_unpublished_ancestor: Has Unpublished Ancestor?
 
   location: &location_attributes
     title: Title
