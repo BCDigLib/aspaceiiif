@@ -4,6 +4,7 @@
 # Exclude log files and data folder
 logs/
 *.log
+*.out
 data/
 
 # Ignore secret keys
@@ -11,3 +12,5 @@ data/
 
 # Ignore upgrade instructions
 UPGRADING.md
+
+# Ignore config file
