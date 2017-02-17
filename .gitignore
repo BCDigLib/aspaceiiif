@@ -18,3 +18,4 @@ config.rb
 
 # Exlude any uncaught system files
 Icon?
+Icon
