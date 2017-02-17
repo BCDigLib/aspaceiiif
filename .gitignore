@@ -15,3 +15,6 @@ UPGRADING.md
 
 # Ignore config file
 config.rb
+
+# Exlude any uncaught system files
+Icon?
