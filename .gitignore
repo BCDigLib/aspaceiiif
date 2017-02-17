@@ -14,3 +14,4 @@ data/
 UPGRADING.md
 
 # Ignore config file
+config.rb
