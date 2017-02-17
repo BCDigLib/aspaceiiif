@@ -2,10 +2,10 @@
 .idea/
 
 # Exclude log files and data folder
-logs/
+archivesspace/logs/
 *.log
 *.out
-data/
+archivesspace/data
 
 # Ignore secret keys
 *secret*
@@ -19,3 +19,6 @@ config.rb
 # Exlude any uncaught system files
 Icon?
 Icon
+
+# Exclude docs
+archivesspace/docs/
