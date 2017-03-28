@@ -1,9 +1,9 @@
-This is the codebase for Boston College Library's installation of 
+This repository includes files relevant to Boston College Library's implementation of 
 [ArchivesSpace](http://archivesspace.org). We are in the process of 
 migrating from Archivists' Toolkit and are not yet running this 
 application in production.
  
-Current version: v1.5.2
+Current version: v1.5.4
 
 * [Internal documentation](https://bcwiki.bc.edu/display/UL/ArchivesSpace)
 * [Technical documentation](http://archivesspace.github.io/archivesspace/)
@@ -17,10 +17,6 @@ This instance uses the following plugins:
 * [manage_user_defined_fields (Ohio State University Libraries)](https://github.com/osulibraries/manage_user_defined_fields)
 * [timewalk (New York Public Library)](https://github.com/alexduryee/timewalk)
 * [multiple_identifiers (New York Public Library)](https://github.com/alexduryee/multiple_identifiers)
-
-### Omissions
-
-We've excluded from this repository data backups, logs, and the main config file. See .gitignore for more information.
 
 ### Credits
 

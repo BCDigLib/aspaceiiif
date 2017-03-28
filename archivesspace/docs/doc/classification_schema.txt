@@ -1,8 +1,0 @@
-JSON Schema: Classification
-/repositories/:repo_id/classifications
-Properties
-
-
-
-
-

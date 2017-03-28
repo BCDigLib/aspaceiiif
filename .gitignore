@@ -1,24 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 
-# Exclude log files and data folder
-archivesspace/logs/
-*.log
-*.out
-archivesspace/data
-
-# Ignore secret keys
-*secret*
-
-# Ignore upgrade instructions
-UPGRADING.md
-
-# Ignore config file
-config.rb
-
 # Exlude any uncaught system files
 Icon?
 Icon
-
-# Exclude docs
-archivesspace/docs/

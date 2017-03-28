@@ -1,4 +1,0 @@
-=== 3.7.2
-
- * http://www.xerial.org/maven/repository/artifact/org/xerial/sqlite-jdbc/3.7.2/
- 

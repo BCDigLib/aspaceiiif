@@ -1,1 +1,0 @@
-require 'jdbc/sqlite3'
