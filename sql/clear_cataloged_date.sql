@@ -1,4 +1,4 @@
-# This script clears the cataloged date from all events with dates that defaulted to the 
+# This script clears the cataloged date from all events with dates that defaulted to the
 # accession date of the linked record during migration.
 # To check which records are affected:
 /*
@@ -10,7 +10,7 @@ WHERE d.expression = a.accession_date
 AND e.event_type_id = '296';
 */
 
-UPDATE date d 
+UPDATE date d
 JOIN event e ON e.id = d.event_id
 JOIN event_link_rlshp r ON e.id = r.event_id
 JOIN accession a ON a.id = r.accession_id
