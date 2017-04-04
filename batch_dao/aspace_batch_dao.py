@@ -4,6 +4,7 @@
 # this script recreates the first steps in using a csv to locate archival objects and retrieve their metadata,
 # but adds additional project-dependant metadata before creating the Digital Object, and creates Digital Object
 # Components to hang file information off of rather than attaching files directly to the Digital Object.
+# METS exports for every created Digital Object are also saved off in a folder labeled "METS".
 
 # USAGE: aspace_batch_dao.py tab_file.txt where tab_file.txt is the output of aspace_ead_to_tab.xsl
 
@@ -17,14 +18,14 @@ def main():
     # set up some variables
     # aspace access
     aspace_url = 'http://cassandra.bc.edu:8089'
-    # fill in credentials of admin user
-    username = ''
-    password = ''
+    username = 'XXXX'
+    password = 'XXXX'
     # the following group are based on assumptions and may need to be changed project-to-project.
     format_note = "reformatted digital"
     obj_type = "still_image"
     file_type = "image/tiff, image/jpeg"
     # use the tab file created with aspace_ead_to_tab.xsl to gather variables and make the API calls
+    # tab_file = 'output.txt'
     tab_file = sys.argv[1]
     tab_in = open(tab_file, 'r')
     ead_data = tab_in.read()
@@ -39,7 +40,6 @@ def main():
         # aspace login info
         auth = requests.post(aspace_url + '/users/' + username + '/login?password=' + password).json()
         session = auth['session']
-        # id_ref = "ref12_48x"
         headers = {'X-ArchivesSpace-Session': session}
         params = {'ref_id[]': id_ref}
         lookup = requests.get(aspace_url + '/repositories/2/find_by_id/archival_objects', headers=headers, params=params).json()
@@ -49,36 +49,30 @@ def main():
         try:
             obj_title = archival_object_json['title']
         except KeyError:
-            print("Item " + id_ref + " has no title. Please check the metadata & try again")
-            sys.exit()
-        try:
-            start_date = archival_object_json['dates'][0]['begin']
-        except KeyError:
-            print("Item " + id_ref + " has no start date. Please check the metadata & try again")
-            sys.exit()
-        try:
-            end_date = archival_object_json['dates'][0]['end']
-        except KeyError:
-            print("Item " + id_ref + " has no end date. Please check the metadata & try again")
-            sys.exit()
-        if end_date in start_date:
-            expression = start_date
-        else:
-            expression = start_date + "-" + end_date
+            try:
+                obj_title = archival_object_json['dates'][0]['expression']
+            except KeyError:
+                print("Item " + id_ref + " has no title or date expression. Please check the metadata & try again")
+                sys.exit()
+        # check for expression type 'single' before looking for both start and end dates
+        date_json = create_date_json(archival_object_json, id_ref)
         # make the JSON
         dig_obj = {'jsonmodel_type':'digital_object','title':obj_title, 'digital_object_type':obj_type,
                'digital_object_id':'http://hdl.handle.net.2345.2/' + id_ref, 'notes':[{'content':
                 [use_note], 'type':'userestrict', 'jsonmodel_type':'note_digital_object'},{'content':[dimensions_note],
                 'type':'dimensions', 'jsonmodel_type':'note_digital_object'}, {'content':[format_note], 'type':'note','jsonmodel_type':'note_digital_object'},
-                {'content':[file_type], 'type':'note', 'jsonmodel_type':'note_digital_object'}], 'dates':[{'begin':start_date,
-                'end':end_date, 'date_type':'inclusive', 'expression':expression, 'label':'creation', 'jsonmodel_type':'date'}]}
+                {'content':[file_type], 'type':'note', 'jsonmodel_type':'note_digital_object'}], 'dates':date_json}
         # format the JSON
         dig_obj_data = json.dumps(dig_obj)
         # Post the digital object
-        dig_obj_post =requests.post(aspace_url + '/repositories/2/digital_objects', headers=headers, data=dig_obj_data).json()
+        dig_obj_post = requests.post(aspace_url + '/repositories/2/digital_objects', headers=headers, data=dig_obj_data).json()
         print(dig_obj_post)
-        # Grab the digital object uri
-        dig_obj_uri = dig_obj_post['uri']
+        # Grab the digital object uri and only proceed if the DO hasn't already been created
+        try:
+            dig_obj_uri = dig_obj_post['uri']
+        except KeyError:
+            print("DO for item " + id_ref + " already exists. Moving to next item in list.")
+            continue
         # Build a new instance to add to the archival object, linking to the digital object
         dig_obj_instance = {'instance_type': 'digital_object', 'digital_object': {'ref': dig_obj_uri}}
         # Append the new instance to the existing archival object record's instances
@@ -121,6 +115,49 @@ def main():
                     dig_obj_post = requests.post(aspace_url + '/repositories/2/digital_object_components', headers=headers,
                                              data=dig_obj_data).json()
                     print(dig_obj_post)
+        # create the mets call URI by modifying the digital object uri
+        id_start = dig_obj_uri.rfind('/')
+        mets_uri = dig_obj_uri[0:id_start] + '/mets' + dig_obj_uri[id_start:len(dig_obj_uri)] + '.xml'
+        # Save off the METS export for the completed and fully component-laden Digital Object
+        mets_call = requests.get(aspace_url + mets_uri, headers=headers)
+        mets_file = mets_call.text
+        if not os.path.exists('METS'):
+            os.makedirs('METS')
+        with open('METS/'+ id_ref + '.xml', 'w') as outfile:
+            outfile.write(mets_file)
+        outfile.close()
+
+
+# put date json creation in a separate function because different types need different handling.
+def create_date_json(jsontext, itemid):
+    if "single" in jsontext['dates'][0]['date_type']:
+        try:
+            start_date = jsontext['dates'][0]['begin']
+        except KeyError:
+            print(
+                "Item " + itemid + " has a single-type date with no start value. Please check the metadata & try again")
+            sys.exit()
+        expression = start_date
+        date_json = [{'begin':start_date, 'date_type':'single', 'expression':expression, 'label':'creation', 'jsonmodel_type':'date'}]
+        return date_json
+    elif "single" not in jsontext['dates'][0]['date_type']:
+        date_type = jsontext['dates'][0]['date_type']
+        try:
+            start_date = jsontext['dates'][0]['begin']
+        except KeyError:
+            print("Item " + itemid + " has no start date. Please check the metadata & try again")
+            sys.exit()
+        try:
+            end_date = jsontext['dates'][0]['end']
+        except KeyError:
+            print("Item " + itemid + " has no end date. Please check the metadata & try again")
+            sys.exit()
+        if end_date in start_date:
+            expression = start_date
+        else:
+            expression = start_date + "-" + end_date
+        date_json = [{'begin':start_date, 'end':end_date, 'date_type':date_type, 'expression':expression, 'label':'creation', 'jsonmodel_type':'date'}]
+        return date_json
 
 def get_type_data(filename):
     # Create JSON by file type - if we add more types, add more elif statements with appropriate use statements
