@@ -18,11 +18,10 @@ def main():
     # set up some variables
     # aspace access
     aspace_url = 'http://cassandra.bc.edu:8089'
-    username = 'XXXX'
-    password = 'XXXX'
+    username = 'admin'
+    password = 'lessPr0c,m0rePr0d!'
     # the following group are based on assumptions and may need to be changed project-to-project.
     format_note = "reformatted digital"
-    obj_type = "still_image"
     file_type = "image/tiff, image/jpeg"
     # use the tab file created with aspace_ead_to_tab.xsl to gather variables and make the API calls
     # tab_file = 'output.txt'
@@ -37,6 +36,7 @@ def main():
         dimensions_note = "1 " + metadata[2]
         aspace_id = metadata[1]
         id_ref = aspace_id[7:len(aspace_id)]
+        collection_dates = metadata[4].split("/")
         # aspace login info
         auth = requests.post(aspace_url + '/users/' + username + '/login?password=' + password).json()
         session = auth['session']
@@ -46,6 +46,7 @@ def main():
         archival_object_uri = lookup['archival_objects'][0]['ref']
         archival_object_json = requests.get(aspace_url + archival_object_uri, headers=headers).json()
         # check for necessary metadata & only proceed if it's all present.
+        print(archival_object_json)
         try:
             obj_title = archival_object_json['title']
         except KeyError:
@@ -55,9 +56,15 @@ def main():
                 print("Item " + id_ref + " has no title or date expression. Please check the metadata & try again")
                 sys.exit()
         # check for expression type 'single' before looking for both start and end dates
-        date_json = create_date_json(archival_object_json, id_ref)
+        date_json = create_date_json(archival_object_json, id_ref, collection_dates)
+        # use the archival object type to inform the digital object type & language code.
+        try:
+            types_list = get_lang_code(archival_object_json['instances'][0]['instance_type'], id_ref)
+        except KeyError:
+            print("Item " + id_ref + " has no instance type assigned. Please check the metadata & try again")
+            sys.exit()
         # make the JSON
-        dig_obj = {'jsonmodel_type':'digital_object','title':obj_title, 'digital_object_type':obj_type,
+        dig_obj = {'jsonmodel_type':'digital_object','title':obj_title, 'digital_object_type':types_list[0], 'language':types_list[1],
                'digital_object_id':'http://hdl.handle.net.2345.2/' + id_ref, 'notes':[{'content':
                 [use_note], 'type':'userestrict', 'jsonmodel_type':'note_digital_object'},{'content':[dimensions_note],
                 'type':'dimensions', 'jsonmodel_type':'note_digital_object'}, {'content':[format_note], 'type':'note','jsonmodel_type':'note_digital_object'},
@@ -129,7 +136,7 @@ def main():
 
 
 # put date json creation in a separate function because different types need different handling.
-def create_date_json(jsontext, itemid):
+def create_date_json(jsontext, itemid, collection_dates):
     if "single" in jsontext['dates'][0]['date_type']:
         try:
             start_date = jsontext['dates'][0]['begin']
@@ -145,8 +152,21 @@ def create_date_json(jsontext, itemid):
         try:
             start_date = jsontext['dates'][0]['begin']
         except KeyError:
-            print("Item " + itemid + " has no start date. Please check the metadata & try again")
-            sys.exit()
+            try:
+                expression = jsontext['dates'][0]['expression']
+            except KeyError:
+                print(itemid + " has no start date or date expression. Please check the metadata and try again.")
+                sys.exit()
+            if "undated" in expression:
+                start_date = collection_dates[0]
+                end_date = collection_dates[1]
+                date_json = [{'begin': start_date, 'end': end_date, 'date_type': date_type, 'expression': expression,
+                              'label': 'creation', 'jsonmodel_type': 'date'}]
+                return date_json
+            else:
+                print(itemid + " has no start date and date expression is not 'undated'. Please check the metadata "
+                               "and try again")
+                sys.exit()
         try:
             end_date = jsontext['dates'][0]['end']
         except KeyError:
@@ -159,6 +179,7 @@ def create_date_json(jsontext, itemid):
         date_json = [{'begin':start_date, 'end':end_date, 'date_type':date_type, 'expression':expression, 'label':'creation', 'jsonmodel_type':'date'}]
         return date_json
 
+
 def get_type_data(filename):
     # Create JSON by file type - if we add more types, add more elif statements with appropriate use statements
     if 'jpg' in filename:
@@ -170,6 +191,42 @@ def get_type_data(filename):
         print("Improperly formatted file name: please add extension to filename or to script.")
         sys.exit()
     return version
+
+
+# This function assumes that anything that has linguistic content is in English. May need modifying on some projects.
+def get_lang_code(instance_type, item_id):
+    print(instance_type)
+    if instance_type == "audio":
+        return ["sound recording", "eng"]
+    elif instance_type == "books":
+        return ["text", "eng"]
+    elif instance_type == "computer_disks":
+        return ["software, multimedia", "zxx"]
+    elif instance_type == "graphic material":
+        return["still image", "zxx"]
+    elif instance_type == "graphic_materials":
+        return["still image", "zxx"]
+    elif instance_type == "graphic materials":
+        return["still image", "zxx"]
+    elif instance_type == "maps":
+        return["cartographic", "zxx"]
+    elif instance_type == "mixed_materials":
+        return["mixed material", "zxx"]
+    elif instance_type == "mixed materials":
+        return["mixed material", "zxx"]
+    elif instance_type == "moving images":
+        return["moving image", "zxx"]
+    elif instance_type == "moving_images":
+        return["moving image", "zxx"]
+    elif instance_type == "photographs":
+        return["still image", "zxx"]
+    elif instance_type == "realia":
+        return["three dimensional object", "zxx"]
+    elif instance_type == "text":
+        return["text", "eng"]
+    else:
+        print(item_id + " has an improperly formatted instance type. Please check the metadata & try again.")
+        sys.exit()
 
 
 main()
