@@ -17,9 +17,9 @@ import os
 def main():
     # set up some variables
     # aspace access
-    aspace_url = 'http://cassandra.bc.edu:8089'
-    username = 'admin'
-    password = 'lessPr0c,m0rePr0d!'
+    aspace_url = 'http://xxxxxx'
+    username = 'xxxx'
+    password = 'xxxxx'
     # the following group are based on assumptions and may need to be changed project-to-project.
     format_note = "reformatted digital"
     file_type = "image/tiff, image/jpeg"
