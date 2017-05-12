@@ -1,0 +1,9 @@
+en:
+  brand:
+    title: BC ArchivesSpace | Staff Interface
+    home: Staff Home
+    welcome_message: Welcome to Boston College ArchivesSpace | Staff Interface
+  welcome:
+    heading: Welcome to Boston College ArchivesSpace
+    message: For use by Burns Library staff.
+    message_logged_in: You are now logged in to the staff interface.
