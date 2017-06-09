@@ -36,7 +36,9 @@
     version="2.0">
     <xsl:variable name="ead" select="document('ead.xml')"/>
     <xsl:variable name="unitTitle" select="mets:mets/mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title[1]"/>
+    <xsl:variable name="typeLookup" select="document('aspaceInstanceTypeLookup.xml')"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
+        
     <!--Identity Template.  This version of the Identity Template does not copy over namespaces.  
         Nodes that need special processing other than copying have their own template below the 
         Identity Template-->
@@ -256,16 +258,18 @@
     <!--Special templates for selected mets nodes-->
     <xsl:template match="mets:mets">
         <xsl:variable name="itemTitle" select="mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title"/>
+        <xsl:variable name="handle" select="mets:dmdSec[2]/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title"/>
+        <xsl:variable name="instanceType" select="mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:typeOfResource"/>
         <mets:mets
             xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
             <xsl:attribute name="OBJID">
-                <xsl:value-of select="@OBJID"/>
+                <xsl:value-of select="concat('http://hdl.handle.net/2345.2/',substring-before($handle, '_0001'))"/>
             </xsl:attribute>
             <xsl:attribute name="LABEL">
                 <xsl:value-of select="$itemTitle"/>
             </xsl:attribute>
             <xsl:attribute name="TYPE">
-                <xsl:value-of select="@TYPE"/>
+                <xsl:value-of select="$typeLookup/aspaceInstanceTypeLookup/aspaceInstance[@type=$instanceType]/@mods"/>
             </xsl:attribute>
             <xsl:attribute name="PROFILE">ArchivesSpace</xsl:attribute>
             <xsl:apply-templates/>
