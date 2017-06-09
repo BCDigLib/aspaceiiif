@@ -37,6 +37,7 @@
     <xsl:variable name="ead" select="document('ead.xml')"/>
     <xsl:variable name="unitTitle" select="mets:mets/mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title[1]"/>
     <xsl:variable name="typeLookup" select="document('aspaceInstanceTypeLookup.xml')"/>
+    <xsl:variable name="handle" select="mets:mets/mets:dmdSec[2]/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
         
     <!--Identity Template.  This version of the Identity Template does not copy over namespaces.  
@@ -258,7 +259,6 @@
     <!--Special templates for selected mets nodes-->
     <xsl:template match="mets:mets">
         <xsl:variable name="itemTitle" select="mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title"/>
-        <xsl:variable name="handle" select="mets:dmdSec[2]/mets:mdWrap/mets:xmlData/mods:mods/mods:titleInfo/mods:title"/>
         <xsl:variable name="instanceType" select="mets:dmdSec/mets:mdWrap/mets:xmlData/mods:mods/mods:typeOfResource"/>
         <mets:mets
             xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd">
@@ -282,6 +282,7 @@
             <xsl:attribute name="CREATEDATE">
                 <xsl:value-of select="concat(substring(@CREATEDATE,1,10),'T',substring(@CREATEDATE,12,8))"/>
             </xsl:attribute>
+            <xsl:apply-templates/>
         </mets:metsHdr>
     </xsl:template>
     
@@ -317,7 +318,7 @@
                                     <objectIdentifierType>handle</objectIdentifierType>
                                     <objectIdentifierValue>
                                         <xsl:value-of
-                                            select="normalize-space(substring(ancestor::mets:mets/@OBJID,23))"
+                                            select="concat('http://hdl.handle.net/2345.2/',substring-before($handle, '_0001'))"
                                         />
                                     </objectIdentifierValue>
                                 </objectIdentifier>
