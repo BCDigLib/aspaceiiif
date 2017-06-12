@@ -1,6 +1,0 @@
-<% if controller.controller_name == 'accessions' || controller.controller_name == 'resources' %>
-	<%= javascript_tag  do %>
-		TYPE = "<%= controller.controller_name.singularize %>"
-	<% end %>
-  <%= javascript_include_tag "#{@base_url}/assets/manage_user_defined_fields.js" %>
-<% end %>

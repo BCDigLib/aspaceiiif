@@ -1,6 +1,0 @@
-<% define_template "multi_identifier", jsonmodel_definition(:multi_identifier) do |form| %>
-  <div class="subrecord-form-fields">
-    <%= form.label_and_select("identifier_type", form.possible_options_for("identifier_type", true)) %>
-    <%= form.label_and_textfield("identifier_value") %>
-  </div>
-<% end %>
