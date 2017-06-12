@@ -1,9 +1,7 @@
-This repository includes files relevant to Boston College Library's implementation of 
-[ArchivesSpace](http://archivesspace.org). We are in the process of 
-migrating from Archivists' Toolkit and are not yet running this 
-application in production.
- 
-Current version: v1.5.4
+This repository includes files relevant to Boston College Library's implementation of
+[ArchivesSpace](http://archivesspace.org).
+
+### Docs
 
 * [Internal documentation](https://bcwiki.bc.edu/display/UL/ArchivesSpace)
 * [Technical documentation](http://archivesspace.github.io/archivesspace/)
@@ -17,6 +15,7 @@ This instance uses the following plugins:
 * [manage_user_defined_fields (Ohio State University Libraries)](https://github.com/osulibraries/manage_user_defined_fields)
 * [timewalk (New York Public Library)](https://github.com/alexduryee/timewalk)
 * [multiple_identifiers (New York Public Library)](https://github.com/alexduryee/multiple_identifiers)
+* [system_performance_monitor (Hudson Molonglo)](https://github.com/hudmol/system_performance_monitor)
 
 ### Credits
 
@@ -26,5 +25,5 @@ Libraries, and University of Illinois Urbana-Champaign Library and with
 funding from the Andrew W. Mellon Foundation, organizational support from
 LYRASIS, and contributions from diverse persons in the archives community.
 
-This software is licensed under the Educational Community License, Version 2.0. 
+This software is licensed under the Educational Community License, Version 2.0.
 See COPYING file for further licensing information.
