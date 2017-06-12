@@ -1,6 +1,6 @@
 en:
   enumerations:
-    extent_extent_type:
+    extent_type:
       unmeasured_collection: Unmeasured Collection
     file_version_use_statement:
       archive-image: archive image
