@@ -67,8 +67,10 @@
         </td>
         <td class="top-container-profile"><%= Array(doc['container_profile_display_string_u_sstr']).first %></td>
         <td class="top-container-indicator">
-          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && Date.parse(container_json['create_mtime']) < Date.parse('2017-06-03') %>
-              <%= container_json['container_locations'].first['note'] %>
+          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && Date.parse(container_json['create_time']) < Date.parse('2017-06-03') %>
+            <%= container_json['container_locations'].first['note'] %>
+          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && Date.parse(container_json['create_time']) > Date.parse('2017-06-03') %>
+            <%= container_json['display_string'] %>
           <% else %>
             <%= container_json['indicator'] %>
           <% end %>
