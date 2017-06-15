@@ -22,7 +22,7 @@
               <% elsif instance["instance_type"] == "accession" && Date.parse(instance["create_time"]) < Date.parse('2017-06-03') %>
                 <%= instance["container"]["container_locations"].first["note"] %>
               <% elsif instance["instance_type"] == "accession" && Date.parse(instance["create_time"]) > Date.parse('2017-06-03') %>
-                <%= instance["container"]["container_locations"].first["ref"]["_resolved"]["title"] %>
+                <%= instance["container"]["container_locations"].first["_resolved"]["title"] %>
               <% elsif instance["sub_container"] and instance["sub_container"].length > 0 %>
                 <%= instance["sub_container"]["top_container"]["_resolved"]["display_string"] %>
               <% end %>
