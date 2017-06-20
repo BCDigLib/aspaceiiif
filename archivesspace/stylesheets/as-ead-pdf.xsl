@@ -165,12 +165,12 @@
                 <!-- Page header -->                
                 <fo:static-content flow-name="xsl-region-before" margin-top=".15in">
                     <fo:block color="gray" font-size="8pt" text-align="center">
-                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
+                       <!-- <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/> -->
                     </fo:block>
                 </fo:static-content>
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
-                    <fo:block text-align="center" color="gray">
+                    <fo:block text-align="center" color="gray" font-size="8pt">
                         <xsl:text>- Page </xsl:text>                        
                         <fo:page-number/>
                         <xsl:text> -</xsl:text>
@@ -186,12 +186,12 @@
                 <!-- Page header -->
                 <fo:static-content flow-name="xsl-region-before" margin-top=".15in">
                     <fo:block color="gray" font-size="8pt" text-align="center">
-                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
+                       <!-- <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/> -->
                     </fo:block>
                 </fo:static-content>
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
-                    <fo:block text-align="center">        
+                    <fo:block text-align="center" color="gray" font-size="8pt">        
                         <xsl:text>- Page </xsl:text> 
                         <fo:page-number/>
                         <xsl:text>- </xsl:text>
@@ -443,15 +443,16 @@
                         <fo:page-number-citation ref-id="relMat"/>                    
                     </fo:block> 
                 </xsl:if>
-                <xsl:if test="ead:bioghist">
+                <!-- Make sure all bio notes display, not just the first. -->
+                <xsl:for-each select="ead:bioghist">
                     <fo:block text-align-last="justify"> 
-                        <fo:basic-link internal-destination="{local:buildID(ead:bioghist[1])}"><xsl:value-of select="local:tagName(ead:bioghist[1])"/></fo:basic-link>                    
+                        <fo:basic-link internal-destination="{local:buildID(.)}"><xsl:value-of select="local:tagName(.)"/></fo:basic-link>                    
                         <xsl:text>&#160;&#160;</xsl:text>                    
                         <fo:leader leader-pattern="dots"/>                    
                         <xsl:text>&#160;&#160;</xsl:text>                    
-                        <fo:page-number-citation ref-id="{local:buildID(ead:bioghist[1])}"/>                    
+                        <fo:page-number-citation ref-id="{local:buildID(.)}"/>                    
                     </fo:block>                               
-                </xsl:if>
+                </xsl:for-each>
                 <xsl:if test="ead:scopecontent">
                     <fo:block text-align-last="justify"> 
                         <fo:basic-link internal-destination="{local:buildID(ead:scopecontent[1])}"><xsl:value-of select="local:tagName(ead:scopecontent[1])"/></fo:basic-link>                    
