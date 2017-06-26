@@ -171,9 +171,10 @@
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
                     <fo:block text-align="center" color="gray" font-size="8pt">
-                        <xsl:text>- Page </xsl:text>                        
-                        <fo:page-number/>
-                        <xsl:text> -</xsl:text>
+                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>   
+                        <!-- <xsl:text>- Page </xsl:text>   
+                        <fo:page-number/> 
+                        <xsl:text> -</xsl:text>-->
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -191,10 +192,11 @@
                 </fo:static-content>
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
-                    <fo:block text-align="center" color="gray" font-size="8pt">        
-                        <xsl:text>- Page </xsl:text> 
+                    <fo:block text-align="center" color="gray" font-size="8pt">  
+                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
+                      <!--  <xsl:text>- Page </xsl:text> 
                         <fo:page-number/>
-                        <xsl:text>- </xsl:text>
+                        <xsl:text>- </xsl:text> -->
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -240,9 +242,11 @@
                 </xsl:choose>
             </fo:block>
             <xsl:if test="ead:subtitle">
-                <fo:block font-size="16" font-weight="bold"><xsl:apply-templates select="ead:subtitle"/></fo:block>    
+                <!-- h2 causing weird above & below formatting; remove. also child axis not working -->
+                <fo:block font-size="16pt" font-weight="bold"><xsl:apply-templates select="ead:subtitle"/></fo:block>    
             </xsl:if>
-            <fo:block font-size="16" font-weight="bold"><xsl:value-of select="preceding::ead:eadid/@url"/></fo:block>
+            <fo:block xsl:use-attribute-sets="h3"><xsl:apply-templates select="ead:titleproper/ead:num"/></fo:block>
+            <fo:block font-size="12" font-weight="bold"><xsl:value-of select="preceding::ead:eadid/@url"/></fo:block>
         </fo:block> 
         <fo:block margin-top="8pt">
             <!-- Don't pull in the profiledesc, publication info goes in Administrative section.
@@ -596,8 +600,15 @@
         Formats children of archdesc. This template orders the children of the archdesc, 
         if order is changed it must also be changed in the table of contents.
     -->
-    <xsl:template match="ead:archdesc">  
-            <xsl:apply-templates select="ead:did"/>
+    <!-- Chris work on formatting extent here -->
+    <xsl:template match="ead:archdesc/ead:did">  
+        <xsl:if test="ead:physdesc">
+           <xsl:value-of select="concat(ead:extent[1], ' (', ead:extent[2], ')')"/> 
+        </xsl:if>
+        
+        <xsl:apply-templates />
+   
+            
             
             <!-- Administrative Information -->
             <xsl:if test="ead:accessrestrict or ead:userestrict or
