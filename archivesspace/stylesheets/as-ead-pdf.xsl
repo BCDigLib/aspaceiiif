@@ -600,15 +600,9 @@
         Formats children of archdesc. This template orders the children of the archdesc, 
         if order is changed it must also be changed in the table of contents.
     -->
-    <!-- Chris work on formatting extent here -->
-    <xsl:template match="ead:archdesc/ead:did">  
-        <xsl:if test="ead:physdesc">
-           <xsl:value-of select="concat(ead:extent[1], ' (', ead:extent[2], ')')"/> 
-        </xsl:if>
-        
-        <xsl:apply-templates />
-   
-            
+    <xsl:template match="ead:archdesc"> 
+        <xsl:apply-templates select="ead:did"/>
+                  
             
             <!-- Administrative Information -->
             <xsl:if test="ead:accessrestrict or ead:userestrict or
@@ -652,7 +646,7 @@
         <fo:block xsl:use-attribute-sets="section">
         <fo:block xsl:use-attribute-sets="h2ID">Summary Information</fo:block>
                 <!-- 
-                    Determines the order in wich elements from the archdesc did appear, 
+                    Determines the order in which elements from the archdesc did appear, 
                     to change the order of appearance change the order of the following 
                     apply-template statements.
                 -->
@@ -749,9 +743,6 @@
             </fo:table-cell>
         </fo:table-row>
     </xsl:template>
-    
-    <!-- Adds formatting between extents 
-    <xsl:template match="ead:extent[1]"><xsl:text> (</xsl:text><xsl:value-of select="ead:extent[2]"/><xsl:text>)</xsl:text><xsl:apply-templates /></xsl:template> -->
    
         
     <!-- Formats children of arcdesc not in administrative or related materials sections-->
