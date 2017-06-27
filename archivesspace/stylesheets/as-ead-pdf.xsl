@@ -628,6 +628,7 @@
                 </fo:block>
             </xsl:if>
             
+            
             <xsl:apply-templates select="ead:bioghist"/>
             <xsl:apply-templates select="ead:scopecontent"/>
             <xsl:apply-templates select="ead:arrangement"/>
@@ -655,7 +656,7 @@
                 <fo:table-column column-width="2in"/>
                 <fo:table-column column-width="5in"/>
                 <fo:table-body>
-                        <xsl:apply-templates select="ead:repository" mode="overview"/>
+                        <!--<xsl:apply-templates select="ead:repository" mode="overview"/> -->
                         <xsl:apply-templates select="ead:origination" mode="overview"/>
                         <xsl:apply-templates select="ead:unittitle" mode="overview"/>    
                         <xsl:apply-templates select="ead:unitid" mode="overview"/>
