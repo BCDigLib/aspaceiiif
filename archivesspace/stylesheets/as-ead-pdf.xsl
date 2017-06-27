@@ -229,7 +229,7 @@
     </xsl:template>
     <xsl:template match="ead:titlestmt" mode="coverPage">
         <!-- Calls template with links to archive icon -->
-        <xsl:call-template name="icon"/>
+       <!-- <xsl:call-template name="icon"/> -->
         <fo:block border-bottom="1pt solid #666" margin-top="1in" id="cover-page">
             <fo:block xsl:use-attribute-sets="h1">
                 <xsl:choose>
@@ -242,13 +242,13 @@
                 </xsl:choose>
             </fo:block>
             <xsl:if test="ead:subtitle">
-                <!-- h2 causing weird above & below formatting; remove. also child axis not working -->
                 <fo:block font-size="16pt" font-weight="bold"><xsl:apply-templates select="ead:subtitle"/></fo:block>    
             </xsl:if>
             <fo:block xsl:use-attribute-sets="h3"><xsl:apply-templates select="ead:titleproper/ead:num"/></fo:block>
             <fo:block font-size="12" font-weight="bold"><xsl:value-of select="preceding::ead:eadid/@url"/></fo:block>
         </fo:block> 
-        <fo:block margin-top="8pt">
+        <xsl:call-template name="icon"/>
+        <fo:block margin-top="8pt">            
             <!-- Don't pull in the profiledesc, publication info goes in Administrative section.
             <xsl:apply-templates select="/ead:ead/ead:eadheader/ead:profiledesc"/> -->
         </fo:block>
@@ -280,11 +280,11 @@
         This template can be modified to include repository specific icons,
         use the template as an example. PDF exports only support this single
         icon template for an image in this directory specified by filename
-        i.e. src="myicon.png"
+        i.e. src="myicon.png"  Logo controls
     -->
     <xsl:template name="icon">
-        <fo:block text-align="left" margin-left="-.75in" margin-top="-.5in">
-            <fo:external-graphic src="boston-college-logo.jpg" content-height="75%" content-width="75%"/>
+        <fo:block text-align="left" margin-left="2.25in" margin-top="1.25in">
+            <fo:external-graphic src="boston-college-logo.jpg" content-height="150%" content-width="150%"/>
         </fo:block>
     </xsl:template>
     
@@ -666,7 +666,7 @@
                         <xsl:apply-templates select="ead:unittitle" mode="overview"/>    
                         <xsl:apply-templates select="ead:unitid" mode="overview"/>
                         <xsl:apply-templates select="ead:unitdate" mode="overview"/>
-                        <xsl:apply-templates select="ead:physdesc" mode="overview"/>        
+                        <xsl:apply-templates select="ead:physdesc" mode="overview"/>  
                         <xsl:apply-templates select="ead:physloc" mode="overview"/> 
                         <xsl:apply-templates select="ead:dao" mode="overview"/>
                         <xsl:apply-templates select="ead:daogrp" mode="overview"/>
@@ -684,6 +684,22 @@
         </fo:block>
     </xsl:template>
     
+    <!-- Formats extent as a subset of physdesc -->
+    <xsl:template match="ead:physdesc" mode="overview">
+        <fo:table-row>
+            <fo:table-cell padding-bottom="8pt" padding-right="16pt" text-align="right" font-weight="bold">
+                <fo:block>
+                    <xsl:value-of select="local:tagName(.)"/>
+                </fo:block>
+            </fo:table-cell>
+            <fo:table-cell padding-bottom="2pt">
+                <fo:block>
+                    <xsl:value-of select="concat(ead:extent[1],' (', ead:extent[2],')')"/>
+                </fo:block>
+            </fo:table-cell>
+        </fo:table-row>    
+    </xsl:template>
+    
     <!-- Formats prefercite in the summary -->
     <xsl:template match="ead:prefercite" mode="overview">
         <fo:block xsl:use-attribute-sets="section" border="1pt solid #333">
@@ -696,7 +712,7 @@
     
     <!-- Formats children of arcdesc/did -->
     <xsl:template match="ead:repository | ead:origination | ead:unittitle | ead:unitdate | ead:unitid  
-        | ead:physdesc | ead:physloc | ead:dao | ead:daogrp | ead:langmaterial | ead:materialspec | ead:container 
+         | ead:physloc | ead:dao | ead:daogrp | ead:langmaterial | ead:materialspec | ead:container 
         | ead:abstract | ead:note" mode="overview">
         <fo:table-row>
             <fo:table-cell padding-bottom="8pt" padding-right="16pt" text-align="right" font-weight="bold">
@@ -733,8 +749,10 @@
             </fo:table-cell>
         </fo:table-row>
     </xsl:template>
-    <!-- Adds space between extents -->
-    <xsl:template match="ead:extent"><xsl:apply-templates/>&#160;</xsl:template>      
+    
+    <!-- Adds formatting between extents 
+    <xsl:template match="ead:extent[1]"><xsl:text> (</xsl:text><xsl:value-of select="ead:extent[2]"/><xsl:text>)</xsl:text><xsl:apply-templates /></xsl:template> -->
+   
         
     <!-- Formats children of arcdesc not in administrative or related materials sections-->
     <xsl:template match="ead:bibliography | ead:odd | ead:phystech | ead:otherfindaid | 
