@@ -220,10 +220,10 @@
         <!-- Uses filing type title if present -->
         <xsl:choose>
             <xsl:when test="ead:titleproper[@type='filing']">
-                <xsl:apply-templates select="ead:titleproper[@type='filing']"/>
+                <xsl:value-of select="ead:titleproper[@type='filing']"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates select="ead:titleproper[1]"/>
+                <xsl:value-of select="ead:titleproper/text()"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -234,10 +234,10 @@
             <fo:block xsl:use-attribute-sets="h1">
                 <xsl:choose>
                     <xsl:when test="ead:titleproper[@type='filing']">
-                        <xsl:apply-templates select="ead:titleproper[@type='filing']"/>
+                        <xsl:value-of select="ead:titleproper[@type='filing']"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:apply-templates select="ead:titleproper[1]"/>
+                        <xsl:value-of select="ead:titleproper/text()"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </fo:block>
@@ -259,7 +259,7 @@
     <xsl:template match="ead:publicationstmt" mode="coverPage">
         <fo:block margin="0 1in">
             <fo:block>
-                <xsl:apply-templates select="ead:publisher"/>
+                <xsl:apply-templates select="ead:publisher"/> 
                 <xsl:if test="ead:date">&#160;<xsl:apply-templates select="ead:date"/></xsl:if>
             </fo:block>
             <xsl:apply-templates select="ead:address"/>
@@ -628,7 +628,7 @@
                 </fo:block>
             </xsl:if>
             
-            
+
             <xsl:apply-templates select="ead:bioghist"/>
             <xsl:apply-templates select="ead:scopecontent"/>
             <xsl:apply-templates select="ead:arrangement"/>
@@ -1199,15 +1199,15 @@
         <!-- Chris fix dao link content here -->
         <xsl:variable name="linkTitle">
             <xsl:choose>
-                <xsl:when test="child::*">
+              <!--  <xsl:when test="child::*">
                     <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:when test="@*:href">
-                    <xsl:value-of select="@*:href"/>
+                </xsl:when> -->
+                <xsl:when test="@xlink:href">
+                    <xsl:value-of select="@xlink:href"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        <fo:basic-link external-destination="url('{@*:href}')" xsl:use-attribute-sets="ref">
+        <fo:basic-link external-destination="url('{@xlink:href}')" xsl:use-attribute-sets="ref">
             <xsl:value-of select="$linkTitle"/>
         </fo:basic-link>
     </xsl:template>
@@ -1667,8 +1667,8 @@
         </xsl:variable>
         <fo:block xsl:use-attribute-sets="smpDsc">
             <fo:inline text-decoration="underline">
-             <xsl:choose>
-                 <!-- Test for label attribute used by origination element -->
+            <xsl:choose>
+                  <!-- Test for label attribute used by origination element -->
                  <xsl:when test="@label">
                      <xsl:value-of select="concat(upper-case(substring(@label,1,1)),substring(@label,2))"></xsl:value-of>
                  </xsl:when>
@@ -1677,7 +1677,7 @@
                  </xsl:otherwise>
              </xsl:choose></fo:inline>:             
             <fo:basic-link external-destination="url('{@*:href}')" xsl:use-attribute-sets="ref">
-                <xsl:value-of select="$title"/>
+                <xsl:value-of select="@*:href"/>
             </fo:basic-link>
         </fo:block>
     </xsl:template>
