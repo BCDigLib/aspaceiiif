@@ -337,11 +337,11 @@
                 </fo:bookmark>
             </xsl:if>
             
-            <xsl:if test="ead:controlaccess">
+         <!--  <xsl:if test="ead:controlaccess">
                 <fo:bookmark internal-destination="{local:buildID(ead:controlaccess[1])}">
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:controlaccess[1])"/></fo:bookmark-title>
                 </fo:bookmark>
-            </xsl:if>
+            </xsl:if> -->
             <xsl:if test="ead:otherfindaid">
                 <fo:bookmark internal-destination="{local:buildID(ead:otherfindaid[1])}">
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:otherfindaid[1])"/></fo:bookmark-title>
@@ -487,7 +487,7 @@
                     
                 
                     
-                <xsl:if test="ead:controlaccess">
+             <!--   <xsl:if test="ead:controlaccess">
                     <fo:block text-align-last="justify"> 
                         <fo:basic-link internal-destination="{local:buildID(ead:controlaccess[1])}"><xsl:value-of select="local:tagName(ead:controlaccess[1])"/></fo:basic-link>                    
                         <xsl:text>&#160;&#160;</xsl:text>                    
@@ -495,7 +495,7 @@
                         <xsl:text>&#160;&#160;</xsl:text>                    
                         <fo:page-number-citation ref-id="{local:buildID(ead:controlaccess[1])}"/>                    
                     </fo:block>  
-                </xsl:if>
+                </xsl:if> -->
                 <xsl:if test="ead:otherfindaid">
                     <fo:block text-align-last="justify"> 
                         <fo:basic-link internal-destination="{local:buildID(ead:otherfindaid[1])}"><xsl:value-of select="local:tagName(ead:otherfindaid[1])"/></fo:basic-link>                    
@@ -628,6 +628,8 @@
                 </fo:block>
             </xsl:if>
             
+            <fo:block page-break-after="always"/>
+             
 
             <xsl:apply-templates select="ead:bioghist"/>
             <xsl:apply-templates select="ead:scopecontent"/>
