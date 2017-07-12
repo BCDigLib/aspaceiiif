@@ -17,9 +17,9 @@ import os
 def main():
     # set up some variables
     # aspace access
-    aspace_url = 'http://xxxxxx'
+    aspace_url = 'http://xxxx'
     username = 'xxxx'
-    password = 'xxxxx'
+    password = 'xxxx'
     # the following group are based on assumptions and may need to be changed project-to-project.
     format_note = "reformatted digital"
     file_type = "image/tiff, image/jpeg"
@@ -48,24 +48,29 @@ def main():
         # check for necessary metadata & only proceed if it's all present.
         print(archival_object_json)
         try:
+            unique_id = archival_object_json['component_id']
+        except KeyError:
+            print("Please make sure all items have a component unique ID before creating DAOs")
+            sys.exit()
+        try:
             obj_title = archival_object_json['title']
         except KeyError:
             try:
                 obj_title = archival_object_json['dates'][0]['expression']
             except KeyError:
-                print("Item " + id_ref + " has no title or date expression. Please check the metadata & try again")
+                print("Item " + unique_id + " has no title or date expression. Please check the metadata & try again")
                 sys.exit()
         # check for expression type 'single' before looking for both start and end dates
-        date_json = create_date_json(archival_object_json, id_ref, collection_dates)
+        date_json = create_date_json(archival_object_json, unique_id, collection_dates)
         # use the archival object type to inform the digital object type & language code.
         try:
-            types_list = get_lang_code(archival_object_json['instances'][0]['instance_type'], id_ref)
+            types_list = get_lang_code(archival_object_json['instances'][0]['instance_type'], unique_id)
         except KeyError:
-            print("Item " + id_ref + " has no instance type assigned. Please check the metadata & try again")
+            print("Item " + unique_id + " has no instance type assigned. Please check the metadata & try again")
             sys.exit()
         # make the JSON
         dig_obj = {'jsonmodel_type':'digital_object','title':obj_title, 'digital_object_type':types_list[0], 'language':types_list[1],
-               'digital_object_id':'http://hdl.handle.net.2345.2/' + id_ref, 'notes':[{'content':
+               'digital_object_id':'http://hdl.handle.net/2345.2/' + unique_id, 'publish': True, 'notes':[{'content':
                 [use_note], 'type':'userestrict', 'jsonmodel_type':'note_digital_object'},{'content':[dimensions_note],
                 'type':'dimensions', 'jsonmodel_type':'note_digital_object'}, {'content':[format_note], 'type':'note','jsonmodel_type':'note_digital_object'},
                 {'content':[file_type], 'type':'note', 'jsonmodel_type':'note_digital_object'}], 'dates':date_json}
@@ -78,7 +83,7 @@ def main():
         try:
             dig_obj_uri = dig_obj_post['uri']
         except KeyError:
-            print("DO for item " + id_ref + " already exists. Moving to next item in list.")
+            print("DO for item " + unique_id + " already exists. Moving to next item in list.")
             continue
         # Build a new instance to add to the archival object, linking to the digital object
         dig_obj_instance = {'instance_type': 'digital_object', 'digital_object': {'ref': dig_obj_uri}}
@@ -92,7 +97,7 @@ def main():
         # directory that include the ref_id in the filename and contain a list of all image files associated with the object
         files_list = os.listdir('.')
         for components_file in files_list:
-            if id_ref in components_file:
+            if unique_id in components_file:
                 infile = open(components_file, 'r')
                 contents = infile.read()
                 file_names = contents.splitlines()
@@ -114,7 +119,7 @@ def main():
                         files_dictionary[base_name].append(version)
 
                 for name in keeping_track:
-                    dig_obj = {'jsonmodel_type': 'digital_object_component', 'file_versions': files_dictionary[name],
+                    dig_obj = {'jsonmodel_type': 'digital_object_component', 'publish': False, 'file_versions': files_dictionary[name],
                            'title': name, 'display_string': name, 'digital_object': {'ref': dig_obj_uri}}
                     dig_obj_data = json.dumps(dig_obj)
                     print(dig_obj_data)
@@ -130,7 +135,7 @@ def main():
         mets_file = mets_call.text
         if not os.path.exists('METS'):
             os.makedirs('METS')
-        with open('METS/'+ id_ref + '.xml', 'w') as outfile:
+        with open('METS/' + unique_id + '.xml', 'w') as outfile:
             outfile.write(mets_file)
         outfile.close()
 
