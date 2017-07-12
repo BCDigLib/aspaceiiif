@@ -6,6 +6,7 @@
         <xsl:text>&#x9;</xsl:text>
     </xsl:variable>
     <xsl:template match="/">
+        <!-- Level attribute needs changing on a project-dependant basis! -->
         <xsl:for-each select="//ead:c[@level='file']">
             <xsl:choose>
                 <xsl:when test="ead:did/ead:unitid">
