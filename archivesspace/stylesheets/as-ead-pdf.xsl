@@ -611,10 +611,11 @@
                 /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt or /ead:ead/ead:eadheader/ead:revisiondesc">
                 <fo:block xsl:use-attribute-sets="section">
                     <fo:block xsl:use-attribute-sets="h2" id="adminInfo">Administrative Information</fo:block>
+                    <!-- Chris insert manual formatting for publication information here? -->
+                    <xsl:call-template name="publication"/>
                     <xsl:apply-templates select="ead:accessrestrict | ead:userestrict |
                         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
-                        ead:processinfo | ead:appraisal | ead:originalsloc | 
-                        /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt | /ead:ead/ead:eadheader/ead:revisiondesc"/>
+                        ead:processinfo | ead:appraisal | ead:originalsloc | /ead:ead/ead:eadheader/ead:revisiondesc"/>
                    <!-- <xsl:call-template name="toc"/> -->
                 </fo:block>
             </xsl:if>
@@ -1690,5 +1691,18 @@
                 <xsl:apply-templates/>
             </fo:block>
         </xsl:if>
+    </xsl:template>
+    <!-- template to format publication information -->
+    <xsl:template name="publication">
+        <fo:block xsl:use-attribute-sets="section">
+            <fo:block xsl:use-attribute-sets="h3">Publication Information</fo:block>
+            <fo:block xsl:use-attribute-sets="smp">
+            <xsl:text>Processed by </xsl:text>
+            <xsl:value-of select="/ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt/ead:author"/>
+            <xsl:text> in </xsl:text>
+            <xsl:value-of select="/ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt/ead:p/ead:date"/>
+            <xsl:text>. This finding aid was produced using ArchivesSpace.</xsl:text>
+            </fo:block>    
+        </fo:block>
     </xsl:template>
 </xsl:stylesheet>
