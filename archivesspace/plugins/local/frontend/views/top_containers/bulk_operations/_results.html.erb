@@ -67,8 +67,8 @@
         </td>
         <td class="top-container-profile"><%= Array(doc['container_profile_display_string_u_sstr']).first %></td>
         <td class="top-container-indicator">
-          <!-- Check if container was migrated by looking for the note field. -->
-          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && container_json['container_locations'].length > 0 && !container_json['container_locations'].first['note'].nil? %>
+          <!-- Check if the accession was migrated. -->
+          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && Date.parse(instance["create_time"]) < Date.parse('2017-06-04') && !container_json['container_locations'].first['note'].nil? %>
               <%= container_json['container_locations'].first['note'] %>
           <% else %>
             <%= container_json['indicator'] %>
