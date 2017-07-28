@@ -610,7 +610,7 @@
                 ead:processinfo or ead:appraisal or ead:originalsloc or 
                 /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt or /ead:ead/ead:eadheader/ead:revisiondesc">
                 <fo:block xsl:use-attribute-sets="section">
-                    <fo:block xsl:use-attribute-sets="h2" id="adminInfo">Administrative Information</fo:block>
+                    <fo:block xsl:use-attribute-sets="h2" id="adminInfo" page-break-before="always">Administrative Information</fo:block>
                     <!-- Chris insert manual formatting for publication information here? -->
                     <xsl:call-template name="publication"/>
                     <xsl:apply-templates select="ead:accessrestrict | ead:userestrict |
@@ -751,12 +751,22 @@
         
     <!-- Formats children of arcdesc not in administrative or related materials sections-->
     <xsl:template match="ead:bibliography | ead:odd | ead:phystech | ead:otherfindaid | 
-        ead:bioghist | ead:scopecontent | ead:arrangement | ead:fileplan">
+        ead:bioghist | ead:scopecontent | ead:fileplan">
         <fo:block xsl:use-attribute-sets="section">  
             <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block> 
                 <xsl:apply-templates/>                
             <!-- <xsl:call-template name="toc"/> -->
         </fo:block>
+    </xsl:template>
+    
+    <!-- Formats arrangement separately to add a page break -->
+    <xsl:template match="ead:arrangement">
+        <fo:block xsl:use-attribute-sets="section">  
+            <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block> 
+            <xsl:apply-templates/>                
+            <!-- <xsl:call-template name="toc"/> -->
+        </fo:block>
+        <fo:block page-break-after="always"/>
     </xsl:template>
 
     <!-- Formats children of arcdesc in administrative and related materials sections -->
