@@ -1,5 +1,3 @@
-# From commit 6523b90f1b, prior to replacing component_id with external_id
-
 # encoding: utf-8
 require 'nokogiri'
 require 'securerandom'
@@ -42,8 +40,8 @@ class EADSerializer < ASpaceExport::Serializer
 
 
   def handle_linebreaks(content)
-    # 4archon...
-    content.gsub!("\n\t", "\n\n")
+    # 4archon... 
+    content.gsub!("\n\t", "\n\n")  
     # if there's already p tags, just leave as is
     return content if ( content.strip =~ /^<p(\s|\/|>)/ or content.strip.length < 1 )
     original_content = content
@@ -256,15 +254,15 @@ class EADSerializer < ASpaceExport::Serializer
           xml.unittitle {  sanitize_mixed_content( val,xml, fragments) }
         end
 
-        if !data.component_id.nil? && !data.component_id.empty? &&
-          !(data.external_ids.select {|x| x['external_id'] == data.component_id }).empty?
+        if !data.component_id.nil? && !data.component_id.empty? #&&
+          #!(data.external_ids.select {|x| x['external_id'] == data.component_id }).empty?
           xml.unitid data.component_id
 
         end
 
-        data.external_ids.each do |exid|
-          xml.unitid  ({ "type" => exid['source'], "identifier" => exid['external_id']}) { xml.text exid['external_id']}
-        end
+        #data.external_ids.each do |exid|
+        #  xml.unitid  ({ "type" => exid['source'], "identifier" => exid['external_id']}) { xml.text exid['external_id']}
+        #end
 
         serialize_origination(data, xml, fragments)
         serialize_extents(data, xml, fragments)
@@ -489,19 +487,27 @@ class EADSerializer < ASpaceExport::Serializer
       xml.dao(atts) {
         xml.daodesc{ sanitize_mixed_content(content, xml, fragments, true) } if content
       }
-    else
-      file_versions.each do |file_version|
+    elsif file_versions.length == 1
         atts['xlink:type'] = 'simple'
-        atts['xlink:href'] = file_version['file_uri'] || digital_object['digital_object_id']
-        atts['xlink:actuate'] = file_version['xlink_actuate_attribute'] || 'onRequest'
-        atts['xlink:show'] = file_version['xlink_show_attribute'] || 'new'
-        atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
+        atts['xlink:href'] = file_versions.first['file_uri'] || digital_object['digital_object_id']
+        atts['xlink:actuate'] = file_versions.first['xlink_actuate_attribute'] || 'onRequest'
+        atts['xlink:show'] = file_versions.first['xlink_show_attribute'] || 'new'
+        atts['xlink:role'] = file_versions.first['use_statement'] if file_versions.first['use_statement']
         xml.dao(atts) {
           xml.daodesc{ sanitize_mixed_content(content, xml, fragments, true) } if content
         }
-      end
+    else
+      xml.daogrp( atts.merge( { 'xlink:type' => 'extended'} ) ) {
+        xml.daodesc{ sanitize_mixed_content(content, xml, fragments, true) } if content
+        file_versions.each do |file_version|
+          atts['xlink:type'] = 'locator'
+          atts['xlink:href'] = file_version['file_uri'] || digital_object['digital_object_id']
+          atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
+          atts['xlink:title'] = file_version['caption'] if file_version['caption']
+          xml.daoloc(atts)
+        end
+      }
     end
-
   end
 
 
