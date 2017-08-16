@@ -171,10 +171,13 @@
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
                     <fo:block text-align="center" color="gray" font-size="8pt">
-                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>   
-                        <!-- <xsl:text>- Page </xsl:text>   
-                        <fo:page-number/> 
-                        <xsl:text> -</xsl:text>-->
+                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt/ead:titleproper/ead:num"/>
+                        <fo:block space-after="1em"/>
+                        <xsl:text>- Page </xsl:text> 
+                        <fo:page-number/>
+                        <xsl:text> -</xsl:text>
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -194,9 +197,12 @@
                 <fo:static-content flow-name="xsl-region-after">
                     <fo:block text-align="center" color="gray" font-size="8pt">  
                         <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt/ead:titleproper/ead:num"/>
+                        <fo:block space-after="1em"/>
                         <xsl:text>- Page </xsl:text> 
                         <fo:page-number/>
-                        <xsl:text>- </xsl:text>
+                        <xsl:text> -</xsl:text>
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
