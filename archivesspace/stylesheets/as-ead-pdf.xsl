@@ -194,9 +194,9 @@
                 <fo:static-content flow-name="xsl-region-after">
                     <fo:block text-align="center" color="gray" font-size="8pt">  
                         <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
-                      <!--  <xsl:text>- Page </xsl:text> 
+                        <xsl:text>- Page </xsl:text> 
                         <fo:page-number/>
-                        <xsl:text>- </xsl:text> -->
+                        <xsl:text>- </xsl:text>
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -389,7 +389,7 @@
                             </xsl:choose>    
                         </fo:bookmark-title>
                     </fo:bookmark>
-                    <!-- Creates a submenu for subfonds, subgrp or subseries -->    
+                    <!-- Creates a submenu for subfonds, subgrp, subseries or sub-subseries -->    
                     <xsl:for-each select="child::*[@level = 'subfonds'] | child::*[@level = 'subgrp']  | child::*[@level = 'subseries']">
                         <fo:bookmark internal-destination="{local:buildID(.)}">
                             <fo:bookmark-title>
@@ -553,8 +553,8 @@
                             <fo:page-number-citation ref-id="{local:buildID(.)}"/>                    
                         </fo:block>             
                     </xsl:if>                
-                    <!--Creates a submenu for collections, record groups and series and fonds-->                
-                    <xsl:for-each select="child::*[@level = 'collection']  | child::*[@level = 'recordgrp']  | child::*[@level = 'series'] | child::*[@level = 'fonds']">
+                    <!--Creates a submenu for collections, record groups and series and fonds-->  
+                    <xsl:for-each select="child::*[@level = 'series']">
                         <fo:block text-align-last="justify" margin-left="8pt"> 
                             <fo:basic-link internal-destination="{local:buildID(.)}">
                                 <xsl:choose>
@@ -562,6 +562,8 @@
                                         <xsl:apply-templates select="child::*/ead:head"/>        
                                     </xsl:when>
                                     <xsl:otherwise>
+                                        <xsl:apply-templates select="child::*/ead:unitid"/>
+                                        <xsl:text>: </xsl:text>
                                         <xsl:apply-templates select="child::*/ead:unittitle"/>
                                     </xsl:otherwise>
                                 </xsl:choose>    
@@ -571,7 +573,7 @@
                             <xsl:text>&#160;&#160;</xsl:text>                    
                             <fo:page-number-citation ref-id="{local:buildID(.)}"/>                    
                         </fo:block>   
-                        <!-- Creates a submenu for subfonds, subgrp or subseries -->    
+                        <!-- Creates a submenu for subfonds, subgrp or subseries    - Commented out to remove sub series from TOC -   
                         <xsl:for-each select="child::*[@level = 'subfonds'] | child::*[@level = 'subgrp']  | child::*[@level = 'subseries']">
                             <fo:block text-align-last="justify" margin-left="16pt"> 
                                 <fo:basic-link internal-destination="{local:buildID(.)}">
@@ -589,7 +591,7 @@
                                 <xsl:text>&#160;&#160;</xsl:text>                    
                                 <fo:page-number-citation ref-id="{local:buildID(.)}"/>                    
                             </fo:block>   
-                        </xsl:for-each>
+                        </xsl:for-each> -->
                     </xsl:for-each>
                 </xsl:for-each>
             </fo:block>
@@ -611,7 +613,6 @@
                 /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt or /ead:ead/ead:eadheader/ead:revisiondesc">
                 <fo:block xsl:use-attribute-sets="section">
                     <fo:block xsl:use-attribute-sets="h2" id="adminInfo" page-break-before="always">Administrative Information</fo:block>
-                    <!-- Chris insert manual formatting for publication information here? -->
                     <xsl:call-template name="publication"/>
                     <xsl:apply-templates select="ead:accessrestrict | ead:userestrict |
                         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
@@ -1209,7 +1210,6 @@
         </fo:basic-link>
     </xsl:template>
     <xsl:template match="ead:dao">
-        <!-- Chris fix dao link content here -->
         <xsl:variable name="linkTitle">
             <xsl:choose>
               <!--  <xsl:when test="child::*">
@@ -1524,7 +1524,7 @@
                 <xsl:choose>
                     <xsl:when test="../@level='series'">Series <xsl:value-of select="ead:unitid"/>: </xsl:when>
                     <xsl:when test="../@level='subseries'">Subseries <xsl:value-of select="ead:unitid"/>: </xsl:when>
-                    <xsl:when test="../@level='subsubseries'">Sub-Subseries <xsl:value-of select="ead:unitid"/>: </xsl:when>
+                    <xsl:when test="../@otherlevel='Sub-subseries'">Sub-Subseries <xsl:value-of select="ead:unitid"/>: </xsl:when>
                     <xsl:when test="../@level='collection'">Collection <xsl:value-of select="ead:unitid"/>: </xsl:when>
                     <xsl:when test="../@level='subcollection'">Subcollection <xsl:value-of select="ead:unitid"/>: </xsl:when>
                     <xsl:when test="../@level='fonds'">Fonds <xsl:value-of select="ead:unitid"/>: </xsl:when>
@@ -1546,7 +1546,7 @@
         <fo:block margin-bottom="4pt" margin-top="0">        
             <xsl:apply-templates select="ead:repository" mode="dsc"/>            
             <xsl:apply-templates select="ead:origination" mode="dsc"/>            
-            <!--<xsl:apply-templates select="ead:unitdate" mode="dsc"/> -->           
+           <!-- <xsl:apply-templates select="ead:unitdate" mode="dsc"/>  -->        
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>                    
             <xsl:apply-templates select="ead:physloc" mode="dsc"/>             
             <xsl:apply-templates select="ead:dao"/>            
@@ -1568,7 +1568,9 @@
         <fo:block margin-bottom="4pt" margin-top="0">
             <xsl:apply-templates select="ead:repository" mode="dsc"/>            
             <xsl:apply-templates select="ead:origination" mode="dsc"/>            
-            <!--<xsl:apply-templates select="ead:unitdate" mode="dsc"/> -->            
+            <xsl:if test="not(ead:unittitle)">
+                <xsl:value-of select="ead:unitdate"/> 
+            </xsl:if>
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>                    
             <xsl:apply-templates select="ead:physloc" mode="dsc"/>             
             <xsl:apply-templates select="ead:dao" mode="dsc"/>            
