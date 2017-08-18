@@ -3,5 +3,5 @@ en:
     extent_type:
       unmeasured_collection: Unmeasured Collection
     file_version_use_statement:
-      archive-image: archive image
-      reference-image: reference image
+      archive image: archive image
+      reference image: reference image
