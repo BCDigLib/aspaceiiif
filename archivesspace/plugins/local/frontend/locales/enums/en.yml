@@ -2,6 +2,19 @@ en:
   enumerations:
     extent_type:
       unmeasured_collection: Unmeasured Collection
+    container_type:
+      reel-frame: Reel Frame
+      bin: Bin
+      item: Item
+      location: Location
+      box-folder: Box Folder
+      tape: Tape
+      cassette: Cassette
+      disk: Disk
+      oversize: Oversize
+      case-drawer: Case Drawer
+      barcode: Barcode
+      volume: Volume
     file_version_use_statement:
       archive image: archive image
       reference image: reference image
