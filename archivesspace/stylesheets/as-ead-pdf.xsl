@@ -667,7 +667,7 @@
                 <fo:table-column column-width="5in"/>
                 <fo:table-body>
                         <!--<xsl:apply-templates select="ead:repository" mode="overview"/> -->
-                        <xsl:apply-templates select="ead:origination" mode="overview"/>
+                        <xsl:apply-templates select="ead:origination[@label='creator']" mode="overview"/>
                         <xsl:apply-templates select="ead:unittitle" mode="overview"/>    
                         <xsl:apply-templates select="ead:unitid" mode="overview"/>
                         <xsl:apply-templates select="ead:unitdate" mode="overview"/>
@@ -1598,7 +1598,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <!-- Special formatting for elements in the collection inventory list -->
-    <xsl:template match="ead:repository | ead:origination | ead:unitdate | ead:unitid  
+    <xsl:template match="ead:repository | ead:origination[@label='creator'] | ead:unitdate | ead:unitid  
         | ead:physloc | ead:langmaterial | ead:materialspec | ead:container 
         | ead:abstract | ead:note" mode="dsc">
         <xsl:if test="normalize-space()">
