@@ -7,7 +7,7 @@
     </xsl:variable>
     <xsl:template match="/">
         <!-- Level attribute needs changing on a project-dependant basis! -->
-        <xsl:for-each select="//ead:c[@level='file']">
+        <xsl:for-each select="//ead:c[@level='item']">
             <xsl:choose>
                 <xsl:when test="ead:did/ead:unitid">
                     <xsl:value-of select="ead:did/ead:unitid"/>

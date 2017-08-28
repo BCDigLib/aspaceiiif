@@ -618,7 +618,7 @@
                 ead:processinfo or ead:appraisal or ead:originalsloc or 
                 /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt or /ead:ead/ead:eadheader/ead:revisiondesc">
                 <fo:block xsl:use-attribute-sets="section">
-                    <fo:block xsl:use-attribute-sets="h2" id="adminInfo" page-break-before="always">Administrative Information</fo:block>
+                    <fo:block xsl:use-attribute-sets="h2" id="adminInfo" page-break-before='always'>Administrative Information</fo:block>
                     <xsl:call-template name="publication"/>
                     <xsl:apply-templates select="ead:accessrestrict | ead:userestrict |
                         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  

@@ -202,29 +202,29 @@ def get_type_data(filename):
 def get_lang_code(instance_type, item_id):
     print(instance_type)
     if instance_type == "audio":
-        return ["sound recording", "eng"]
+        return ["sound_recording", "eng"]
     elif instance_type == "books":
         return ["text", "eng"]
     elif instance_type == "computer_disks":
-        return ["software, multimedia", "zxx"]
+        return ["software_multimedia", "zxx"]
     elif instance_type == "graphic material":
-        return["still image", "zxx"]
+        return["still_image", "zxx"]
     elif instance_type == "graphic_materials":
-        return["still image", "zxx"]
+        return["still_image", "zxx"]
     elif instance_type == "graphic materials":
-        return["still image", "zxx"]
+        return["still_image", "zxx"]
     elif instance_type == "maps":
         return["cartographic", "zxx"]
     elif instance_type == "mixed_materials":
-        return["mixed material", "zxx"]
+        return["mixed_materials", "zxx"]
     elif instance_type == "mixed materials":
-        return["mixed material", "zxx"]
+        return["mixed_materials", "zxx"]
     elif instance_type == "moving images":
-        return["moving image", "zxx"]
+        return["moving_image", "zxx"]
     elif instance_type == "moving_images":
-        return["moving image", "zxx"]
+        return["moving_image", "zxx"]
     elif instance_type == "photographs":
-        return["still image", "zxx"]
+        return["still_image", "zxx"]
     elif instance_type == "realia":
         return["three dimensional object", "zxx"]
     elif instance_type == "text":
