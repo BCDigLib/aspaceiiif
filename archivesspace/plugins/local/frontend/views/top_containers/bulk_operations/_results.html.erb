@@ -29,7 +29,7 @@
       <th><%= I18n.t("container_profile._singular") %></th>
       <th><%= I18n.t("top_container.indicator") %></th>
       <th><%= I18n.t("top_container.barcode") %></th>
-      <th><%= I18n.t("top_container._frontend.bulk_operations.current_location") %></th>i
+      <th><%= I18n.t("top_container._frontend.bulk_operations.current_location") %></th>
       <th><%= I18n.t("top_container.ils_holding_id") %></th>
       <th><%= I18n.t("top_container.restricted") %></th>
       <th><%= I18n.t("top_container.exported_to_ils") %></th>
@@ -68,8 +68,10 @@
         <td class="top-container-profile"><%= Array(doc['container_profile_display_string_u_sstr']).first %></td>
         <td class="top-container-indicator">
           <!-- Check if the accession was migrated. -->
-          <% if container_json['collection'].first.any? { |key, val| val.include? "accessions" } && Date.parse(container_json["create_time"]) < Date.parse('2017-06-04') && !container_json['container_locations'].first['note'].nil? %>
-              <%= container_json['container_locations'].first['note'] %>
+          <% if container_json.dig("container_locations", 0, "note").nil? || container_json.dig("collection", 0, "ref").nil? %>
+            <%= container_json['indicator'] %>
+          <% elsif container_json.dig("collection", 0, "ref").include?("accessions") && Date.parse(container_json["create_time"]) < Date.parse('2017-06-04') %>
+            <%= container_json.dig("container_locations", 0, "note")  %>
           <% else %>
             <%= container_json['indicator'] %>
           <% end %>
