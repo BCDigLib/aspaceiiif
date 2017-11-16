@@ -1736,7 +1736,7 @@
         </fo:block>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
+  <!--  <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
         ead:processinfo | ead:appraisal | ead:originalsloc" mode="dsc">
         <xsl:if test="child::*">
@@ -1745,7 +1745,7 @@
             <xsl:apply-templates select="child::*[not(ead:head)]"/>
             </fo:block>
         </xsl:if>
-    </xsl:template>
+    </xsl:template> -->
     <xsl:template match="ead:index" mode="dsc">
         <xsl:apply-templates select="child::*[not(self::ead:indexentry)]"/>
         <fo:list-block xsl:use-attribute-sets="smpDsc">
