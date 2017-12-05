@@ -122,6 +122,8 @@
         <xsl:attribute name="border-collapse">seperate</xsl:attribute>
     </xsl:attribute-set>
     
+   <!-- Variables to change publisher info without changing repository profile -->
+    <xsl:variable name="repo" select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt/ead:titleproper/ead:num"/>
    
     
     <!--  Start main page design and layout -->
@@ -369,7 +371,18 @@
     <xsl:template match="ead:publicationstmt" mode="coverPage">
         <fo:block margin="0 1in">
             <fo:block>
-                <xsl:apply-templates select="ead:publisher"/> 
+                <!-- Commenting out line that pulls publisher info from EAD so that this info can
+                    be hard-coded based on the Collection ID.
+                <xsl:apply-templates select="ead:publisher"/> -->
+                <xsl:choose>
+                    <xsl:when test="substring($repo,1,2)='IM'">
+                        <fo:block>Irish Music Archives</fo:block>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="ead:publisher"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                     
                 <xsl:if test="ead:date">&#160;<xsl:apply-templates select="ead:date"/></xsl:if>
             </fo:block>
             <xsl:apply-templates select="ead:address"/>
