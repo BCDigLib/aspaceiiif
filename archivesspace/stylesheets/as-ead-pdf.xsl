@@ -792,7 +792,14 @@
                         <xsl:apply-templates select="ead:physloc" mode="overview"/> 
                         <xsl:apply-templates select="ead:dao" mode="overview"/>
                         <xsl:apply-templates select="ead:daogrp" mode="overview"/>
-                        <xsl:apply-templates select="ead:langmaterial" mode="overview"/>
+                        <xsl:choose>
+                            <xsl:when test="ead:langmaterial[2]">
+                                <xsl:apply-templates select="ead:langmaterial[2]" mode="overview"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="ead:langmaterial" mode="overview"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         <xsl:apply-templates select="ead:materialspec" mode="overview"/>
                         <xsl:apply-templates select="ead:container" mode="overview"/>
                         <xsl:apply-templates select="ead:abstract" mode="overview"/> 
