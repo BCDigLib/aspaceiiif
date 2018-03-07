@@ -228,7 +228,7 @@
                                         </xsl:otherwise>
                                     </xsl:choose>             
                                     
-                                </xsl:for-each>
+                                </xsl:for-each> 
                                 
                                 <xsl:for-each select="/ead:ead/ead:archdesc/ead:controlaccess/ead:corpname |/ead:ead/ead:archdesc/ead:controlaccess/ead:geogname|/ead:ead/ead:archdesc/ead:controlaccess/ead:subject |/ead:ead/ead:archdesc/ead:controlaccess/ead:genreform | /ead:ead/ead:archdesc/ead:did/ead:origination/ead:corpname">
                                     
@@ -589,6 +589,15 @@
                         <fo:page-number-citation ref-id="{local:buildID(ead:scopecontent[1])}"/>                    
                     </fo:block>                             
                 </xsl:if>
+                <xsl:if test="ead:did/ead:physdesc[2]">
+                    <fo:block text-align-last="justify"> 
+                        <fo:basic-link internal-destination="{local:buildID(ead:did/ead:physdesc[2])}"><xsl:value-of select="local:tagName(ead:did/ead:physdesc[2])"/></fo:basic-link>                    
+                        <xsl:text>&#160;&#160;</xsl:text>                    
+                        <fo:leader leader-pattern="dots"/>                    
+                        <xsl:text>&#160;&#160;</xsl:text>                    
+                        <fo:page-number-citation ref-id="{local:buildID(ead:did/ead:physdesc[2])}"/>                    
+                    </fo:block>                             
+                </xsl:if>
                 <xsl:if test="ead:arrangement">
                     <fo:block text-align-last="justify"> 
                         <fo:basic-link internal-destination="{local:buildID(ead:arrangement[1])}"><xsl:value-of select="local:tagName(ead:arrangement[1])"/></fo:basic-link>                    
@@ -757,10 +766,11 @@
              
 
             <xsl:apply-templates select="ead:bioghist"/>
-            <xsl:apply-templates select="ead:scopecontent"/>
+            <xsl:apply-templates select="ead:scopecontent"/> 
+            <xsl:apply-templates select="ead:did/ead:physdesc"/>
             <xsl:apply-templates select="ead:arrangement"/>
             <xsl:apply-templates select="ead:fileplan"/>
-            <xsl:apply-templates select="ead:controlaccess"/>
+            <xsl:apply-templates select="ead:controlaccess"/> 
             <xsl:apply-templates select="ead:otherfindaid"/>
             <xsl:apply-templates select="ead:phystech"/>
             <xsl:apply-templates select="ead:odd"/>
@@ -788,7 +798,7 @@
                         <xsl:apply-templates select="ead:unittitle" mode="overview"/>    
                         <xsl:apply-templates select="ead:unitid" mode="overview"/>
                         <xsl:apply-templates select="ead:unitdate" mode="overview"/>
-                        <xsl:apply-templates select="ead:physdesc" mode="overview"/>  
+                        <xsl:apply-templates select="ead:physdesc[@altrender='whole']" mode="overview"/>  
                         <xsl:apply-templates select="ead:physloc" mode="overview"/> 
                         <xsl:apply-templates select="ead:dao" mode="overview"/>
                         <xsl:apply-templates select="ead:daogrp" mode="overview"/>
@@ -814,7 +824,7 @@
     </xsl:template>
     
     <!-- Formats extent as a subset of physdesc -->
-    <xsl:template match="ead:physdesc" mode="overview">
+    <xsl:template match="ead:physdesc[@altrender='whole']" mode="overview">
         <fo:table-row>
             <fo:table-cell padding-bottom="8pt" padding-right="16pt" text-align="right" font-weight="bold">
                 <fo:block>
@@ -882,7 +892,7 @@
         
     <!-- Formats children of arcdesc not in administrative or related materials sections-->
     <xsl:template match="ead:bibliography | ead:odd | ead:phystech | ead:otherfindaid | 
-        ead:bioghist | ead:scopecontent | ead:fileplan">
+        ead:bioghist | ead:scopecontent | ead:did/ead:physdesc[2] | ead:fileplan">
         <fo:block xsl:use-attribute-sets="section">  
             <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block> 
                 <xsl:apply-templates/>                
