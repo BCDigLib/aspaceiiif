@@ -42,7 +42,7 @@ is to figure out the endpoint you want, send a request, then parse the response
 into JSON; e.g.:
 
 ```ruby
-endpoint = conf["base_uri"] + 'repositories/1/resources/1'
+endpoint = conf["base_uri"] + '/repositories/1/resources/1'
 response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": session_id})
 body = JSON.parse(response.body)
 ```
