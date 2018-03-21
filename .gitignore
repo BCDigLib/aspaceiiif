@@ -4,3 +4,7 @@
 # Exlude any uncaught system files
 Icon?
 Icon
+
+# Exclude output files from sample scripts
+output.csv
+output.txt
