@@ -62,4 +62,5 @@ body["related_accessions"].each { |pair| arr << pair.values.join }
 ```
 
 ## Python
-Forthcoming.
+Details forthcoming. See the [batch DAO workflow](https://github.com/BCDigLib/bc-aspace/tree/master/batch_dao) 
+for sample code in Python.
