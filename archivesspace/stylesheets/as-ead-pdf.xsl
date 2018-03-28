@@ -619,7 +619,7 @@
                     
                 
                     
-             <!--   <xsl:if test="ead:controlaccess">
+        <!--       <xsl:if test="ead:controlaccess">
                     <fo:block text-align-last="justify"> 
                         <fo:basic-link internal-destination="{local:buildID(ead:controlaccess[1])}"><xsl:value-of select="local:tagName(ead:controlaccess[1])"/></fo:basic-link>                    
                         <xsl:text>&#160;&#160;</xsl:text>                    
@@ -964,23 +964,23 @@
         </fo:block>
     </xsl:template>
     
-    <!-- Formats controlled access terms 
-    <xsl:template match="ead:controlaccess">
-        <fo:block xsl:use-attribute-sets="section">         
+    <!-- Formats controlled access terms -->
+    <xsl:template match="ead:controlaccess"/>
+        <!--<fo:block xsl:use-attribute-sets="section">         
             <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block>
             <fo:list-block xsl:use-attribute-sets="smp">
                 <xsl:apply-templates/>    
             </fo:list-block>
         </fo:block>
-    </xsl:template>
-    <xsl:template match="ead:controlaccess/child::*">
-        <fo:list-item>
+    </xsl:template> -->
+    <xsl:template match="ead:controlaccess/child::*"/>
+        <!--<fo:list-item>
             <fo:list-item-label end-indent="label-end()">
                 <fo:block>&#x2022;</fo:block>
             </fo:list-item-label>
             <fo:list-item-body start-indent="body-start()">
                 <fo:block>
-                    <xsl:apply-templates/>
+                    <xsl:apply-templates/> 
                 </fo:block>
             </fo:list-item-body>
         </fo:list-item>
@@ -1766,7 +1766,7 @@
         </fo:block>
         </xsl:if>
     </xsl:template>
-  <!--  <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
+   <!-- <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
         ead:processinfo | ead:appraisal | ead:originalsloc" mode="dsc">
         <xsl:if test="child::*">
@@ -1782,12 +1782,11 @@
             <xsl:apply-templates select="ead:indexentry"/>
         </fo:list-block>
     </xsl:template>
-    <xsl:template match="ead:controlaccess" mode="dsc">         
+ <!--   <xsl:template match="ead:controlaccess" mode="dsc">         
         <fo:block xsl:use-attribute-sets="smpDsc" text-decoration="underline"><xsl:value-of select="local:tagName(.)"/>:</fo:block>
-        <fo:list-block xsl:use-attribute-sets="smpDsc">
+       <fo:list-block xsl:use-attribute-sets="smpDsc">
             <xsl:apply-templates/>
         </fo:list-block>
-        <!--
             To group controlled access terms by type 
             <xsl:for-each-group select="child::*" group-by="name(.)">
                 <xsl:sort select="current-grouping-key()"/>
@@ -1807,8 +1806,8 @@
                     </xsl:for-each>
                 </fo:list-block>
             </xsl:for-each-group>    
-        -->
-    </xsl:template>
+       
+    </xsl:template> -->
     <xsl:template match="ead:dao" mode="dsc">
         <xsl:variable name="title">
             <xsl:choose>
