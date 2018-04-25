@@ -117,7 +117,7 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
         <!--project dependent-->
-        <mods:genre authority="gmgpc" displayLabel="general">Prints</mods:genre>
+        <mods:genre authority="gmgpc" displayLabel="general">Manuscripts</mods:genre>
     </xsl:template>
 
     <!--(5)mods:originInfo; (6) mods:language
@@ -127,23 +127,23 @@
         
         <mods:originInfo>
             <xsl:choose>
-                <xsl:when test="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,1,4)=substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,6,9)">
+                <xsl:when test="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,1,4)=substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,6,9)">
                     <mods:dateCreated>
-                        <xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,1,4)"/>
+                        <xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,1,4)"/>
                     </mods:dateCreated>
                     <mods:dateCreated encoding="w3cdtf" keyDate="yes">
-                        <xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,1,4)"/>
+                        <xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,1,4)"/>
                     </mods:dateCreated>
                 </xsl:when>
                 <xsl:otherwise>
                     <mods:dateCreated>
-                        <xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,1,4)"/>-<xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,6,9)"/>
+                        <xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,1,4)"/>-<xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,6,9)"/>
                     </mods:dateCreated>
                     <mods:dateCreated encoding="w3cdtf" point="start" keyDate="yes">
-                        <xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,1,4)"/>
+                        <xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,1,4)"/>
                     </mods:dateCreated>
                     <mods:dateCreated encoding="w3cdtf" point="end">
-                        <xsl:value-of select="substring($ead//ead:unittitle[$unitTitle]/following-sibling::ead:unitdate/@normal,6,9)"/>
+                        <xsl:value-of select="substring($ead//ead:did[child::ead:unittitle=$unitTitle]/ead:unitdate/@normal,6,9)"/>
                     </mods:dateCreated>
                 </xsl:otherwise>
             </xsl:choose>
@@ -216,11 +216,11 @@
                 <mods:title><xsl:value-of select="$collectionTitle"/></mods:title>
             </mods:titleInfo>
             <mods:originInfo>
-                <mods:dateCreated><xsl:value-of 
-                    select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate/@normal,1,4)"/>-<xsl:value-of
-                        select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate/@normal,6,9)"/></mods:dateCreated>
-                <mods:dateCreated encoding="w3cdtf" point="start" keyDate="yes"><xsl:value-of select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate/@normal,1,4)"/></mods:dateCreated>
-                <mods:dateCreated encoding="w3cdtf" point="end"><xsl:value-of select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate/@normal,6,9)"/></mods:dateCreated>
+              <mods:dateCreated><xsl:value-of 
+                    select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate[@type='inclusive']/@normal,1,4)"/>-<xsl:value-of
+                        select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate[@type='inclusive']/@normal,6,9)"/></mods:dateCreated>
+                <mods:dateCreated encoding="w3cdtf" point="start" keyDate="yes"><xsl:value-of select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate[@type='inclusive']/@normal,1,4)"/></mods:dateCreated>
+                <mods:dateCreated encoding="w3cdtf" point="end"><xsl:value-of select="substring($ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitdate[@type='inclusive']/@normal,6,9)"/></mods:dateCreated>
             </mods:originInfo>
             <mods:identifier type="accession number"><xsl:value-of select="$ead/ead:ead/ead:archdesc[@level='collection']/ead:did/ead:unitid"/></mods:identifier>
             <mods:location>
@@ -232,7 +232,6 @@
     
     <!-- Stop the notes from coming out twice-->
     <xsl:template match="mods:accessCondition"/>
-
     <xsl:template match="mods:note"/>
 
 
@@ -360,7 +359,7 @@
                     <xsl:attribute name="MIMETYPE">image/tiff</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:attribute name="MIMETYPE">image/jpeg</xsl:attribute>
+                    <xsl:attribute name="MIMETYPE">image/jp2</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:attribute name="ID">
@@ -394,7 +393,7 @@
                     />
                 </xsl:attribute>
                 <xsl:attribute name="DMDID">
-                    <xsl:value-of select="concat('dm',preceding::mets:dmdSec/@ID)"/>
+                    <xsl:value-of select="concat('dm',preceding::mets:dmdSec[position()=last()]/@ID)"/> 
                 </xsl:attribute>
                 <xsl:attribute name="TYPE">DAO</xsl:attribute>
                 <xsl:for-each select="mets:div">
