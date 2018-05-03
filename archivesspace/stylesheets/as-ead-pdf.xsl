@@ -1676,7 +1676,7 @@
             </xsl:if>
     
             <xsl:apply-templates select="ead:unittitle"/>
-            <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
+            <xsl:if test="(string-length(ead:unittitle[1]) &gt; 0) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
             <xsl:apply-templates select="ead:unitdate" mode="did"/>
         </fo:block>
     </xsl:template>
@@ -1702,7 +1702,7 @@
     <xsl:template match="ead:did" mode="dsc">
         <fo:block margin-bottom="0">
             <xsl:apply-templates select="ead:unittitle"/>
-            <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1) and ead:unittitle[1] != ead:unitdate[1]">, 
+            <xsl:if test="(string-length(ead:unittitle[1]) &gt; 0) and (string-length(ead:unitdate[1]) &gt; 1) and ead:unittitle[1] != ead:unitdate[1]">, 
                 <xsl:apply-templates select="ead:unitdate" mode="did"/>    </xsl:if>
         </fo:block> 
         <fo:block margin-bottom="4pt" margin-top="0">
