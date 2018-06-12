@@ -1,16 +1,13 @@
+require 'iiif/presentation'
 require 'rest-client'
 require 'json'
 require 'yaml'
-require 'csv'
 
 conf = YAML::load_file('config.yml')
-response = RestClient::Request.execute(method: :post, 
-                                       url: conf["base_uri"] + '/users/admin/login',
-                                       payload: {password: conf["password"]}
+auth_resp = RestClient::Request.execute(method: :post, 
+                                       url: conf["aspace_base_uri"] + '/users/admin/login',
+                                       payload: {password: conf["aspace_password"]}
 )
-body = JSON.parse(response.body)
-session_id = body["session"]
-input_csv = CSV.read('input.csv')
+auth_resp_serialized = JSON.parse(auth_resp)
+session_id = auth_resp_serialized["session"]
 
-input_csv.each do |row|
-end
