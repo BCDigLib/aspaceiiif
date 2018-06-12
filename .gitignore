@@ -8,3 +8,5 @@ Icon
 # Exclude output files from sample scripts
 output.csv
 output.txt
+
+manifest-export/config.yml
