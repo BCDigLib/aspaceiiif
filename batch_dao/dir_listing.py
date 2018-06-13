@@ -14,7 +14,8 @@ def main():
         for file in files:
             if msid in file:
                 file_names.append(file)
-    outfile = open(output_file, 'w')
+        file_names.sort()
+        outfile = open(output_file, 'w')
     for file in file_names:
         # weeds out non-final versions of images.
         if "target" not in file:
