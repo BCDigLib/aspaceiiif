@@ -16,14 +16,3 @@ This instance uses the following plugins:
 * [timewalk (New York Public Library)](https://github.com/alexduryee/timewalk)
 * [multiple_identifiers (New York Public Library)](https://github.com/alexduryee/multiple_identifiers)
 * [system_performance_monitor (Hudson Molonglo)](https://github.com/hudmol/system_performance_monitor)
-
-### Credits
-
-ArchivesSpace 1.0 was developed by [Hudson Molonglo](http://www.hudsonmolonglo.com)
-in partnership with the New York University Libraries, UC San Diego
-Libraries, and University of Illinois Urbana-Champaign Library and with
-funding from the Andrew W. Mellon Foundation, organizational support from
-LYRASIS, and contributions from diverse persons in the archives community.
-
-This software is licensed under the Educational Community License, Version 2.0.
-See COPYING file for further licensing information.
