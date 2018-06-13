@@ -7,9 +7,6 @@ module ManifestExport
   class APIUtils
     def initialize(cnf_file)
       @conf = YAML::load_file(cnf_file)
-    end
-
-    def authenticate
       auth_resp = RestClient::Request.execute(method: :post, 
                                              url: @conf["aspace_base_uri"] + '/users/admin/login',
                                              payload: {password: @conf["aspace_password"]}
@@ -44,6 +41,31 @@ module ManifestExport
       endpoint = resource_base_uri + input
       response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
       JSON.parse(response)
+    end
+  end
+
+  class Metadata
+    def initialize(dig_obj_id)
+      @dig_obj_id = dig_obj_id
+      @conn = APIUtils.new('config.yml')
+    end
+
+    def digital_object
+      @conn.get_digital_object(@dig_obj_id)
+    end
+
+    def digital_object_tree
+      @conn.get_digital_object_tree(@dig_obj_id)
+    end
+
+    def archival_object
+      arch_obj_id = digital_object["linked_instances"][0]["ref"].split("/").last
+      @conn.get_parent_archival_object(arch_obj_id)
+    end
+
+    def resource
+      resource_id = archival_object["resource"]["ref"].split("/").last
+      @conn.get_parent_resource(resource_id)
     end
   end
 
