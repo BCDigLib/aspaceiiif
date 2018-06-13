@@ -5,8 +5,10 @@
 Icon?
 Icon
 
-# Exclude output files from sample scripts
+# Exclude output files
 output.csv
 output.txt
+*.json
 
+# Exclude manifest exporter conf file
 manifest-export/config.yml
