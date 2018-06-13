@@ -44,7 +44,7 @@ module ManifestExport
     end
   end
 
-  class Metadata
+  class Records
     def initialize(dig_obj_id)
       @dig_obj_id = dig_obj_id
       @conn = APIUtils.new('config.yml')
