@@ -15,30 +15,8 @@ module ManifestExport
       @session_id = auth_resp_serialized["session"]
     end
 
-    def get_digital_object(input)
-      digital_object_base_uri = @conf["aspace_base_uri"] + '/repositories/2/digital_objects/'
-      endpoint = digital_object_base_uri + input
-      response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
-      JSON.parse(response)
-    end
-
-    def get_digital_object_tree(input)
-      digital_object_base_uri = @conf["aspace_base_uri"] + '/repositories/2/digital_objects/'
-      endpoint = digital_object_base_uri + input + '/tree'
-      response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
-      JSON.parse(response)
-    end
-
-    def get_parent_archival_object(input)
-      archival_object_base_uri = @conf["aspace_base_uri"] + '/repositories/2/archival_objects/'
-      endpoint = archival_object_base_uri + input
-      response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
-      JSON.parse(response)
-    end
-
-    def get_parent_resource(input)
-      resource_base_uri = @conf["aspace_base_uri"] + '/repositories/2/resources/'
-      endpoint = resource_base_uri + input
+    def get_record(uri_suffix)
+      endpoint = @conf["aspace_base_uri"] + uri_suffix
       response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
       JSON.parse(response)
     end
