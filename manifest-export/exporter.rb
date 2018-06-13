@@ -24,6 +24,12 @@ class ManifestExporter
     JSON.parse(response)
   end
 
+  def get_digital_object_tree(input)
+    digital_object_base_uri = @conf["aspace_base_uri"] + '/repositories/2/digital_objects/'
+    endpoint = digital_object_base_uri + input + '/tree'
+    response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
+  end
+
   def get_parent_archival_object(input)
     archival_object_base_uri = @conf["aspace_base_uri"] + '/repositories/2/archival_objects/'
     endpoint = archival_object_base_uri + input
@@ -37,6 +43,4 @@ class ManifestExporter
     response = RestClient.get(endpoint, {"X-ArchivesSpace-Session": @session_id})
     JSON.parse(response)
   end
-
-
 end
