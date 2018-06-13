@@ -46,4 +46,21 @@ module ManifestExport
       JSON.parse(response)
     end
   end
+
+  class Builder
+    def initialize
+    end
+
+    def export_manifest
+    end
+
+    def build_manifest
+    end
+
+    def generate_annotation
+    end
+
+    def generate_image_resource
+    end
+  end
 end
