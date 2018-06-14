@@ -1,3 +1,6 @@
+require 'aspaceiiif/config'
+require 'json'
+
 module Aspaceiiif
   class APIUtils
     def initialize

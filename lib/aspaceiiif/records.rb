@@ -1,3 +1,5 @@
+require 'aspaceiiif/api_utils'
+
 module Aspaceiiif
   class Records
     def initialize(dig_obj_id)

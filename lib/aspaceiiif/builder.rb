@@ -1,3 +1,4 @@
+require 'aspaceiiif/config'
 require 'iiif/presentation'
 
 module Aspaceiiif
