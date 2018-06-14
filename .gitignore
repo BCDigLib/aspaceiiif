@@ -1,14 +1,2 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea/
-
-# Exlude any uncaught system files
-Icon?
-Icon
-
-# Exclude output files
-output.csv
-output.txt
-*.json
-
-# Exclude manifest exporter conf file
-manifest-export/config.yml
+# Exclude conf file
+config.yml
