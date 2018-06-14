@@ -6,7 +6,7 @@ require 'yaml'
 module ManifestExport
   class Config
     def self.load
-      conf = YAML::load_file('config.yml')
+      conf = YAML::load_file('../config.yml')
     end
   end
 
@@ -58,8 +58,8 @@ module ManifestExport
   class Builder
     def initialize
       conf = Config.load
-      @image_server = conf["loris_base_uri"]
-      @manifest_server = conf["mirador_base_uri"]
+      @image_server = conf["image_server_base_uri"]
+      @manifest_server = conf["manifest_server_base_uri"]
     end
 
     def export_manifest
