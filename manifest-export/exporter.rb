@@ -9,7 +9,7 @@ module ManifestExport
       @conf = YAML::load_file(cnf_file)
       auth_resp = RestClient::Request.execute(method: :post, 
                                              url: @conf["aspace_base_uri"] + '/users/admin/login',
-                                             payload: {password: @conf["aspace_password"]}
+                                             payload: { password: @conf["aspace_password"] }
       )
       auth_resp_serialized = JSON.parse(auth_resp)
       @session_id = auth_resp_serialized["session"]
@@ -29,21 +29,23 @@ module ManifestExport
     end
 
     def digital_object
-      @conn.get_digital_object(@dig_obj_id)
+      uri_suffix = '/repositories/2/digital_objects/' + @dig_obj_id
+      @conn.get_record(uri_suffix)
     end
 
     def digital_object_tree
-      @conn.get_digital_object_tree(@dig_obj_id)
+      tree_id = digital_object["tree"]["ref"]
+      @conn.get_record(tree_id)
     end
 
     def archival_object
-      arch_obj_id = digital_object["linked_instances"][0]["ref"].split("/").last
-      @conn.get_parent_archival_object(arch_obj_id)
+      arch_obj_id = digital_object["linked_instances"][0]["ref"]
+      @conn.get_record(arch_obj_id)
     end
 
     def resource
-      resource_id = archival_object["resource"]["ref"].split("/").last
-      @conn.get_parent_resource(resource_id)
+      resource_id = archival_object["resource"]["ref"]
+      @conn.get_record(resource_id)
     end
   end
 
