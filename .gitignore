@@ -1,2 +1,3 @@
-# Exclude conf file
+.bundle
+*.gem
 config.yml
