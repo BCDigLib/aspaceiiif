@@ -3,7 +3,7 @@ require 'rest-client'
 require 'json'
 require 'yaml'
 
-module ManifestExport
+module Aspaceiiif
   class Config
     def self.load
       conf = YAML::load_file('../config.yml')
