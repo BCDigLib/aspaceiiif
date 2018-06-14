@@ -1,5 +1,0 @@
-# This is a simple config file for a Ruby API script. You can store credentials 
-# or frequently used params in this file
-
-password: 'password'
-base_uri: 'http://your_aspace_uri.example.org:8089'
