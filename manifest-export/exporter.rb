@@ -4,9 +4,15 @@ require 'json'
 require 'yaml'
 
 module ManifestExport
+  class Config
+    def self.load
+      conf = YAML::load_file('config.yml')
+    end
+  end
+
   class APIUtils
-    def initialize(cnf_file)
-      @conf = YAML::load_file(cnf_file)
+    def initialize
+      @conf = Config.load
       auth_resp = RestClient::Request.execute(method: :post, 
                                              url: @conf["aspace_base_uri"] + '/users/admin/login',
                                              payload: { password: @conf["aspace_password"] }
@@ -25,7 +31,7 @@ module ManifestExport
   class Records
     def initialize(dig_obj_id)
       @dig_obj_id = dig_obj_id
-      @conn = APIUtils.new('config.yml')
+      @conn = APIUtils.new
     end
 
     def digital_object
