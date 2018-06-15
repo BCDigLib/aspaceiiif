@@ -2,7 +2,7 @@ require 'aspaceiiif/config'
 require 'rest-client'
 require 'json'
 
-module Aspaceiiif
+module ASpaceIIIF
   class APIUtils
     def initialize
       @conf = Config.load

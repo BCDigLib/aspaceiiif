@@ -1,6 +1,6 @@
 require 'aspaceiiif/api_utils'
 
-module Aspaceiiif
+module ASpaceIIIF
   class Records
     def initialize(dig_obj_id)
       @dig_obj_id = dig_obj_id

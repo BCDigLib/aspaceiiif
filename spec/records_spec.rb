@@ -1,7 +1,7 @@
 require 'aspaceiiif/records'
 
-describe Aspaceiiif::Records do
-  let(:records) { Aspaceiiif::Records.new('1596') }
+describe ASpaceIIIF::Records do
+  let(:records) { ASpaceIIIF::Records.new('1596') }
 
   context "given an instance of the Records class" do
     describe "#digital_object" do
