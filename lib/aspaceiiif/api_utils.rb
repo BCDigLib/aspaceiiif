@@ -1,4 +1,5 @@
 require 'aspaceiiif/config'
+require 'rest-client'
 require 'json'
 
 module Aspaceiiif
