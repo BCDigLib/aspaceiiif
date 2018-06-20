@@ -5,7 +5,7 @@ require "aspaceiiif/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "aspaceiiif"
-  spec.version       = Aspaceiiif::VERSION
+  spec.version       = ASpaceIIIF::VERSION
   spec.authors       = ["Adam Jazairi"]
   spec.email         = ["adam.jazairi@bc.edu"]
 
