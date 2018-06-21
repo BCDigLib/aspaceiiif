@@ -27,6 +27,7 @@ module ASpaceIIIF
     end
 
     def resource_id
+      @resource["ead_id"]
     end
 
     def component_id
