@@ -19,6 +19,7 @@ module ASpaceIIIF
     end
 
     def title
+      @digital_object["title"]
     end
 
     def host_title
