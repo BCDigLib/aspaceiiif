@@ -23,6 +23,7 @@ module ASpaceIIIF
     end
 
     def host_title
+      @resource["title"]
     end
 
     def resource_id
