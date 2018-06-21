@@ -39,7 +39,7 @@ describe ASpaceIIIF::Metadata do
   describe "#component_id" do
     it "returns a BC or MS number" do
       expect(metadata.component_id).to be_instance_of(String)
-      expect(metadata.component_id.start_with?("BC") || metadata.component_id.start_with?("MS")).to be true
+      expect(metadata.component_id).to match(/(BC)\d{4}_\d{3}_.+|(MS)\d{4}_\d{3}_.+/)
     end
   end
 end
