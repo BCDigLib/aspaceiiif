@@ -27,7 +27,7 @@ module ASpaceIIIF
     end
 
     def resource_id
-      @resource["id_0"] + '.' + @resource["id_1"] + '.' + @resource_id["id_2"]
+      @resource["id_0"] + '.' + @resource["id_1"] + '.' + @resource["id_2"]
     end
 
     def component_id
