@@ -23,10 +23,16 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
-    describe "#host_title" do
+  describe "#host_title" do
     it "returns a string" do
       expect(metadata.host_title).to be_instance_of(String)
       expect(metadata.host_title.length).to be > 0
+    end
+  end
+
+  describe "#resource_id" do
+    it "returns a correctly formatted resource identifier" do
+      expect(metadata.resource_id).to match(/(BC)\.\d{4}\.\d{3}|(MS)\.\d{4}\.\d{3}/)
     end
   end
 
