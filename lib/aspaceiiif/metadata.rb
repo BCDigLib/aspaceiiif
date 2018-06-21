@@ -28,6 +28,7 @@ module ASpaceIIIF
     end
 
     def component_id
+      @archival_object["component_id"]
     end
 
     def creator
