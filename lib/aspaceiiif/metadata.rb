@@ -17,5 +17,23 @@ module ASpaceIIIF
     def rights_statement
       @digital_object["notes"].select { |note| note["type"] == "userestrict" }[0]["content"][0]
     end
+
+    def title
+    end
+
+    def host_title
+    end
+
+    def resource_id
+    end
+
+    def component_id
+    end
+
+    def creator
+    end
+
+    def filenames
+    end
   end
 end
