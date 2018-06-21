@@ -16,6 +16,13 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
+  describe "#title" do
+    it "returns a string" do
+      expect(metadata.title).to be_instance_of(String)
+      expect(metadata.title.length).to be > 0
+    end
+  end
+
   describe "#component_id" do
     it "returns a BC or MS number" do
       expect(metadata.component_id).to be_instance_of(String)
