@@ -26,5 +26,17 @@ module ASpaceIIIF
       resource_id = archival_object["resource"]["ref"]
       @conn.get_record(resource_id)
     end
+
+    def linked_agent
+      unless (archival_object["linked_agents"].empty? && resource["linked_agents"].empty?)
+        if archival_object["linked_agents"].length > 0 
+          agent_id = archival_object["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
+          @conn.get_record(agent_id)
+        else
+          agent_id = resource["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
+          @conn.get_record(agent_id)
+        end
+      end
+    end
   end
 end
