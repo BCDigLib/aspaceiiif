@@ -59,7 +59,7 @@ describe ASpaceIIIF::Metadata do
     end
 
     it "includes JP2s" do
-      expect(metadata.filenames.each { |fname| fname.match?(/.jp2/) }).to be true
+      expect(metadata.filenames.all? { |fname| fname.include?('jp2') }).to be true
     end
   end
 end
