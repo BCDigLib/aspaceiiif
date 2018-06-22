@@ -8,6 +8,7 @@ module ASpaceIIIF
       @digital_object_tree = as_records.digital_object_tree
       @archival_object = as_records.archival_object
       @resource = as_records.resource
+      @linked_agent = as_records.linked_agent
     end
 
     def handle 
@@ -35,6 +36,7 @@ module ASpaceIIIF
     end
 
     def creator
+      @linked_agent["title"]
     end
 
     def filenames
