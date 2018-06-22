@@ -26,4 +26,12 @@ describe ASpaceIIIF::Records do
       expect(records.resource["jsonmodel_type"]).to eq "resource"
     end
   end
+
+  describe "#linked_agent" do
+    context "given a record set with a linked agent who is a creator" do
+      it "returns agent_person JSON" do
+        expect(records.linked_agent["jsonmodel_type"]).to eq "agent_person"
+      end
+    end
+  end
 end
