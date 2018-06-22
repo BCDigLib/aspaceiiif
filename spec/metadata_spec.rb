@@ -61,5 +61,9 @@ describe ASpaceIIIF::Metadata do
     it "includes JP2s" do
       expect(metadata.filenames.all? { |fname| fname.include?('jp2') }).to be true
     end
+
+    it "contains no duplicates" do
+      expect(metadata.filenames.uniq == metadata.filenames).to be true
+    end
   end
 end
