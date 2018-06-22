@@ -51,4 +51,15 @@ describe ASpaceIIIF::Metadata do
       end
     end
   end
+
+  describe "#filenames" do
+    it "returns an array" do 
+      expect(metadata.filenames).to be_instance_of(Array)
+      expect(metadata.filenames.length).to be > 0
+    end
+
+    it "includes JP2s" do
+      expect(metadata.filenames.each { |fname| fname.match?(/.jp2/) }).to be true
+    end
+  end
 end
