@@ -42,4 +42,13 @@ describe ASpaceIIIF::Metadata do
       expect(metadata.component_id).to match(/(BC)\d{4}_\d{3}_.+|(MS)\d{4}_\d{3}_.+/)
     end
   end
+
+  describe "#creator" do
+    context "given a record with a creator" do
+      it "returns a string" do
+        expect(metadata.creator).to be_instance_of(String)
+        expect(metadata.creator.length).to be > 0
+      end
+    end
+  end
 end
