@@ -40,6 +40,11 @@ module ASpaceIIIF
     end
 
     def filenames
+      tree_children = @digital_object_tree["children"]
+      fnames = []
+      tree_children.each { |e| fnames << e["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2' }
+
+      fnames.sort!
     end
   end
 end
