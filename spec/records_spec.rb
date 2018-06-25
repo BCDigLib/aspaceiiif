@@ -15,9 +15,10 @@ describe ASpaceIIIF::Records do
     end
   end
 
-  describe "#digital_object_component" do
-    it "returns digital object component JSON" do
-      expect(records.digital_object_component["jsonmodel_type"]).to eq "digital_object_component"
+  describe "#digital_object_components" do
+    it "returns an array of digital object component JSON" do
+      expect(records.digital_object_components).to be_instance_of(Array)
+      expect(records.digital_object_components.all? { |comp| comp["jsonmodel_type"] == "digital_object_component" }).to be true
     end
   end
 
