@@ -15,6 +15,12 @@ describe ASpaceIIIF::Records do
     end
   end
 
+  describe "#digital_object_component" do
+    it "returns digital object component JSON" do
+      expect(records.digital_object_component["jsonmodel_type"]).to eq "digital_object_component"
+    end
+  end
+
   describe "#archival_object" do
     it "returns archival object JSON" do
       expect(records.archival_object["jsonmodel_type"]).to eq "archival_object"
