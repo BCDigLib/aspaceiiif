@@ -6,6 +6,7 @@ module ASpaceIIIF
       as_records = Records.new(dig_obj_id)
       @digital_object = as_records.digital_object
       @digital_object_tree = as_records.digital_object_tree
+      @digital_object_components = as_records.digital_object_components
       @archival_object = as_records.archival_object
       @resource = as_records.resource
       @linked_agent = as_records.linked_agent
@@ -40,11 +41,13 @@ module ASpaceIIIF
     end
 
     def filenames
-      tree_children = @digital_object_tree["children"]
-      fnames = []
-      tree_children.each { |e| fnames << e["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2' }
-
-      fnames.sort!
+      @digital_object_components.map do |comp|
+        if comp["file_versions"][0]["use_statement"].include?("archive")
+          comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+        else
+          comp["file_versions"][1]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+        end
+      end
     end
   end
 end
