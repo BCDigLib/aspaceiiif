@@ -52,6 +52,14 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
+  describe "#owner" do
+    it "returns a string that includes 'Burns Library'" do
+      expect(metadata.owner).to be_instance_of(String)
+      expect(metadata.owner.length).to be > 0
+      expect(metadata.owner).to match(/Burns Library/)
+    end
+  end
+
   describe "#filenames" do
     it "returns an array" do 
       expect(metadata.filenames).to be_instance_of(Array)
