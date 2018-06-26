@@ -21,7 +21,11 @@ module ASpaceIIIF
     end
 
     def title
-      @digital_object["title"]
+      if host_title.nil?
+        @digital_object["title"]
+      else
+        @digital_object["title"] + ", " + host_title
+      end
     end
 
     def host_title

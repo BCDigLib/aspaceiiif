@@ -21,6 +21,12 @@ describe ASpaceIIIF::Metadata do
       expect(metadata.title).to be_instance_of(String)
       expect(metadata.title.length).to be > 0
     end
+
+    context "given a non-null host_title" do
+      it "returns host_title as part of title" do
+        expect(metadata.title).to include(metadata.host_title)
+      end
+    end
   end
 
   describe "#host_title" do
