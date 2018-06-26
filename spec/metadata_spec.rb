@@ -62,7 +62,7 @@ describe ASpaceIIIF::Metadata do
     it "returns a string that includes 'Burns Library'" do
       expect(metadata.owner).to be_instance_of(String)
       expect(metadata.owner.length).to be > 0
-      expect(metadata.owner).to match(/Burns Library/)
+      expect(metadata.owner).to include("Burns Library")
     end
   end
 
