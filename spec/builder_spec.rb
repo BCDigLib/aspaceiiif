@@ -26,15 +26,15 @@ describe ASpaceIIIF::Builder do
     end
 
     it "includes a handle in the metadata block" do
-      expect(manifest["metadata"][0]["handle"]).to include("hdl.handle.net")
+      expect(manifest["metadata"][0][:handle]).to include("hdl.handle.net")
     end
 
     it "includes a preferred citation in the metadata block" do
-      expect(manifest["metadata"][1]["label"]).to eq("Preferred Citation")
+      expect(manifest["metadata"][1][:label]).to eq("Preferred Citation")
     end
 
     it "includes all expected values in the preferred citation" do
-      expect(manifest["metadata"][1]["value"]).to include(metadata.title && metadata.resource_id && metadata.owner && metadata.handle)
+      expect(manifest["metadata"][1][:value]).to include(metadata.title && metadata.resource_id && metadata.owner && metadata.handle)
     end
   end
 end
