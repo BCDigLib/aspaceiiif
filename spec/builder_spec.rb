@@ -20,6 +20,11 @@ describe ASpaceIIIF::Builder do
       expect(manifest["attribution"]).to eq(metadata.rights_statement)
     end
 
+    it "contains a metadata block" do
+      expect(manifest["metadata"]).to be_instance_of(Array)
+      expect(manifest["metadata"].length).to be > 0
+    end
+
     it "includes a handle in the metadata block" do
       expect(manifest["metadata"][0]["handle"]).to include("hdl.handle.net")
     end
