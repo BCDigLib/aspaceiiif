@@ -37,4 +37,28 @@ describe ASpaceIIIF::Builder do
       expect(manifest["metadata"][1][:value]).to include(metadata.title && metadata.resource_id && metadata.owner && metadata.handle)
     end
   end
+
+  describe "#generate_canvas" do
+    let(:canvas) { builder.generate_canvas(metadata.filenames[0], metadata.filenames[0].chomp(".jp2"), 1) }
+
+    it "outputs a canvas" do
+      expect(canvas["@type"]).to eq("sc:Canvas")
+    end
+  end
+
+  describe "#generate_image_resource" do
+    let(:image_resource) { builder.generate_image_resource(metadata.filenames[0]) }
+
+    it "returns an image resource" do
+      expect(image_resource["@type"]).to eq("dctypes:Image")
+    end
+  end
+
+  describe "#generate_range" do
+    let(:range) { builder.generate_range(metadata.filenames[0], metadata.filenames[0].chomp(".jp2"), 1) }
+
+    it "outputs a range" do
+      expect(range["@type"]).to eq("sc:Range")
+    end
+  end
 end
