@@ -4,6 +4,36 @@ describe ASpaceIIIF::Builder do
   let(:builder) { ASpaceIIIF::Builder.new('1596') }
   let(:metadata) { ASpaceIIIF::Metadata.new('1596') }
 
+  describe "#export_manifest" do
+    let(:manifest_export) { builder.export_manifest }
+
+    it "outputs a manifest" do
+      expect(manifest_export["@type"]).to eq("sc:Manifest")
+    end
+
+    it "conforms to v2 of the IIIF presentation API" do
+      expect(manifest_export["@context"]).to eq("http://iiif.io/api/presentation/2/context.json")
+    end
+
+    it "includes a sequences block" do
+      expect(manifest_export["sequences"]).to be_instance_of(Array)
+      expect(manifest_export["sequences"].length).to be > 0
+    end
+
+    it "contains at least one canvas in the sequences block" do
+      expect(manifest_export["sequences"][0]["@type"]).to eq("sc:Canvas")
+    end
+
+    it "includes a structures block" do
+      expect(manifest_export["structures"]).to be_instance_of(Array)
+      expect(manifest_export["sequences"].length).to be > 0 
+    end
+
+    it "contains at least one range in the structures block" do
+      expect(manifest_export["structures"][0]["@type"]).to eq("sc:Range")
+    end
+  end
+
   describe "#generate_manifest" do
     let(:manifest) { builder.generate_manifest(metadata) }
 
