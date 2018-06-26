@@ -40,6 +40,10 @@ module ASpaceIIIF
       @linked_agent["title"]
     end
 
+    def owner
+      "John J. Burns Library, Boston College"
+    end
+
     def filenames
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("archive")
