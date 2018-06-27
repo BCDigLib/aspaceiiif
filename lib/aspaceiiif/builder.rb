@@ -56,12 +56,12 @@ module ASpaceIIIF
 
     def generate_image_resource(image_file)
       base_uri = "#{@image_server}/#{image_file}"
-      image_api_params = '/full/full/0/default.jpg'
+      image_api_params = 'full/full/0/default.jpg'
 
       params = {
           service_id: base_uri,
-          resource_id_default: "#{base_uri}#{image_api_params}",
-          resource_id: "#{base_uri}#{image_api_params}"
+          resource_id_default: "#{base_uri}/#{image_api_params}",
+          resource_id: "#{base_uri}/#{image_api_params}"
       }
       IIIF::Presentation::ImageResource.create_image_api_image_resource(params)
     end
