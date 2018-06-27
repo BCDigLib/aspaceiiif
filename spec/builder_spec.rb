@@ -21,7 +21,7 @@ describe ASpaceIIIF::Builder do
     end
 
     it "contains at least one canvas in the sequences block" do
-      expect(manifest["sequences"][0]["@type"]).to eq("sc:Canvas")
+      expect(manifest["sequences"][0]["canvases"][0]["@type"]).to eq("sc:Canvas")
     end
 
     it "includes a structures block" do
@@ -34,7 +34,6 @@ describe ASpaceIIIF::Builder do
     end
 
     it "has a valid ID attribute" do
-      expect(manifest["@id"]).to be_instance_of(String)
       expect(manifest["@id"]).to match(/https:\/\/library\.bc\.edu\/(BC)\d{4}_\d{3}_.+\.json|(MS)\d{4}_\d{3}_.+\.json/)
     end
 
