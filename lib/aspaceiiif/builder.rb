@@ -13,7 +13,24 @@ module ASpaceIIIF
     def export_manifest
       metadata = Metadata.new(@dig_obj_id)
 
+      @sequence_base = "#{@image_server}/#{metadata.component_id}"
+
+      sequence = IIIF::Presentation::Sequence.new
+      range = IIIF::Presentation::Range.new
+
+      sequence.canvases = metadata.filenames.map.with_index { |comp, i| generate_canvas("#{comp}", "#{comp.chomp('.jp2')}", i) }
+      range.ranges = metadata.filenames.map.with_index { |comp, i| generate_range("#{comp}", "#{comp.chomp('.jp2')}", i) }
+
       manifest = generate_manifest(metadata)
+      manifest.sequences << sequence
+      manifest.structures << range
+      thumb = sequence.canvases.first.images.first.resource['@id'].gsub(/full\/full/, 'full/!200,200')
+      manifest.insert_after(existing_key: 'label', new_key: 'thumbnail', value: thumb)
+
+      structures = manifest["structures"][0]["ranges"]
+      manifest["structures"] = structures
+      
+      manifest
     end
 
     def generate_manifest(metadata)
