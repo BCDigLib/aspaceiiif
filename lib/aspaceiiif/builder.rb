@@ -10,7 +10,7 @@ module ASpaceIIIF
       @dig_obj_id = dig_obj_id
     end
 
-    def export_manifest
+    def generate_manifest
       metadata = Metadata.new(@dig_obj_id)
 
       @sequence_base = "#{@image_server}/#{metadata.component_id}"
@@ -21,19 +21,6 @@ module ASpaceIIIF
       sequence.canvases = metadata.filenames.map.with_index { |comp, i| generate_canvas("#{comp}", "#{comp.chomp('.jp2')}", i) }
       range.ranges = metadata.filenames.map.with_index { |comp, i| generate_range("#{comp}", "#{comp.chomp('.jp2')}", i) }
 
-      manifest = generate_manifest(metadata)
-      manifest.sequences << sequence
-      manifest.structures << range
-      thumb = sequence.canvases.first.images.first.resource['@id'].gsub(/full\/full/, 'full/!200,200')
-      manifest.insert_after(existing_key: 'label', new_key: 'thumbnail', value: thumb)
-
-      structures = manifest["structures"][0]["ranges"]
-      manifest["structures"] = structures
-      
-      manifest
-    end
-
-    def generate_manifest(metadata)
       seed = {
           '@id' => "#{@manifest_server}/#{metadata.component_id}.json",
           'label' => "#{metadata.title}",
@@ -44,7 +31,17 @@ module ASpaceIIIF
             {"label": "Preferred Citation", "value": "#{metadata.creator + ", " unless metadata.creator.nil?}#{metadata.title}, #{metadata.resource_id}, #{metadata.owner}, #{metadata.handle}."}
           ]
       }
-      IIIF::Presentation::Manifest.new(seed)
+      manifest = IIIF::Presentation::Manifest.new(seed)
+
+      manifest.sequences << sequence
+      manifest.structures << range
+      thumb = sequence.canvases.first.images.first.resource['@id'].gsub(/full\/full/, 'full/!200,200')
+      manifest.insert_after(existing_key: 'label', new_key: 'thumbnail', value: thumb)
+
+      structures = manifest["structures"][0]["ranges"]
+      manifest["structures"] = structures
+
+      manifest
     end
 
     def generate_canvas(image_file, label, order)
