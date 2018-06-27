@@ -1,5 +1,6 @@
 require 'aspaceiiif/version'
 require 'aspaceiiif/builder'
+require 'optparse'
 
 module ASpaceIIIF
   def self.run
