@@ -1,4 +1,5 @@
 require 'aspaceiiif/config'
+require 'aspaceiiif/metadata'
 require 'iiif/presentation'
 
 module ASpaceIIIF
