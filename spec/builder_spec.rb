@@ -11,10 +11,6 @@ describe ASpaceIIIF::Builder do
       expect(manifest["@type"]).to eq("sc:Manifest")
     end
 
-    it "conforms to v2 of the IIIF presentation API" do
-      expect(manifest["@context"]).to eq("http://iiif.io/api/presentation/2/context.json")
-    end
-
     it "includes a sequences block" do
       expect(manifest["sequences"]).to be_instance_of(Array)
       expect(manifest["sequences"].length).to be > 0
