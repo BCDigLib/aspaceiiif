@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    aspaceiiif (0.1.0)
+    aspaceiiif (0.2.0)
       iiif-presentation (~> 0.2)
       json (~> 2.0.0)
       rest-client (~> 2.0.0)
