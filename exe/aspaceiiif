@@ -2,4 +2,4 @@
 
 require 'aspaceiiif'
 
-Aspaceiiif.main()
+ASpaceIIIF.run()

@@ -1,6 +1,6 @@
 require 'aspaceiiif/version'
 
 module ASpaceIIIF
-  def main
+  def run
   end
 end
