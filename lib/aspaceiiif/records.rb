@@ -40,18 +40,21 @@ module ASpaceIIIF
     end
 
     def linked_agents
-      agent_refs = {}
+      agent_records = {}
+
       archival_objects.each do |obj|
         unless (obj["linked_agents"].empty? && resource["linked_agents"].empty?)
           if obj["linked_agents"].length > 0 
             agent_ref = obj["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-            agent_refs["#{obj[uri]}"] = @conn.get_record(agent_ref)
+            agent_records["#{obj[uri]}"] = @conn.get_record(agent_ref)
           else
             agent_ref = resource["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-            agent_refs["#{obj[uri]}"] = @conn.get_record(agent_ref)
+            agent_records["#{obj[uri]}"] = @conn.get_record(agent_ref)
           end
         end
       end
+
+      agent_records
     end
   end
 end
