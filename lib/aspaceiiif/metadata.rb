@@ -2,8 +2,8 @@ require 'aspaceiiif/records'
 
 module ASpaceIIIF
   class Metadata
-    def initialize(dig_obj_id)
-      as_records = Records.new(dig_obj_id)
+    def initialize(resource_id)
+      as_records = Records.new(resource_id)
       @digital_objects = as_records.digital_objects
       @digital_object_trees = as_records.digital_object_trees
       @digital_object_components = as_records.digital_object_components
