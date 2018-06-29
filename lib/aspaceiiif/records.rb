@@ -39,14 +39,17 @@ module ASpaceIIIF
       dig_obj_comp_refs.map { |ref| @conn.get_record(ref) }
     end
 
-    def linked_agent
-      unless (archival_object["linked_agents"].empty? && resource["linked_agents"].empty?)
-        if archival_object["linked_agents"].length > 0 
-          agent_ref = archival_object["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-          @conn.get_record(agent_ref)
-        else
-          agent_ref = resource["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-          @conn.get_record(agent_ref)
+    def linked_agents
+      agent_refs = {}
+      archival_objects.each do |obj|
+        unless (obj["linked_agents"].empty? && resource["linked_agents"].empty?)
+          if obj["linked_agents"].length > 0 
+            agent_ref = obj["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
+            agent_refs["#{obj[uri]}"] = @conn.get_record(agent_ref)
+          else
+            agent_ref = resource["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
+            agent_refs["#{obj[uri]}"] = @conn.get_record(agent_ref)
+          end
         end
       end
     end
