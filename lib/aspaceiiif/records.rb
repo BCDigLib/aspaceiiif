@@ -18,8 +18,39 @@ module ASpaceIIIF
     end
 
     def archival_objects
-      resource_components = resource_tree["children"].select { |e| e["children"].any? { |e| e["instance_types"].include?("digital_object") } }[0]["children"]
-      arch_obj_refs = resource_components.map { |obj| obj["record_uri"] }
+      # Ugly but necessary, since the JSONPath Ruby implementation doesn't fully 
+      # support ?(): https://github.com/joshbuddy/jsonpath/issues/54
+      resource_children = resource_tree["children"].each do |child|
+        if child["instance_types"].include?("digital_object")
+          puts child
+        elsif child["children"].length > 0
+          child["children"].each do |child|
+            if child["instance_types"].include?("digital_object")
+              puts child
+            elsif child["children"].length > 0
+              child["children"].each do |child|
+                if child["instance_types"].include?("digital_object")
+                  puts child
+                elsif child["children"].length > 0
+                  child["children"].each do |child|
+                    if child["instance_types"].include?("digital_object")
+                      puts child
+                    elsif child["children"].length > 0
+                      child["children"].each do |child|
+                        if child["instance_types"].include?("digital_object")
+                          puts child
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end 
+        end
+      end
+
+      arch_obj_refs = resource_children.map { |obj| obj["record_uri"] }
       arch_obj_refs.map { |ref| @conn.get_record(ref) }
     end
 
