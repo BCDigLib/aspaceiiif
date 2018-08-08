@@ -28,8 +28,13 @@ module ASpaceIIIF
     end
 
     def resource
-      resource_ref = archival_object["resource"]["ref"]
-      @conn.get_record(resource_ref)
+      # If the "resource" key is missing, then archival_object is actually a resource
+      if archival_object["resource"]
+        resource_ref = archival_object["resource"]["ref"]
+        @conn.get_record(resource_ref)
+      else
+        archival_object
+      end
     end
 
     def linked_agent

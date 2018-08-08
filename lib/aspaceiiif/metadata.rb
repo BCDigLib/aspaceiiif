@@ -26,7 +26,7 @@ module ASpaceIIIF
     end
 
     def title
-      if host_title.nil?
+      if host_title.nil? || host_title == @digital_object["title"]
         @digital_object["title"]
       else
         @digital_object["title"] + ", " + host_title
@@ -42,7 +42,11 @@ module ASpaceIIIF
     end
 
     def component_id
-      @archival_object["component_id"]
+      if @archival_object["component_id"]
+        @archival_object["component_id"]
+      elsif handle.include?('BC') || handle.include?('MS')
+        handle.split('/').last
+      end
     end
 
     def creator
