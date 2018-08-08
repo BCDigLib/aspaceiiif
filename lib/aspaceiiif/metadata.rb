@@ -50,7 +50,8 @@ module ASpaceIIIF
     end
 
     def creator
-      @linked_agent["title"]
+      # We include creator in manifests for Japanese prints only
+      @linked_agent["title"] if host_title == "Japanese prints collection"
     end
 
     def owner
