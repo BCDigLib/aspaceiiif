@@ -37,8 +37,8 @@ describe ASpaceIIIF::Builder do
       expect(manifest["label"]).to eq(metadata.title)
     end
 
-    it "includes rights information in the attribution attribute" do
-      expect(manifest["attribution"]).to eq(metadata.rights_statement)
+    it "includes usage information in the attribution attribute" do
+      expect(manifest["attribution"]).to eq(metadata.use_statement)
     end
 
     it "contains a metadata block" do

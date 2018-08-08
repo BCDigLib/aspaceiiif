@@ -26,7 +26,7 @@ module ASpaceIIIF
           '@id' => "#{@manifest_server}/#{metadata.component_id}.json",
           'label' => "#{metadata.title}",
           'viewing_hint' => 'paged',
-          'attribution' => "#{metadata.rights_statement}",
+          'attribution' => "#{metadata.use_statement}",
           'metadata' => [
             {"handle": "#{metadata.handle}"},
             {"label": "Preferred Citation", "value": "#{metadata.creator + ", " unless metadata.creator.nil?}#{metadata.title}, #{metadata.resource_id}, #{metadata.owner}, #{metadata.handle}."}

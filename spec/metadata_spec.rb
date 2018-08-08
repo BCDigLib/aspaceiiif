@@ -9,10 +9,10 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
-  describe "#rights_statement" do
+  describe "#use_statement" do
     it "returns a string" do
-      expect(metadata.rights_statement).to be_instance_of(String)
-      expect(metadata.rights_statement.length).to be > 0
+      expect(metadata.use_statement).to be_instance_of(String)
+      expect(metadata.use_statement.length).to be > 0
     end
   end
 

@@ -16,7 +16,7 @@ module ASpaceIIIF
       @digital_object["digital_object_id"]
     end
 
-    def rights_statement
+    def use_statement
       if @digital_object["notes"].select { |note| note["type"] == "userestrict" }.length > 0
         @digital_object["notes"].select { |note| note["type"] == "userestrict" }[0]["content"][0]
       else
