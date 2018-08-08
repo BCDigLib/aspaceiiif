@@ -17,7 +17,12 @@ module ASpaceIIIF
     end
 
     def rights_statement
-      @digital_object["notes"].select { |note| note["type"] == "userestrict" }[0]["content"][0]
+      if @digital_object["notes"].select { |note| note["type"] == "userestrict" }.length > 0
+        @digital_object["notes"].select { |note| note["type"] == "userestrict" }[0]["content"][0]
+      else
+        # Placeholder until we have a general purpose use use statement
+        "Please contact the Burns Library for information on reuse."
+      end
     end
 
     def title
