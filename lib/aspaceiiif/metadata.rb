@@ -51,9 +51,19 @@ module ASpaceIIIF
     def filenames
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("archive")
-          comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          if comp["file_versions"][0]["file_uri"].include?('://')
+            fname = comp["file_versions"][0]["file_uri"].split('/').last
+            fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          else
+            comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          end
         else
-          comp["file_versions"][1]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          if comp["file_versions"][1]["file_uri"].include?('://')
+            fname = comp["file_versions"][0]["file_uri"].split('/').last
+            fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          else
+            comp["file_versions"][1]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          end
         end
       end
     end
