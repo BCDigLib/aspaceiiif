@@ -13,11 +13,35 @@ module ASpaceIIIF
       end
     end.parse!
 
-    dig_obj_id = ARGV[0]
+    input = ARGV[0]
 
-    builder = ASpaceIIIF::Builder.new(dig_obj_id)
-    manifest = builder.generate_manifest
+    if input.include?('.txt')
+      inp_arr = File.readlines(input)
+      inp_arr.map { |id| id.strip! }.reject! { |id| id.empty? }
 
-    puts manifest.to_json(pretty: true)
+      inp_arr.each do |id|
+        builder = ASpaceIIIF::Builder.new(id)
+        manifest = builder.generate_manifest
+        manifest_json = manifest.to_json(pretty: true)
+        manifest_fname = manifest["id"].split('/').last
+
+        f = File.new(manifest_fname, 'w')
+        f.write(manifest_json)
+        f.close
+
+        puts "Created manifest #{manifest_fname} for digital object #{id}"
+      end
+    else
+      builder = ASpaceIIIF::Builder.new(input)
+      manifest = builder.generate_manifest
+      manifest_json = manifest.to_json(pretty: true)
+      manifest_fname = manifest["@id"].split('/').last
+
+      f = File.new(manifest_fname, 'w')
+      f.write(manifest_json)
+      f.close
+
+      puts "Created manifest #{manifest_fname} for digital object #{input}"
+    end
   end
 end
