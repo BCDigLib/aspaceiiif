@@ -5,7 +5,7 @@ require 'optparse'
 module ASpaceIIIF
   def self.run
     OptionParser.new do |parser|
-      parser.banner = "Usage: aspaceiiif dig_obj_id"
+      parser.banner = "Usage: aspaceiiif [ digital_object_id | digital_object_ids.txt ]"
 
       parser.on("-h", "--help", "Show this help message") do ||
         puts parser
