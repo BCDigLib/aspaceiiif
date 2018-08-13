@@ -1,5 +1,6 @@
 require 'aspaceiiif/version'
 require 'aspaceiiif/builder'
+require 'aspaceiiif/view_builder'
 require 'optparse'
 
 module ASpaceIIIF
@@ -16,6 +17,8 @@ module ASpaceIIIF
     input = ARGV[0]
 
     if input.include?('.txt')
+      # If given a text file, attempt to generate views and manifests for 
+      # multiple digital object IDS in the file
       inp_arr = File.readlines(input)
       inp_arr.map { |id| id.strip! }.reject! { |id| id.empty? }
 
@@ -23,15 +26,25 @@ module ASpaceIIIF
         builder = ASpaceIIIF::Builder.new(id)
         manifest = builder.generate_manifest
         manifest_json = manifest.to_json(pretty: true)
-        manifest_fname = manifest["id"].split('/').last
+        manifest_fname = manifest["@id"].split('/').last
 
         f = File.new(manifest_fname, 'w')
         f.write(manifest_json)
         f.close
+        puts "Created IIIF manifest #{manifest_fname} for digital object #{id}"
 
-        puts "Created manifest #{manifest_fname} for digital object #{id}"
+        view_builder = ASpaceIIIF::ViewBuilder.new
+        view_html = view_builder.build(manifest_fname)
+        view_fname = manifest_fname.chomp('.json')
+
+        f = File.new(view_fname, 'w')
+        f.write(view_html)
+        f.close
+        puts "Created Mirador view for manifest #{manifest_fname}"
       end
     else
+      # Given no text file, attempt to generate view and manifest for single 
+      # digital object
       builder = ASpaceIIIF::Builder.new(input)
       manifest = builder.generate_manifest
       manifest_json = manifest.to_json(pretty: true)
@@ -41,7 +54,16 @@ module ASpaceIIIF
       f.write(manifest_json)
       f.close
 
-      puts "Created manifest #{manifest_fname} for digital object #{input}"
+      puts "Created IIIF manifest #{manifest_fname} for digital object #{input}"
+
+      view_builder = ASpaceIIIF::ViewBuilder.new
+      view_html = view_builder.build(manifest_fname)
+      view_fname = manifest_fname.chomp('.json')
+
+      f = File.new(view_fname, 'w')
+      f.write(view_html)
+      f.close
+      puts "Created Mirador view for manifest #{manifest_fname}"
     end
   end
 end
