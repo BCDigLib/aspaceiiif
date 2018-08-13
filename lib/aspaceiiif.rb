@@ -14,6 +14,9 @@ module ASpaceIIIF
       end
     end.parse!
 
+    Dir.mkdir('manifests') unless File.exists?('manifests')
+    Dir.mkdir('view') unless File.exists?('view')
+
     input = ARGV[0]
 
     if input.include?('.txt')
@@ -28,7 +31,7 @@ module ASpaceIIIF
         manifest_json = manifest.to_json(pretty: true)
         manifest_fname = manifest["@id"].split('/').last
 
-        f = File.new(manifest_fname, 'w')
+        f = File.new("manifests/#{manifest_fname}", 'w')
         f.write(manifest_json)
         f.close
         puts "Created IIIF manifest #{manifest_fname} for digital object #{id}"
@@ -37,7 +40,7 @@ module ASpaceIIIF
         view_html = view_builder.build(manifest_fname)
         view_fname = manifest_fname.chomp('.json')
 
-        f = File.new(view_fname, 'w')
+        f = File.new("view/#{view_fname}", 'w')
         f.write(view_html)
         f.close
         puts "Created Mirador view for manifest #{manifest_fname}"
@@ -50,7 +53,7 @@ module ASpaceIIIF
       manifest_json = manifest.to_json(pretty: true)
       manifest_fname = manifest["@id"].split('/').last
 
-      f = File.new(manifest_fname, 'w')
+      f = File.new("manifests/#{manifest_fname}", 'w')
       f.write(manifest_json)
       f.close
 
@@ -60,7 +63,7 @@ module ASpaceIIIF
       view_html = view_builder.build(manifest_fname)
       view_fname = manifest_fname.chomp('.json')
 
-      f = File.new(view_fname, 'w')
+      f = File.new("view/#{view_fname}", 'w')
       f.write(view_html)
       f.close
       puts "Created Mirador view for manifest #{manifest_fname}"
