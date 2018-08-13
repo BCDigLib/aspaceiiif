@@ -4,9 +4,8 @@ module ASpaceIIIF
   class ViewBuilder
     def construct_mirador_object(file)
       f = File.read(file)
-      JSON.parse(f)
+      manifest_hash = JSON.parse(f)
 
-      manifest_hash = parse_manifest_file(file)
       handle = manifest_hash["metadata"][0]["handle"]
       manifest_uri = manifest_hash["@id"]
       canvas_id = manifest_hash["sequences"][0]["canvases"][0]["@id"]
@@ -86,7 +85,7 @@ module ASpaceIIIF
     </html>
       EOF
 
-      puts doc
+      doc
     end
   end
 end
