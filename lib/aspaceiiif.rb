@@ -37,7 +37,7 @@ module ASpaceIIIF
         puts "Created IIIF manifest #{manifest_fname} for digital object #{id}"
 
         view_builder = ASpaceIIIF::ViewBuilder.new
-        view_html = view_builder.build(manifest_fname)
+        view_html = view_builder.build("manifests/#{manifest_fname}")
         view_fname = manifest_fname.chomp('.json')
 
         f = File.new("view/#{view_fname}", 'w')
@@ -60,7 +60,7 @@ module ASpaceIIIF
       puts "Created IIIF manifest #{manifest_fname} for digital object #{input}"
 
       view_builder = ASpaceIIIF::ViewBuilder.new
-      view_html = view_builder.build(manifest_fname)
+      view_html = view_builder.build("manifests/#{manifest_fname}")
       view_fname = manifest_fname.chomp('.json')
 
       f = File.new("view/#{view_fname}", 'w')
