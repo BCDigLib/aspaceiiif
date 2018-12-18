@@ -60,7 +60,7 @@ module ASpaceIIIF
 
     def filenames
       @digital_object_components.map do |comp|
-        if comp["file_versions"][0]["use_statement"].include?("archive")
+        if comp["file_versions"][0]["use_statement"].include?("master")
           if comp["file_versions"][0]["file_uri"].include?('://')
             fname = comp["file_versions"][0]["file_uri"].split('/').last
             fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
