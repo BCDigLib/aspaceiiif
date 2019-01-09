@@ -59,6 +59,7 @@ module ASpaceIIIF
     end
 
     def filenames
+      @digital_object_components.delete_if { |comp| comp["title"].include?('_target') }
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("master")
           if comp["file_versions"][0]["file_uri"].include?('://')
