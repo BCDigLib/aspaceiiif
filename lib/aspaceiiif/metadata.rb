@@ -59,16 +59,18 @@ module ASpaceIIIF
     end
 
     def filenames
+      # First delete the color target component
       @digital_object_components.delete_if { |comp| comp["title"].include?('_target') }
+
       @digital_object_components.map do |comp|
-        if comp["file_versions"][0]["use_statement"].include?("master")
+        if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
           if comp["file_versions"][0]["file_uri"].include?('://')
             fname = comp["file_versions"][0]["file_uri"].split('/').last
             fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
           else
             comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
           end
-        else
+        elsif comp["file_versions"].length > 1
           if comp["file_versions"][1]["file_uri"].include?('://')
             fname = comp["file_versions"][0]["file_uri"].split('/').last
             fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
