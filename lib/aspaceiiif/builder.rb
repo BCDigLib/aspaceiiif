@@ -48,7 +48,9 @@ module ASpaceIIIF
     def generate_canvas(image_file, label, order)
       separator = image_file.include?('_') ? '_' : '.'
       image_id = image_file.chomp('.jp2').chomp('.tif').chomp('.tiff').chomp('.jpg')
-      page_id = image_id.split(separator).last
+      page_id_arr = image_id.split(separator)
+      # Use extended page_id for filenames that include a folder number
+      page_id_arr[-2].match(/^\d+$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
 
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
 
@@ -84,7 +86,8 @@ module ASpaceIIIF
     def generate_range(image_file, label, order)
       separator = image_file.include?('_') ? '_' : '.'
       image_id = image_file.chomp('.jp2').chomp('.tif').chomp('.tiff').chomp('.jpg')
-      page_id = image_id.split(separator).last
+      page_id_arr = image_id.split(separator)
+      page_id_arr[-2].match(/^\d+$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
 
       range_id = "#{@sequence_base}/range/r-#{order}"
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
