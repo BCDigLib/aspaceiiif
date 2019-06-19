@@ -30,6 +30,9 @@ argument; e.g.:
 
     $ aspaceiiif dig-obj-ids.txt
 
+(Note: [export_dao_ids.rb](https://github.com/BCDigLib/bc-aspace/blob/master/techmd_dump/export_dao_ids.rb) can be used to generate a text file containing all
+digital object IDs associated with a given resource.)
+
 ## Development
 
 After checking out the repo, run `bundle exec rspec` to run the tests.
