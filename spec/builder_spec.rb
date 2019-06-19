@@ -73,7 +73,11 @@ describe ASpaceIIIF::Builder do
       expect(canvas["@type"]).to eq("sc:Canvas")
     end
 
-    it "includes folder number in canvas IDs" do
+    it "outputs a normal canvas ID" do
+      expect(canvas["@id"]).to eq("/canvas/0001")
+    end
+
+    it "includes folder number in canvas IDs when applicable" do
       expect(edge_case_canvas["@id"]).to eq("/canvas/001_001")
     end
   end
@@ -94,7 +98,11 @@ describe ASpaceIIIF::Builder do
       expect(range["@type"]).to eq("sc:Range")
     end
 
-    it "includes folder number in canvas IDs" do
+    it "ranges include a normal canvas ID" do
+      expect(range["canvases"][0]).to eq("/canvas/0001")
+    end
+
+    it "ranges include folder number canvas IDs when applicable" do
       expect(edge_case_range["canvases"][0]).to eq("/canvas/001_001")
     end
   end
