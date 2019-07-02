@@ -1,7 +1,8 @@
 # aspaceiiif
 
-Generates IIIF manifests and Mirador viewer HTML from an ArchivesSpace digital 
-object record. This gem is configured to support Boston College's IIIF implementation.
+Generates IIIF JSON manifests and HTML files instantiating Mirador (locally termed 
+'views') from an ArchivesSpace digital object record. This gem is configured to 
+support Boston College Libraries' IIIF implementation.
 
 ## Installation
 
@@ -19,19 +20,19 @@ build and install the gem:
     
 ## Usage
 
-To generate a manifest and HTML view file for a single digital object, pass the 
-digital object ID as an argument; e.g.:
+To generate a manifest and view for a single digital object, pass 
+'digital_object' and the digital object ID as arguments; e.g.:
 
-    $ aspaceiiif 1596
+    $ aspaceiiif digital_object 1596
 
-To generate manifests and HTML view files for multiple digital objects, put the 
-digital object IDs in a text file delimited by newlines, then pass that file as an 
-argument; e.g.:
+The gem can also generate manifests and views for all digital objects associated 
+with a resource record. To do this, pass 'resource' as the resource ID as 
+arguments, e.g.:
 
-    $ aspaceiiif dig-obj-ids.txt
+    $ aspaceiiif resource 166
 
-(Note: [export_dao_ids.rb](https://github.com/BCDigLib/bc-aspace/blob/master/techmd_dump/export_dao_ids.rb) can be used to generate a text file containing all
-digital object IDs associated with a given resource.)
+In either case, the gem will create two directories -- 'manifests' and 'views' -- 
+where it will write the output files.
 
 ## Development
 
