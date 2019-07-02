@@ -16,7 +16,7 @@ module ASpaceIIIF
     end.parse!
 
     Dir.mkdir('manifests') unless File.exists?('manifests')
-    Dir.mkdir('view') unless File.exists?('view')
+    Dir.mkdir('views') unless File.exists?('views')
 
     input_type = ARGV[0]
     input_id = ARGV[1]
@@ -41,7 +41,7 @@ module ASpaceIIIF
         view_html = view_builder.build("manifests/#{manifest_fname}")
         view_fname = manifest_fname.chomp('.json')
 
-        f = File.new("view/#{view_fname}", 'w')
+        f = File.new("views/#{view_fname}", 'w')
         f.write(view_html)
         f.close
         puts "Created Mirador view for manifest #{manifest_fname}"
@@ -63,7 +63,7 @@ module ASpaceIIIF
       view_html = view_builder.build("manifests/#{manifest_fname}")
       view_fname = manifest_fname.chomp('.json')
 
-      f = File.new("view/#{view_fname}", 'w')
+      f = File.new("views/#{view_fname}", 'w')
       f.write(view_html)
       f.close
       puts "Created Mirador view for manifest #{manifest_fname}"
