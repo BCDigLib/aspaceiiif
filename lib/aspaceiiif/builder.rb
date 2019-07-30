@@ -50,7 +50,7 @@ module ASpaceIIIF
       image_id = image_file.chomp('.jp2').chomp('.tif').chomp('.tiff').chomp('.jpg')
       page_id_arr = image_id.split(separator)
       # Use extended page_id for filenames that include a folder number
-      page_id_arr[-2].match(/^\d+$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
+      page_id_arr[-2].match(/^\d{2}$|^\d{3}$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
 
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
 
@@ -87,7 +87,7 @@ module ASpaceIIIF
       separator = image_file.include?('_') ? '_' : '.'
       image_id = image_file.chomp('.jp2').chomp('.tif').chomp('.tiff').chomp('.jpg')
       page_id_arr = image_id.split(separator)
-      page_id_arr[-2].match(/^\d+$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
+      page_id_arr[-2].match(/^\d{2}$|^\d{3}$/) ? page_id = page_id_arr[-2] + '_' + page_id_arr[-1] : page_id = page_id_arr.last
 
       range_id = "#{@sequence_base}/range/r-#{order}"
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
