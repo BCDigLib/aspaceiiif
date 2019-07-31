@@ -1,14 +1,21 @@
 require 'aspaceiiif/builder'
 
 describe ASpaceIIIF::Builder do
-  # Japanese prints Chushingura used as example of standard manuscript dig obj
-  let(:builder) { ASpaceIIIF::Builder.new('1596') }
-  let(:metadata) { ASpaceIIIF::Metadata.new('1596') }
+  # Japanese prints Chushingura used as example of standard dig obj for legacy 
+  # manuscript collections
+  let(:legacy_builder) { ASpaceIIIF::Builder.new('1596') }
+  let(:legacy_metadata) { ASpaceIIIF::Metadata.new('1596') }
 
   # CCC South Boston High School monitor reports used to test edge cases in which 
   # the filename includes a folder number
   let(:edge_case_builder) { ASpaceIIIF::Builder.new('1708') }
   let(:edge_case_metadata) { ASpaceIIIF::Metadata.new('1708') }
+
+  # Newer digital objects use the archival object PK instead of a ref number in
+  # their component unique IDs. Here we are using a digital object from the 
+  # Joseph J. Williams ethnological collection as our standard test fixture.
+  let(:builder) { ASpaceIIIF::Builder.new('1746') }
+  let(:metadata) { ASpaceIIIF::Metadata.new('1746') }
 
   describe "#generate_manifest" do
     let(:manifest) { builder.generate_manifest }
@@ -74,7 +81,7 @@ describe ASpaceIIIF::Builder do
     end
 
     it "outputs a normal canvas ID" do
-      expect(canvas["@id"]).to eq("/canvas/0001")
+      expect(canvas["@id"]).to eq("/canvas/0000")
     end
 
     it "includes folder number in canvas IDs when applicable" do
@@ -99,7 +106,7 @@ describe ASpaceIIIF::Builder do
     end
 
     it "ranges include a normal canvas ID" do
-      expect(range["canvases"][0]).to eq("/canvas/0001")
+      expect(range["canvases"][0]).to eq("/canvas/0000")
     end
 
     it "ranges include folder number canvas IDs when applicable" do
