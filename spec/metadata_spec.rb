@@ -67,6 +67,8 @@ describe ASpaceIIIF::Metadata do
   end
 
   describe "#filenames" do
+    let(:multiple_manifestations) { ASpaceIIIF::Metadata.new('2219') }
+
     it "returns an array" do 
       expect(metadata.filenames).to be_instance_of(Array)
       expect(metadata.filenames.length).to be > 0
@@ -78,6 +80,11 @@ describe ASpaceIIIF::Metadata do
 
     it "contains no duplicates" do
       expect(metadata.filenames.uniq == metadata.filenames).to be true
+    end
+
+    it "does not include manifestation indicators in the filenames" do
+      expect(multiple_manifestations.filenames.any? { |fname| fname.include?('_INT') }).to be false
+      expect(multiple_manifestations.filenames.any? { |fname| fname.include?('_MAS') }).to be false
     end
   end
 end
