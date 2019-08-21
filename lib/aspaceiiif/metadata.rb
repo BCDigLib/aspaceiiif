@@ -62,6 +62,8 @@ module ASpaceIIIF
       # First delete the color target component
       @digital_object_components.delete_if { |comp| comp["title"].include?('_target') }
 
+      @digital_object_components.delete_if { |comp| comp["title"].include?('_INT') }
+
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
           if comp["file_versions"][0]["file_uri"].include?('://')
