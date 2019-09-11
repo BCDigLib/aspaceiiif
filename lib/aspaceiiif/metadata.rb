@@ -62,11 +62,19 @@ module ASpaceIIIF
       # First delete the color target component
       @digital_object_components.delete_if { |comp| comp["title"].include?('_target') }
 
+      # Next, remove intermediates so we don't end up with duplicate filenames
+      @digital_object_components.delete_if { |comp| comp["title"].include?('_INT') }
+
+      # Finally, reverse-engineer image filenames based on file_uri data. This 
+      # handles several edge cases in our metadata and will require updating 
+      # once those are normalized
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
           if comp["file_versions"][0]["file_uri"].include?('://')
             fname = comp["file_versions"][0]["file_uri"].split('/').last
             fname.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+          elsif comp["file_versions"][0]["file_uri"].include?('_MAS')
+            comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2').chomp('_MAS') + '.jp2'
           else
             comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
           end

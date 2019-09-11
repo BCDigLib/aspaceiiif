@@ -5,6 +5,8 @@ require 'optparse'
 
 module ASpaceIIIF
   def self.run
+    ARGV << "-h" if ARGV.empty? || ARGV[0] != ("digital_object" || "resource")
+
     OptionParser.new do |parser|
       parser.banner = "Usage: aspaceiiif [ resource | digital_object ] [ id (db primary key) ]
       e.g., aspaceiiif resource 15"
@@ -41,7 +43,7 @@ module ASpaceIIIF
         view_html = view_builder.build("manifests/#{manifest_fname}")
         view_fname = manifest_fname.chomp('.json')
 
-        f = File.new("views/#{view_fname}", 'w')
+        f = File.new("view/#{view_fname}", 'w')
         f.write(view_html)
         f.close
         puts "Created Mirador view for manifest #{manifest_fname}"
@@ -63,7 +65,7 @@ module ASpaceIIIF
       view_html = view_builder.build("manifests/#{manifest_fname}")
       view_fname = manifest_fname.chomp('.json')
 
-      f = File.new("views/#{view_fname}", 'w')
+      f = File.new("view/#{view_fname}", 'w')
       f.write(view_html)
       f.close
       puts "Created Mirador view for manifest #{manifest_fname}"
