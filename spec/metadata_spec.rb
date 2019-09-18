@@ -74,6 +74,10 @@ describe ASpaceIIIF::Metadata do
       expect(metadata.component_labels.length).to be > 0
     end
 
+    it "includes labels that conform to collection naming conventions" do
+      expect(metadata.component_labels.all? { |fname| fname.include?('MS' || 'BC') }).to be true
+    end
+
     it "contains no duplicates" do
       expect(metadata.component_labels.uniq == metadata.component_labels).to be true
     end
