@@ -19,8 +19,8 @@ module ASpaceIIIF
       sequence = IIIF::Presentation::Sequence.new
       range = IIIF::Presentation::Range.new
 
-      sequence.canvases = metadata.component_labels.map.with_index { |comp, i| generate_canvas("#{comp}", "#{comp.chomp('.jp2')}", i) }
-      range.ranges = metadata.component_labels.map.with_index { |comp, i| generate_range("#{comp}", "#{comp.chomp('.jp2')}", i) }
+      sequence.canvases = metadata.component_labels.map.with_index { |comp, i| generate_canvas(comp, i) }
+      range.ranges = metadata.component_labels.map.with_index { |comp, i| generate_range(comp, i) }
 
       seed = {
           '@id' => "#{@manifest_server}/#{metadata.component_id}.json",
@@ -45,17 +45,17 @@ module ASpaceIIIF
       manifest
     end
 
-    def parse_sequence_number(image_file)
-      separator = image_file.include?('_') ? '_' : '.'
-      image_id = image_file.chomp('.jp2').chomp('.tif').chomp('.tiff').chomp('.jpg')
-      page_id_arr = image_id.split(separator)
+    def parse_sequence_number(label)
+      separator = label.include?('_') ? '_' : '.'
+      page_id_arr = label.split(separator)
       
       # Use extended page_id for filenames that include a folder number
       page_id_arr[-2].match(/^\d{2}$|^\d{3}$/) ? page_id_arr[-2] + '_' + page_id_arr[-1] : page_id_arr.last
     end
 
-    def generate_canvas(image_file, label, order)
-      page_id = parse_sequence_number(image_file)
+    def generate_canvas(label, order)
+      page_id = parse_sequence_number(label)
+      image_file = label + '.jp2'
 
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
 
@@ -88,8 +88,9 @@ module ASpaceIIIF
       IIIF::Presentation::ImageResource.create_image_api_image_resource(params)
     end
 
-    def generate_range(image_file, label, order)
-      page_id = parse_sequence_number(image_file)
+    def generate_range(label, order)
+      page_id = parse_sequence_number(label)
+      image_file = label + '.jp2'
 
       range_id = "#{@sequence_base}/range/r-#{order}"
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
