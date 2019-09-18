@@ -19,8 +19,8 @@ module ASpaceIIIF
       sequence = IIIF::Presentation::Sequence.new
       range = IIIF::Presentation::Range.new
 
-      sequence.canvases = metadata.component_labels.map.with_index { |comp, i| generate_canvas(comp, i) }
-      range.ranges = metadata.component_labels.map.with_index { |comp, i| generate_range(comp, i) }
+      sequence.canvases = metadata.component_labels.each_with_index { |comp, i| generate_canvas(comp[0], comp[1], i) }
+      range.ranges = metadata.component_labels.each_with_index { |comp, i| generate_range(comp[0], comp[1], i) }
 
       seed = {
           '@id' => "#{@manifest_server}/#{metadata.component_id}.json",
@@ -53,9 +53,8 @@ module ASpaceIIIF
       page_id_arr[-2].match(/^\d{2}$|^\d{3}$/) ? page_id_arr[-2] + '_' + page_id_arr[-1] : page_id_arr.last
     end
 
-    def generate_canvas(label, order)
+    def generate_canvas(label, image_file, order)
       page_id = parse_sequence_number(label)
-      image_file = label + '.jp2'
 
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
 
@@ -88,9 +87,8 @@ module ASpaceIIIF
       IIIF::Presentation::ImageResource.create_image_api_image_resource(params)
     end
 
-    def generate_range(label, order)
+    def generate_range(label, image_file, order)
       page_id = parse_sequence_number(label)
-      image_file = label + '.jp2'
 
       range_id = "#{@sequence_base}/range/r-#{order}"
       canvas_id = "#{@sequence_base}/canvas/#{page_id}"
