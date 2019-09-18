@@ -67,7 +67,7 @@ describe ASpaceIIIF::Metadata do
   end
 
   describe "#component_labels" do
-    let(:multiple_manifestations) { ASpaceIIIF::Metadata.new('2219') }
+    #let(:multiple_manifestations) { ASpaceIIIF::Metadata.new('2219') }
 
     it "returns an array" do 
       expect(metadata.component_labels).to be_instance_of(Array)
@@ -82,9 +82,9 @@ describe ASpaceIIIF::Metadata do
       expect(metadata.component_labels.uniq == metadata.component_labels).to be true
     end
 
-    it "does not include manifestation indicators in the filenames" do
-      expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_INT') }).to be false
-      expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_MAS') }).to be false
-    end
+    #it "does not include manifestation indicators in the filenames" do
+    #  expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_INT') }).to be false
+    #  expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_MAS') }).to be false
+    #end
   end
 end
