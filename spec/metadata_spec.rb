@@ -66,25 +66,21 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
-  describe "#filenames" do
+  describe "#component_labels" do
     let(:multiple_manifestations) { ASpaceIIIF::Metadata.new('2219') }
 
     it "returns an array" do 
-      expect(metadata.filenames).to be_instance_of(Array)
-      expect(metadata.filenames.length).to be > 0
-    end
-
-    it "includes JP2s" do
-      expect(metadata.filenames.all? { |fname| fname.include?('jp2') }).to be true
+      expect(metadata.component_labels).to be_instance_of(Array)
+      expect(metadata.component_labels.length).to be > 0
     end
 
     it "contains no duplicates" do
-      expect(metadata.filenames.uniq == metadata.filenames).to be true
+      expect(metadata.component_labels.uniq == metadata.component_labels).to be true
     end
 
     it "does not include manifestation indicators in the filenames" do
-      expect(multiple_manifestations.filenames.any? { |fname| fname.include?('_INT') }).to be false
-      expect(multiple_manifestations.filenames.any? { |fname| fname.include?('_MAS') }).to be false
+      expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_INT') }).to be false
+      expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_MAS') }).to be false
     end
   end
 end
