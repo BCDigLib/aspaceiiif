@@ -58,7 +58,7 @@ module ASpaceIIIF
       "John J. Burns Library, Boston College"
     end
 
-    def component_labels
+    def component_labels_filenames
       components_fnames = {}
 
       # First delete the color target component

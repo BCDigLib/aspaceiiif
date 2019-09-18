@@ -66,25 +66,25 @@ describe ASpaceIIIF::Metadata do
     end
   end
 
-  describe "#component_labels" do
+  describe "#component_labels_filenames" do
     #let(:multiple_manifestations) { ASpaceIIIF::Metadata.new('2219') }
 
     it "returns an array" do 
-      expect(metadata.component_labels).to be_instance_of(Array)
-      expect(metadata.component_labels.length).to be > 0
+      expect(metadata.component_labels_filenames).to be_instance_of(Array)
+      expect(metadata.component_labels_filenames.length).to be > 0
     end
 
     it "includes labels that conform to collection naming conventions" do
-      expect(metadata.component_labels.all? { |fname| fname.include?('MS' || 'BC') }).to be true
+      expect(metadata.component_labels_filenames.all? { |fname| fname.include?('MS' || 'BC') }).to be true
     end
 
     it "contains no duplicates" do
-      expect(metadata.component_labels.uniq == metadata.component_labels).to be true
+      expect(metadata.component_labels_filenames.uniq == metadata.component_labels_filenames).to be true
     end
 
     #it "does not include manifestation indicators in the filenames" do
-    #  expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_INT') }).to be false
-    #  expect(multiple_manifestations.component_labels.any? { |fname| fname.include?('_MAS') }).to be false
+    #  expect(multiple_manifestations.component_labels_filenames.any? { |fname| fname.include?('_INT') }).to be false
+    #  expect(multiple_manifestations.component_labels_filenames.any? { |fname| fname.include?('_MAS') }).to be false
     #end
   end
 end
