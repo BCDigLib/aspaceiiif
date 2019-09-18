@@ -19,8 +19,8 @@ module ASpaceIIIF
       sequence = IIIF::Presentation::Sequence.new
       range = IIIF::Presentation::Range.new
 
-      sequence.canvases = metadata.filenames.map.with_index { |comp, i| generate_canvas("#{comp}", "#{comp.chomp('.jp2')}", i) }
-      range.ranges = metadata.filenames.map.with_index { |comp, i| generate_range("#{comp}", "#{comp.chomp('.jp2')}", i) }
+      sequence.canvases = metadata.component_labels.map.with_index { |comp, i| generate_canvas("#{comp}", "#{comp.chomp('.jp2')}", i) }
+      range.ranges = metadata.component_labels.map.with_index { |comp, i| generate_range("#{comp}", "#{comp.chomp('.jp2')}", i) }
 
       seed = {
           '@id' => "#{@manifest_server}/#{metadata.component_id}.json",
