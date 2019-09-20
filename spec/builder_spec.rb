@@ -73,8 +73,8 @@ describe ASpaceIIIF::Builder do
   end
 
   describe "#generate_canvas" do
-    let(:canvas) { builder.generate_canvas(metadata.component_labels_filenames[0], metadata.component_labels_filenames[0].chomp(".jp2"), 1) }
-    let(:edge_case_canvas) { edge_case_builder.generate_canvas(edge_case_metadata.component_labels_filenames[0], edge_case_metadata.component_labels_filenames[0].chomp(".jp2"), 1) }
+    let(:canvas) { builder.generate_canvas(metadata.component_labels_filenames.keys[0], metadata.component_labels_filenames.values[0], 1) }
+    let(:edge_case_canvas) { edge_case_builder.generate_canvas(edge_case_metadata.component_labels_filenames.keys[0], edge_case_metadata.component_labels_filenames.values[0], 1) }
 
     it "outputs a canvas" do
       expect(canvas["@type"]).to eq("sc:Canvas")
@@ -90,7 +90,7 @@ describe ASpaceIIIF::Builder do
   end
 
   describe "#generate_image_resource" do
-    let(:image_resource) { builder.generate_image_resource(metadata.component_labels_filenames[0]) }
+    let(:image_resource) { builder.generate_image_resource(metadata.component_labels_filenames.values[0]) }
 
     it "returns an image resource" do
       expect(image_resource["@type"]).to eq("dctypes:Image")
@@ -98,8 +98,8 @@ describe ASpaceIIIF::Builder do
   end
 
   describe "#generate_range" do
-    let(:range) { builder.generate_range(metadata.component_labels_filenames[0], metadata.component_labels_filenames[0].chomp(".jp2"), 1) }
-    let(:edge_case_range) { edge_case_builder.generate_range(edge_case_metadata.component_labels_filenames[0], edge_case_metadata.component_labels_filenames[0].chomp(".jp2"), 1) }
+    let(:range) { builder.generate_range(metadata.component_labels_filenames.keys[0], metadata.component_labels_filenames.values[0], 1) }
+    let(:edge_case_range) { edge_case_builder.generate_range(edge_case_metadata.component_labels_filenames.keys[0], edge_case_metadata.component_labels_filenames.values[0], 1) }
 
     it "outputs a range" do
       expect(range["@type"]).to eq("sc:Range")
