@@ -18,7 +18,7 @@ module ASpaceIIIF
     end.parse!
 
     Dir.mkdir('manifests') unless File.exists?('manifests')
-    Dir.mkdir('views') unless File.exists?('views')
+    Dir.mkdir('view') unless File.exists?('view')
 
     input_type = ARGV[0]
     input_id = ARGV[1]
