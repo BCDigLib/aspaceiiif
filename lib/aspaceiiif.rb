@@ -5,7 +5,7 @@ require 'optparse'
 
 module ASpaceIIIF
   def self.run
-    ARGV << "-h" if ARGV.empty? || ARGV[0] != ("digital_object" || "resource")
+    ARGV << "-h" if ARGV.empty? || (ARGV[0] != "digital_object" && ARGV[0] != "resource")
 
     OptionParser.new do |parser|
       parser.banner = "Usage: aspaceiiif [ resource | digital_object ] [ id (db primary key) ]
@@ -18,7 +18,7 @@ module ASpaceIIIF
     end.parse!
 
     Dir.mkdir('manifests') unless File.exists?('manifests')
-    Dir.mkdir('views') unless File.exists?('views')
+    Dir.mkdir('view') unless File.exists?('view')
 
     input_type = ARGV[0]
     input_id = ARGV[1]
