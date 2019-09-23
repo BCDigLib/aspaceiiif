@@ -5,7 +5,7 @@ require 'optparse'
 
 module ASpaceIIIF
   def self.run
-    ARGV << "-h" if ARGV.empty? || ARGV[0] != ("digital_object" || "resource")
+    ARGV << "-h" if ARGV.empty? || (ARGV[0] != "digital_object" && ARGV[0] != "resource")
 
     OptionParser.new do |parser|
       parser.banner = "Usage: aspaceiiif [ resource | digital_object ] [ id (db primary key) ]
