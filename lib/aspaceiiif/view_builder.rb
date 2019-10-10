@@ -44,7 +44,7 @@ module ASpaceIIIF
       mdata = JSON.pretty_generate(@mirador_data)
       wobjects = JSON.pretty_generate(@mirador_wobjects)
       buttons = JSON.pretty_generate(@mirador_buttons)
-      
+
       doc = <<-EOF
     <!DOCTYPE html>
     <html>
@@ -52,13 +52,7 @@ module ASpaceIIIF
     <head>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3008279-23"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-3008279-23');
-      </script>
+      <script src="/iiif/bc-mirador/gtag.js"></script>
       <title>#{identifier}</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
