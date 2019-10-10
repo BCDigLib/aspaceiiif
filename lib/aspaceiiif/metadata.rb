@@ -12,7 +12,7 @@ module ASpaceIIIF
       @linked_agent = as_records.linked_agent
     end
 
-    def handle 
+    def handle
       @digital_object["digital_object_id"]
     end
 
@@ -55,6 +55,7 @@ module ASpaceIIIF
     end
 
     def owner
+      # Hardcoding this because it is not included in ArchivesSpace records
       "John J. Burns Library, Boston College"
     end
 
@@ -67,6 +68,8 @@ module ASpaceIIIF
       # Next, remove intermediates so we don't end up with duplicate filenames
       @digital_object_components.delete_if { |comp| comp["title"].include?('_INT') }
 
+      # Finally, map labels to filenames, accounting for various quirks
+      # TODO: refactor for simplicity once we rebuild legacy DOs
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
           if comp["file_versions"][0]["file_uri"].include?('://')

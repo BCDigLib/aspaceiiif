@@ -23,8 +23,9 @@ module ASpaceIIIF
     input_type = ARGV[0]
     input_id = ARGV[1]
 
+    # TODO: break this out into separate methods for readability/DRYness
     if input_type == 'resource'
-      # If given a resource ID, attempt to generate views and manifests for all 
+      # If given a resource ID, attempt to generate views and manifests for all
       # associated digital objects
       inp_arr = APIUtils.new.find_digital_objects(input_id)
 
