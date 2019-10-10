@@ -3,12 +3,14 @@ require 'aspaceiiif/api_utils'
 module ASpaceIIIF
   class Records
     def initialize(dig_obj_id)
+      conf = Config.load
+      @repo_id = conf['repository']
       @dig_obj_id = dig_obj_id
       @conn = APIUtils.new
     end
 
     def digital_object
-      dig_obj_ref = '/repositories/2/digital_objects/' + @dig_obj_id
+      dig_obj_ref = "/repositories/#{@repo_id}/digital_objects/#{@dig_obj_id}"
       @conn.get_record(dig_obj_ref)
     end
 
@@ -39,7 +41,7 @@ module ASpaceIIIF
 
     def linked_agent
       unless (archival_object["linked_agents"].empty? && resource["linked_agents"].empty?)
-        if archival_object["linked_agents"].length > 0 
+        if archival_object["linked_agents"].length > 0
           agent_ref = archival_object["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
           @conn.get_record(agent_ref)
         else
