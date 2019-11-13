@@ -46,37 +46,37 @@ module ASpaceIIIF
       buttons = JSON.pretty_generate(@mirador_buttons)
 
       doc = <<-EOF
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3008279-23"></script>
-      <script src="/iiif/bc-mirador/gtag.js"></script>
-      <title>#{identifier}</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="/iiif/build/mirador/css/mirador-combined.css"></link>
-      <link rel="stylesheet" type="text/css" href="/iiif/bc-mirador/mirador-bc.css"></link>
-      <link rel="stylesheet" type="text/css" href="/iiif/bc-mirador/slicknav.css"></link>
-      <script type="text/javascript" src="/iiif/build/mirador/mirador.js"></script>
-      <script type="text/javascript" src="/iiif/bc-mirador/jquery.slicknav.min.js"></script>
-      <script type="text/javascript" src="/iiif/bc-mirador/downloadMenu.js"></script>
-    </head>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3008279-23"></script>
+  <script src="/iiif/bc-mirador/gtag.js"></script>
+  <title>#{identifier}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/iiif/build/mirador/css/mirador-combined.css"></link>
+  <link rel="stylesheet" type="text/css" href="/iiif/bc-mirador/mirador-bc.css"></link>
+  <link rel="stylesheet" type="text/css" href="/iiif/bc-mirador/slicknav.css"></link>
+  <script type="text/javascript" src="/iiif/build/mirador/mirador.js"></script>
+  <script type="text/javascript" src="/iiif/bc-mirador/jquery.slicknav.min.js"></script>
+  <script type="text/javascript" src="/iiif/bc-mirador/downloadMenu.js"></script>
+</head>
 
-    <body>
-      <div id="viewer"></div>
-      <script type="text/javascript">
-        window.mdObj = {
-          MIRADOR_DATA: #{mdata},
-          MIRADOR_WOBJECTS: #{wobjects},
-          MIRADOR_BUTTONS: #{buttons}
-        };
-      </script>
-      <script type="text/javascript" src="/iiif/bc-mirador/bcViewer.js"></script>
-    </body>
+<body>
+  <div id="viewer"></div>
+  <script type="text/javascript">
+    window.mdObj = {
+      MIRADOR_DATA: #{mdata},
+      MIRADOR_WOBJECTS: #{wobjects},
+      MIRADOR_BUTTONS: #{buttons}
+    };
+  </script>
+  <script type="text/javascript" src="/iiif/bc-mirador/bcViewer.js"></script>
+</body>
 
-    </html>
+</html>
       EOF
 
       doc
