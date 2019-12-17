@@ -12,8 +12,8 @@ this repository:
     $ git clone https://github.com/BCDigLib/aspaceiiif
     $ cd aspaceiiif
 
-Update the settings in config.yml according to your ArchivesSpace instance, then
-build and install the gem:
+Update the settings in example_config.yml according to your ArchivesSpace instance, rename 
+that file to config.yml, then build and install the gem:
 
     $ gem build aspaceiiif.gemspec
     $ gem install aspaceiiif-x.x.x.gem
