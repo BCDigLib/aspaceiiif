@@ -1,3 +1,4 @@
+# Update the values below, then change the filename to config.yml
 aspace_base_uri: "http://archivesspace.example.edu:8089" # The ArchivesSpace API base URI for your local instance
 aspace_password: "password" # Your ArchivesSpace admin account password
 image_server_base_uri: "https://loris.example.edu" # Base URI for IIIF image server
