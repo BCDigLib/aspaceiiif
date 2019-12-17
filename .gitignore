@@ -2,3 +2,4 @@
 *.gem
 *.bak
 Gemfile.lock
+config.yml
