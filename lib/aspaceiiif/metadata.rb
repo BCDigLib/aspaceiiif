@@ -69,9 +69,26 @@ module ASpaceIIIF
       @digital_object_components.delete_if { |comp| comp["title"].include?('_INT') }
 
       # Finally, map labels to filenames, accounting for various quirks
-      # TODO: refactor for simplicity once we rebuild legacy DOs
+      # TODO: refactor for simplicity and clarity once we rebuild legacy DOs
       @digital_object_components.map do |comp|
         if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
+          if comp["file_versions"][0]["file_uri"].include?('://')
+            fname = comp["file_versions"][0]["file_uri"].split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+            comp["label"] ? label = comp["label"] : label = comp["title"]
+
+            components_fnames[label] = fname
+          elsif comp["file_versions"][0]["file_uri"].include?('_MAS')
+            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2').chomp('_MAS') + '.jp2'
+            comp["label"] ? label = comp["label"] : label = comp["title"]
+
+            components_fnames[label] = fname
+          else
+            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
+            comp["label"] ? label = comp["label"] : label = comp["title"]
+
+            components_fnames[label] = fname
+          end
+        elsif comp["file_versions"].length == 1 && comp["file_versions"][0]["use_statement"].include?("access_copy")
           if comp["file_versions"][0]["file_uri"].include?('://')
             fname = comp["file_versions"][0]["file_uri"].split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
             comp["label"] ? label = comp["label"] : label = comp["title"]
