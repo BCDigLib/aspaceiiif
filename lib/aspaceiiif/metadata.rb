@@ -10,6 +10,7 @@ module ASpaceIIIF
       @archival_object = as_records.archival_object
       @resource = as_records.resource
       @linked_agent = as_records.linked_agent
+      @digital_object_pk = dig_obj_id
     end
 
     def handle
@@ -46,6 +47,8 @@ module ASpaceIIIF
         @archival_object["component_id"]
       elsif handle.include?('BC') || handle.include?('MS')
         handle.split('/').last
+      else
+        raise "Digital object #{@digital_object_pk} has no corresponding component unique ID."
       end
     end
 
