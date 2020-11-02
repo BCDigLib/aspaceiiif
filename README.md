@@ -6,22 +6,28 @@ support Boston College Libraries' IIIF implementation.
 
 ## Installation
 
-To use the command line tool you will need to install locally. Clone or download
-this repository:
+To use the command line tool you will need to install locally. First, make sure any old versions of the gem have been removed:
+
+    $ gem uninstall aspaceiiif
+
+Clone or download this repository:
 
     $ git clone https://github.com/BCDigLib/aspaceiiif
     $ cd aspaceiiif
 
-Update the settings in example_config.yml according to your ArchivesSpace instance and rename 
-that file to config.yml. Then, add the changes to Git, so it knows that example_config.yml no 
-longer exists (this is necessary because the gemspec uses git ls-files):
+Make a copy of _example_config.yml_ named _config.yml_:
+
+    $ cp example_config.yml config.yml
+   
+Edit _config.yml_ according to your ArchivesSpace instance. Add the changes to Git (this is necessary
+ because the gemspec uses git ls-files):
 
     $ git add .
 
 You can now build and install the gem:
 
     $ gem build aspaceiiif.gemspec
-    $ gem install aspaceiiif-x.x.x.gem
+    $ gem install aspaceiiif-0.3.1.gem
 
 ## Usage
 
