@@ -1,8 +1,8 @@
 .bundle
 *.gem
 *.bak
-Gemfile.lock
 config.yml
+.DS_store
 
 .ruby-version
 .ruby-gemset
@@ -25,3 +25,9 @@ config.yml
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+# generated files
+/manifests/*
+!/manifests/.keep
+/view/*
+!/view/.keep
