@@ -6,6 +6,8 @@ support Boston College Libraries' IIIF implementation.
 
 ## Installation
 
+This gem requires Ruby v2.6.10 or below.
+
 To use the command line tool you will need to install locally. First, make sure any old versions of the gem have been removed:
 
     $ gem uninstall aspaceiiif
@@ -23,6 +25,10 @@ Edit _config.yml_ according to your ArchivesSpace instance. Add the changes to G
  because the gemspec uses git ls-files):
 
     $ git add .
+
+Install required gems:
+
+    $ bundle install
 
 You can now build and install the gem:
 
