@@ -1,6 +1,7 @@
 .bundle
 *.gem
 *.bak
+Gemfile.lock
 config.yml
 .DS_store
 
