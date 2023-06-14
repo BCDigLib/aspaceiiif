@@ -21,8 +21,11 @@ module ASpaceIIIF
     end
 
     def find_digital_objects(resource_id)
-      resource_tree_uri_suffix = '/repositories/2/resources/' + resource_id + '/tree'
-      resource_tree = get_record(resource_tree_uri_suffix)
+      resource_tree_uri_suffix = '/repositories/2/resources/' + resource_id + '?resolve[]=tree'
+      resource_tree_all = get_record(resource_tree_uri_suffix)
+
+      # pull out resource_tree_all["tree"]["_resolved"] or return an empty hash []
+      resource_tree = resource_tree_all.dig("tree", "_resolved") || []
 
       archival_object_refs = []
       digital_object_refs = []
