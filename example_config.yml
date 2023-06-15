@@ -4,3 +4,6 @@ aspace_password: "password" # Your ArchivesSpace admin account password
 image_server_base_uri: "https://loris.example.edu" # Base URI for IIIF image server
 manifest_server_base_uri: "https://mirador.example.edu/manifests" # Base URI for IIIF manifest directory
 repository: "2" # ID of repo where target ArchivesSpace records reside
+
+# Only update this value if you need additional ASpace API values to be resolved 
+api_resolve_params: "resolve[]=tree" # The parameterized string to be included on API calls to fetch additional info

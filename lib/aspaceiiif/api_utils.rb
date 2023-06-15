@@ -7,6 +7,7 @@ module ASpaceIIIF
     def initialize
       @conf = Config.load
       @repo_id = @conf['repository']
+      @api_resolve_params = @conf['api_resolve_params'] || "resolve[]=tree"
       auth_resp = RestClient::Request.execute(method: :post, 
                                              url: @conf["aspace_base_uri"] + '/users/admin/login',
                                              payload: { password: @conf["aspace_password"] }
@@ -22,7 +23,7 @@ module ASpaceIIIF
     end
 
     def find_digital_objects(resource_id)
-      resource_tree_uri_suffix = "/repositories/#{@repo_id}/resources/#{resource_id}?resolve[]=tree"
+      resource_tree_uri_suffix = "/repositories/#{@repo_id}/resources/#{resource_id}?#{@api_resolve_params}"
       resource_tree_all = get_record(resource_tree_uri_suffix)
 
       # pull out resource_tree_all["tree"]["_resolved"] or return an empty hash []
