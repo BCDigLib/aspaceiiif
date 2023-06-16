@@ -2,52 +2,61 @@ require 'aspaceiiif/api_utils'
 
 module ASpaceIIIF
   class Records
+    include Logging
+    
     def initialize(dig_obj_id)
-      conf = Config.load
-      @repo_id = conf['repository']
+      @conf = Config.load
+      @repo_id = @conf['repository']
       @dig_obj_id = dig_obj_id
       @conn = APIUtils.new
+
+      @digital_object_record = nil
     end
 
     def digital_object
-      dig_obj_ref = "/repositories/#{@repo_id}/digital_objects/#{@dig_obj_id}"
-      @conn.get_record(dig_obj_ref)
+      params_array = [
+        "resolve[]=tree",
+        "resolve[]=linked_instances::linked_agents",
+        "resolve[]=linked_instances::resource::linked_agents"
+      ]
+      params_string = "#{params_array.join("&")}"
+      dig_obj_ref = "/repositories/#{@repo_id}/digital_objects/#{@dig_obj_id}?#{params_string}"
+
+      if @digital_object_record.nil?
+        logger.debug("Fetching digital object (id: #{@dig_obj_id})")
+        @digital_object_record = @conn.get_record(dig_obj_ref)
+      end
+
+      @digital_object_record
     end
 
     def digital_object_tree
-      dig_obj_tree_ref = digital_object["tree"]["ref"]
-      @conn.get_record(dig_obj_tree_ref)
+      digital_object.dig("tree", "_resolved") || {}
     end
 
     def digital_object_components
-      dig_obj_comp_refs = digital_object_tree["children"].map { |e| e["record_uri"] }
-      dig_obj_comp_refs.map { |uri| @conn.get_record(uri) }
+      digital_object_components = digital_object_tree.dig("children") || {}
+
+      logger.debug("\tfound #{digital_object_components.length} digital object component children")
+
+      digital_object_components
     end
 
     def archival_object
-      arch_obj_ref = digital_object["linked_instances"][0]["ref"]
-      @conn.get_record(arch_obj_ref)
+      digital_object.dig("linked_instances", 0, "_resolved") || {}
     end
 
     def resource
-      # If the "resource" key is missing, then archival_object is actually a resource
-      if archival_object["resource"]
-        resource_ref = archival_object["resource"]["ref"]
-        @conn.get_record(resource_ref)
-      else
-        archival_object
-      end
+      # Look for the "resource": {"_resolved": ...} structure in the archival_object to identify the parent resource record,
+      # but if that doesn't exist then the archival_object _is_ the resource record
+      archival_object.dig("resource", "_resolved") || archival_object
     end
 
     def linked_agent
-      unless (archival_object["linked_agents"].empty? && resource["linked_agents"].empty?)
-        if archival_object["linked_agents"].length > 0
-          agent_ref = archival_object["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-          @conn.get_record(agent_ref)
-        else
-          agent_ref = resource["linked_agents"].detect { |e| e["role"] == "creator" }["ref"]
-          @conn.get_record(agent_ref)
-        end
+      if resource.dig("linked_agents").nil? || resource.dig("linked_agents").empty?
+        {}
+      else
+        resource.dig("linked_agents").detect { |e| e["role"] == "creator" }
       end
     end
   end

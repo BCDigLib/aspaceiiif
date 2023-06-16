@@ -32,3 +32,5 @@ config.yml
 !/manifests/.keep
 /view/*
 !/view/.keep
+/logs/*
+!/logs/.keep
