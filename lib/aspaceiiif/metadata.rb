@@ -65,64 +65,50 @@ module ASpaceIIIF
       "John J. Burns Library, Boston College"
     end
 
+    def calculate_component_label(component_label, component_title)
+        # Check if component_label is not nil and not an empty string
+        if !component_label.nil? && !component_label.empty?
+            component_label
+        else
+            component_title
+        end
+    end
+
+    def generate_clean_component_file_uri(component_file_uri)
+        component_file_uri.split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2').chomp('_MAS') + '.jp2'
+    end
+
     def component_labels_filenames
       components_fnames = {}
 
-      # First delete the color target component
-      @digital_object_components.delete_if { |comp| comp["title"].include?('_target') }
-
-      # Next, remove intermediates so we don't end up with duplicate filenames
-      @digital_object_components.delete_if { |comp| comp["title"].include?('_INT') }
-
-      # Finally, map labels to filenames, accounting for various quirks
+      # Map labels to filenames, accounting for various quirks
       # TODO: refactor for simplicity and clarity once we rebuild legacy DOs
       @digital_object_components.map do |comp|
-        if comp["file_versions"][0]["use_statement"].include?("master") || comp["file_versions"][0]["use_statement"].include?("archive")
-          if comp["file_versions"][0]["file_uri"].include?('://')
-            fname = comp["file_versions"][0]["file_uri"].split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
+        # Skip if this component record includes specific title substrings
+        comp_title = comp.dig("title") || ""
+        next if comp_title.include?('_target') || comp_title.include?('_INT')
 
-            components_fnames[label] = fname
-          elsif comp["file_versions"][0]["file_uri"].include?('_MAS')
-            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2').chomp('_MAS') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
+        comp_label = comp.dig("label") || ""
+        calculated_comp_label = calculate_component_label(comp_label, comp_title)
 
-            components_fnames[label] = fname
-          else
-            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
+        comp_file_versions = comp.dig("file_versions") || []
+        comp_use_statement = comp.dig("file_versions", 0, "use_statement") || ""
+        comp_file_uri = comp.dig("file_versions", 0, "file_uri") || ""
+        # TODO: can comp_file_uri be an empty string?
 
-            components_fnames[label] = fname
+        if comp_use_statement.include?("master") || 
+           comp_use_statement.include?("archive") || 
+           (comp_file_versions.length == 1 && comp_use_statement.include?("access_copy"))
+
+          components_fnames[calculated_comp_label] = generate_clean_component_file_uri(comp_file_uri)
+        elsif comp_file_versions.length > 1
+          comp_file_versions_multi = comp.dig("file_versions", 1, "file_uri") || ""
+
+          if !comp_file_versions_multi.include?('://')
+            comp_file_uri = comp_file_versions_multi
           end
-        elsif comp["file_versions"].length == 1 && comp["file_versions"][0]["use_statement"].include?("access_copy")
-          if comp["file_versions"][0]["file_uri"].include?('://')
-            fname = comp["file_versions"][0]["file_uri"].split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
 
-            components_fnames[label] = fname
-          elsif comp["file_versions"][0]["file_uri"].include?('_MAS')
-            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2').chomp('_MAS') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
-
-            components_fnames[label] = fname
-          else
-            fname = comp["file_versions"][0]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
-
-            components_fnames[label] = fname
-          end
-        elsif comp["file_versions"].length > 1
-          if comp["file_versions"][1]["file_uri"].include?('://')
-            fname = comp["file_versions"][0]["file_uri"].split('/').last.chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
-
-            components_fnames[label] = fname
-          else
-            fname = comp["file_versions"][1]["file_uri"].chomp('.jpg').chomp('.tif').chomp('.jp2') + '.jp2'
-            comp["label"] ? label = comp["label"] : label = comp["title"]
-
-            components_fnames[label] = fname
-          end
+          components_fnames[calculated_comp_label] = generate_clean_component_file_uri(comp_file_uri)
         end
       end
 
