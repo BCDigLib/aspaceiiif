@@ -4,3 +4,6 @@ aspace_password: "password" # Your ArchivesSpace admin account password
 image_server_base_uri: "https://loris.example.edu" # Base URI for IIIF image server
 manifest_server_base_uri: "https://mirador.example.edu/manifests" # Base URI for IIIF manifest directory
 repository: "2" # ID of repo where target ArchivesSpace records reside
+
+placeholder_text_use_statement: "Please contact the Archives for information on reuse."
+placeholder_text_owner: "FooBar University Library"

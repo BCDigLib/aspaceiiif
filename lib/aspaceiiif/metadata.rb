@@ -14,6 +14,10 @@ module ASpaceIIIF
       @resource = as_records.resource
       @linked_agent = as_records.linked_agent
       @digital_object_pk = dig_obj_id
+
+      @conf = Config.load
+      @placeholder_text_use_statement = @conf['placeholder_text_use_statement'] || ""
+      @placeholder_text_owner = @conf['placeholder_text_owner'] || ""
     end
 
     def handle
@@ -24,8 +28,8 @@ module ASpaceIIIF
       if @digital_object["notes"].select { |note| note["type"] == "userestrict" }.length > 0
         @digital_object["notes"].select { |note| note["type"] == "userestrict" }[0]["content"][0]
       else
-        # Placeholder until we have a general purpose use use statement
-        "Please contact the Burns Library for information on reuse."
+        # Use the placeholder use statement
+        @placeholder_text_use_statement
       end
     end
 
@@ -61,8 +65,8 @@ module ASpaceIIIF
     end
 
     def owner
-      # Hardcoding this because it is not included in ArchivesSpace records
-      "John J. Burns Library, Boston College"
+      # BC Libraries doesn't include an owner field in the record, so just use the placeholder text
+      @placeholder_text_owner
     end
 
     def calculate_component_label(component_label, component_title)
