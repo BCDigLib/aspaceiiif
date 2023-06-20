@@ -29,8 +29,8 @@ module ASpaceIIIF
 
         logger.debug("Found #{inp_arr.length} digital object ID(s): #{inp_arr.join(", ")}")
 
-        logger.debug("Now loading digital object records")
         logger.debug("#{'-' * 45}")
+        logger.debug("Now loading digital object records")
 
         inp_arr.each_with_index do |id, index|
             loop_starting = Process.clock_gettime(Process::CLOCK_MONOTONIC)

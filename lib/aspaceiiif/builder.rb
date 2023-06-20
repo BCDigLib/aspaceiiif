@@ -1,9 +1,12 @@
 require 'aspaceiiif/config'
 require 'aspaceiiif/metadata'
 require 'iiif/presentation'
+require_relative 'logging'
 
 module ASpaceIIIF
   class Builder
+    include Logging
+
     def initialize(dig_obj_id)
       conf = Config.load
       @image_server = conf["image_server_base_uri"]

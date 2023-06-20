@@ -89,8 +89,8 @@ module ASpaceIIIF
         end
       end
 
-      logger.debug("Found #{archival_object_refs.length} child archival object(s):")
       logger.debug("#{'-' * 45}")
+      logger.debug("Found #{archival_object_refs.length} child archival object(s):")
 
       archival_object_refs.map.with_index do |ref, index|
         logger.debug("[#{index + 1}] Fetching archival object (ref: #{ref})")

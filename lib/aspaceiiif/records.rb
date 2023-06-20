@@ -1,9 +1,10 @@
 require 'aspaceiiif/api_utils'
+require_relative 'logging'
 
 module ASpaceIIIF
   class Records
     include Logging
-    
+
     def initialize(dig_obj_id)
       @conf = Config.load
       @repo_id = @conf['repository']

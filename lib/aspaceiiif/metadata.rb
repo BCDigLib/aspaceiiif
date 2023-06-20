@@ -1,7 +1,10 @@
 require 'aspaceiiif/records'
+require_relative 'logging'
 
 module ASpaceIIIF
   class Metadata
+    include Logging
+
     def initialize(dig_obj_id)
       as_records = Records.new(dig_obj_id)
       @digital_object = as_records.digital_object
