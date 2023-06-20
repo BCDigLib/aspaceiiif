@@ -9,10 +9,9 @@ module ASpaceIIIF
     ARGV << "-h" if ARGV.empty? || (ARGV[0] != "digital_object" && ARGV[0] != "resource")
 
     OptionParser.new do |parser|
-      parser.banner = "Usage: aspaceiiif [ resource | digital_object ] [ id (db primary key) ]
-      e.g., aspaceiiif resource 15"
+      parser.banner = "Usage: aspaceiiif [ resource | digital_object ] [ id (db primary key) ] e.g., aspaceiiif resource 15"
 
-      parser.on("-h", "--help", "Show this help message") do ||
+      parser.on("-h", "--help", "Show this help message") do |p|
         puts parser
         exit
       end
